@@ -24,6 +24,8 @@ jobs:
         npm run build --if-present
         npm install gitbook-cli -g
         sh gitbook-build.sh
+        cp -r docs/docs public/docs
+        cp index.html public/
       env:
         CI: true
     - name: deploy
@@ -34,5 +36,7 @@ jobs:
         BRANCH: gh-pages
         FOLDER: public
         BUILD_SCRIPT: |
-          cp -r docs/docs public/docs
-          cp index.html public/
+          cp index.html ..
+          echo "ok"
+
+
