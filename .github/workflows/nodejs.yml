@@ -26,6 +26,9 @@ jobs:
         sh gitbook-build.sh
         cp -r docs/docs public/docs
         cp index.html public/
+        cp LICENSE public/
+        cp docs/README.md public/
+
       env:
         CI: true
     - name: deploy
@@ -36,7 +39,6 @@ jobs:
         BRANCH: gh-pages
         FOLDER: public
         BUILD_SCRIPT: |
-          cp index.html ../
           pwd
           echo "ok"
 
