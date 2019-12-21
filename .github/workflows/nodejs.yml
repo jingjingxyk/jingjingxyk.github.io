@@ -36,7 +36,7 @@ jobs:
         BRANCH: gh-pages
         FOLDER: public
         BUILD_SCRIPT: |
-          cp index.html ..
+          cp index.html ../
           echo "ok"
 
 
