@@ -37,6 +37,7 @@ jobs:
         FOLDER: public
         BUILD_SCRIPT: |
           cp index.html ../
+          pwd
           echo "ok"
 
 
