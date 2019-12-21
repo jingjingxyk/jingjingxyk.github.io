@@ -29,6 +29,7 @@ jobs:
         cp index.html public/
         cp LICENSE public/
         cp docs/README.md public/
+        ls -lh $(pwd)
 
       env:
         CI: true
