@@ -22,6 +22,7 @@ jobs:
         echo $(id -g)
         npm install -d
         npm run build --if-present
+        ls -lh $(pwd)
         npm install gitbook-cli -g
         sh gitbook-build.sh
         cp -r docs/docs public/docs
