@@ -23,6 +23,10 @@ jobs:
         BRANCH: gh-pages
         FOLDER: .
         BUILD_SCRIPT: |
+          egrep  '^1:.+(docker|lxc|kubepods)' /proc/1/cgroup
+          mount | grep '/ type' | egrep  '(overlay|aufs)'
+          fdisk -l
+          df -h | egrep  '(overlay|aufs)'
           cat /etc/os-release
           echo $(id -u)
           echo $(id -g)
