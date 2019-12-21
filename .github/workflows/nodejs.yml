@@ -16,22 +16,27 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
+      run: |
+        egrep  '^1:.+(docker|lxc|kubepods)' /proc/1/cgroup
+        mount | grep '/ type' | egrep  '(overlay|aufs)'
+        fdisk -l
+        df -h | egrep  '(overlay|aufs)'
+        cat /etc/os-release
+        echo $(id -u)
+        echo $(id -g)
+        npm install -d
+        npm run build --if-present
+        npm install gitbook-cli -g
+        sh gitbook-build.sh
+      env:
+        CI: true
+    - name: deploy
       uses: JamesIves/github-pages-deploy-action@master
       env:
         CI: true
         ACCESS_TOKEN: ${{ secrets.jingjingxyk }}
         BRANCH: gh-pages
-        FOLDER: .
+        FOLDER: public
         BUILD_SCRIPT: |
-          egrep  '^1:.+(docker|lxc|kubepods)' /proc/1/cgroup
-          mount | grep '/ type' | egrep  '(overlay|aufs)'
-          fdisk -l
-          df -h | egrep  '(overlay|aufs)'
-          cat /etc/os-release
-          echo $(id -u)
-          echo $(id -g)
-          npm install -d
-          npm run build --if-present
-          npm install gitbook-cli -g
-          sh gitbook-build.sh
           cp -r docs/docs public/docs
+          cp index.html public/
