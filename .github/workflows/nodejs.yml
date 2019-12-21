@@ -19,7 +19,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@master
       env:
         CI: true
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.jingjingxyk }}
         BRANCH: gh-pages
         FOLDER: .
         BUILD_SCRIPT: |
