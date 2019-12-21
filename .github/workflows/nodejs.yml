@@ -20,12 +20,12 @@ jobs:
     - name: npm install, build, and test
       run: |
         cat /etc/os-release
-        echo $(`id -u`)
-        echo $(`id -g`)
+        echo $(id -u)
+        echo $(id -g)
         npm install -d
         npm run build --if-present
         npm install gitbook-cli -g
         sh gitbook-build.sh
-        cp docs/docs public/docs
+        cp -r docs/docs public/docs
       env:
         CI: true
