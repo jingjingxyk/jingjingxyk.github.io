@@ -5,7 +5,7 @@ var projectRoot = path.resolve(__dirname, '.');
 const webpack = require("webpack");
 
 module.exports = {
-  mode: "development",
+//  mode: "development",
   entry: {
     app: './src/main/main.js'
   },
