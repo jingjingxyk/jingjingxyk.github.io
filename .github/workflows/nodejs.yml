@@ -17,7 +17,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
       run: |
-        egrep  '^1:.+(docker|lxc|kubepods)' /proc/1/cgroup
         mount | grep '/ type' | egrep  '(overlay|aufs)'
         fdisk -l
         df -h | egrep  '(overlay|aufs)'
