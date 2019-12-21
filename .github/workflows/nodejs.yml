@@ -32,7 +32,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@master
       env:
         CI: true
-        ACCESS_TOKEN: ${{ secrets.jingjingxyk }}
+        ACCESS_TOKEN: ${{ secrets.github_io }}
         BRANCH: gh-pages
         FOLDER: public
         BUILD_SCRIPT: |
