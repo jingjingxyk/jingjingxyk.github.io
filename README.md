@@ -23,3 +23,17 @@ reader.onload = function () {
   });
 };
 ```
+
+
+## 配置github ssh key
+```
+vi ~/.ssh/config
+
+Host github.com
+    Hostname github.com
+    Port 22
+    PreferredAuthentications publickey
+    StrictHostKeyChecking no
+    IdentityFile ~/.ssh/your-github-ssh-private-key
+
+```

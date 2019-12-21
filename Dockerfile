@@ -6,9 +6,13 @@ RUN sh /workspace/gitbook-build.sh
 
 
 FROM node:13-alpine
-MAINTAINER zonghengbaihe521@qq.com
 ADD . /workspace
 RUN npm install -dd
 RUN npm run build
 
-COPY --from=0 /workspace/docs/docs /public/
+
+FROM nginx:alpine
+MAINTAINER zonghengbaihe521@qq.com
+COPY --from=0 /workspace/docs/docs /usr/share/nginx/html/
+ADD ./index.html /usr/share/nginx/html/
+COPY --from=1 /workspace/public/dist /usr/share/nginx/html/
