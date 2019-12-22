@@ -1,2 +1,2 @@
 import  "../common/common"
-import  "../components/"
+import  "../components/RevealApp.js"
