@@ -12,7 +12,7 @@
     }else{
         document.documentElement.style.fontSize= 1024 /7.5+"px";
     }
-    console.log("%c jingjingxyk \n好吧，你想说啥 zonghengbaihe521@qq.com  %c Copyright \xa9 2014-%s\n",
+    console.log("%c jingjingxyk \n好吧，你想说啥 \n zonghengbaihe521@qq.com \n %c Copyright \xa9 2014-%s\n",
         'font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:64px;color:#00bbee;-webkit-text-fill-color:#00bbee;-webkit-text-stroke: 1px #00bbee;',
         "font-size:12px;color:#999999;", (new Date).getFullYear()
     );
