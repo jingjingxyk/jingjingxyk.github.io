@@ -30,6 +30,7 @@ jobs:
         cp -r docs/docs public/docs
         cp index.html public/
         cp LICENSE public/
+        cp CNAME public/
         cp docs/README.md public/
         ls -lh "$(pwd)/public/"
     - name: deploy
