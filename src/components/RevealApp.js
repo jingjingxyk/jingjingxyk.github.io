@@ -23,20 +23,20 @@
         maxScale: 1,
         dependencies: [
             // Interpret Markdown in <section> elements
-            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '//cdn.bootcss.com/reveal.js/3.8.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '//cdn.bootcss.com/reveal.js/3.8.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 
             // Syntax highlight for <code> elements
-            { src: 'plugin/highlight/highlight.js', async: true },
+            { src: '//cdn.bootcss.com/reveal.js/3.8.0/plugin/highlight/highlight.js', async: true },
 
             // Zoom in and out with Alt+click
-            { src: 'plugin/zoom-js/zoom.js', async: true },
+            { src: '//cdn.bootcss.com/reveal.js/3.8.0/plugin/zoom-js/zoom.js', async: true },
 
             // Speaker notes
-            { src: 'plugin/notes/notes.js', async: true },
+            { src: '//cdn.bootcss.com/reveal.js/3.8.0/plugin/notes/notes.js', async: true },
 
             // MathJax
-            { src: 'plugin/math/math.js', async: true }
+            { src: '//cdn.bootcss.com/reveal.js/3.8.0/plugin/math/math.js', async: true }
         ]
     });
 
