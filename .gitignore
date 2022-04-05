@@ -7,9 +7,11 @@ _site/
 mock/salary/vars.js
 default.vm
 /tmp
-yn_xwlb/yn_xwlb_content
+yn_xwlb/yn_xwlb_content/*
 !yn_xwlb/yn_xwlb_content/.gitkeep
 yn_xwlb/package-lock.json
+chromium-credits/package-lock.json
+
 # GIT/SVN generated files #
 ###########################
 *.diff
