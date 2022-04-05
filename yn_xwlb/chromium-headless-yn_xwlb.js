@@ -92,7 +92,8 @@ async function sleep(time) {
     set.forEach((key,val)=>{
         console.log(key + ": " + val)
         if(key === current || key === yesterday) {
-            fs.writeFileSync(__dirname+`/yn_xwlb_content/${key}.json`, JSON.stringify(days_data[key]), function (error) {
+
+            fs.writeFileSync(__dirname + `/yn_xwlb_content/${key}.json`, JSON.stringify(days_data[key]), function (error) {
                 if (error) {
                     console.log('写入失败')
                 } else {

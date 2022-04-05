@@ -36,8 +36,6 @@ async function sleep(time) {
         return JSON.stringify(res);
     });
 
-    console.log(JSON.parse(res));
-
     console.log('==================')
     fs.writeFileSync(__dirname+ `/chromium-credits.json`, res, function (error) {
         if (error) {
