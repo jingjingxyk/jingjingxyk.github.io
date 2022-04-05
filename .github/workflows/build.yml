@@ -1,0 +1,37 @@
+name: Node.js CI
+on:
+    push:
+        branches:
+            - main
+    schedule:
+            -  cron: "30 14 * * *"
+jobs:
+    build:
+        runs-on: ubuntu-20.04
+        timeout-minutes: 180
+        strategy:
+            matrix:
+                node-version: [ 16.x ]
+        steps:
+            -   uses: actions/checkout@v3
+            -   name: Use Node.js
+                uses: actions/setup-node@v3
+                with:
+                    node-version: ${{ matrix.node }}
+            -   name: 'npm install, build, and test'
+                run: bash setup-gh-pages.sh
+            -   name: 'run chromium'
+#                run: bash run-chromium.sh
+                run: bash yn_xwlb/run-docker.sh
+            -   name: 'get data'
+                run:  bash yn_xwlb/get-yn-xwlb-data.sh
+            -   name: 'copy data'
+                run: cp -f yn_xwlb/yn_xwlb_content/*.json gh-pages/yn_xwlb_content
+            -   name: 'Deploy GitHub Pages'
+                uses: peaceiris/actions-gh-pages@v3
+                with:
+                    deploy_key: ${{ secrets.ACTION_DEPLOY_KEY }}
+                    publish_dir: gh-pages
+                    publish_branch: gh-pages
+                    allow_empty_commit: false
+                    enable_jekyll: false

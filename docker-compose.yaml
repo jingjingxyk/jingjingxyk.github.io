@@ -1,0 +1,19 @@
+version: "3"
+services:
+  node-dev:
+    image: node:13-alpine
+    volumes:
+      - .:/workspace
+    container_name: jingjingxyk-github-io
+    working_dir: /workspace
+    ports:
+      - 9000:9000
+      - 1337:1337
+    tty: true
+  gitbook-dev:
+    image: wenba100xie/gitbook-cli:latest
+    tty: true
+    volumes:
+      - .:/workspace
+    container_name: gitbook-dev
+    working_dir: /workspace
