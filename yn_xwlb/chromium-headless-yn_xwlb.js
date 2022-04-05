@@ -19,7 +19,7 @@ async function sleep(time) {
     await page.setViewport({width: 1920, height: 1080});
     await page.goto('http://www.yntv.cn/list.html?sectionid=31',{
         waitUntil: 'networkidle2',
-        timeout: 90000
+        timeout: 180000
     });
     await page.evaluate(() => {
 
