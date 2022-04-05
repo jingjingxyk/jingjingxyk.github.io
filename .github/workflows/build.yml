@@ -24,9 +24,13 @@ jobs:
 #                run: bash run-chromium.sh
                 run: bash yn_xwlb/run-docker.sh
             -   name: 'get data'
-                run:  bash yn_xwlb/get-yn-xwlb-data.sh
+                run:  |
+                    bash  chromium-credits/get-chromium-credits.sh
+                    bash yn_xwlb/get-yn-xwlb-data.sh
             -   name: 'copy data'
-                run: cp -f yn_xwlb/yn_xwlb_content/*.json gh-pages/yn_xwlb_content
+                run: |
+                    cp -f chromium-credits/chromium-credits.json gh-pages/
+                    cp -f yn_xwlb/yn_xwlb_content/*.json gh-pages/yn_xwlb_content
             -   name: 'Deploy GitHub Pages'
                 uses: peaceiris/actions-gh-pages@v3
                 with:
