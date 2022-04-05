@@ -13,7 +13,9 @@ netstat -altpn
 
 curl  -H 'Host:localhost' http://127.0.0.1:9222/json/version
 
+
 pwd
+ls -lh .
 npm install
 node chromium-headless-yn_xwlb.js
 
