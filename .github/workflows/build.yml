@@ -26,7 +26,7 @@ jobs:
             -   name: 'get data'
                 run:  |
                     bash  chromium-credits/get-chromium-credits.sh
-                    bash yn_xwlb/get-yn-xwlb-data.sh
+                    bash  yn_xwlb/get-yn-xwlb-data.sh
             -   name: 'copy data'
                 run: |
                     cp -f chromium-credits/chromium-credits.json gh-pages/
