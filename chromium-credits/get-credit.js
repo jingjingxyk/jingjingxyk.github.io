@@ -39,7 +39,7 @@ async function sleep(time) {
     console.log(JSON.parse(res));
 
     console.log('==================')
-    fs.writeFileSync(`chromium-credits.json`, res, function (error) {
+    fs.writeFileSync(__dirname+ `/chromium-credits.json`, res, function (error) {
         if (error) {
             console.log('写入失败')
         } else {
