@@ -21,6 +21,7 @@ async function sleep(time) {
         waitUntil: 'networkidle2',
         timeout: 300000
     });
+    await sleep(10)
     await page.evaluate(() => {
 
         document.querySelector("#page").click();
@@ -28,7 +29,7 @@ async function sleep(time) {
             document.querySelector("#page").click();
         },2000);
     })
-    await sleep(10)
+
     const res = await page.evaluate(() => {
         let res=Array.from(document.querySelectorAll("#liebiao .tuwen-con-box")).map((current_value)=>{
             console.log(current_value)

@@ -21,14 +21,7 @@ async function sleep(time) {
         waitUntil: 'networkidle2',
         timeout: 5000
     });
-    await page.evaluate(() => {
 
-        document.querySelector("#page").click();
-        setTimeout(()=>{
-            document.querySelector("#page").click();
-        },2000);
-    })
-    await sleep(10)
     const res = await page.evaluate(() => {
        let res= Array.from(document.querySelectorAll(".product")).map((currentValue)=>{
 
