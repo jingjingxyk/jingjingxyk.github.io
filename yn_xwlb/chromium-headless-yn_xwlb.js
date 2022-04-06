@@ -24,20 +24,18 @@ async function sleep(time) {
     });
     await sleep(10)
     await page.evaluate(() => {
-        let nums = 1;
-        let interval = null;
-
-        function repeat() {
-            document.querySelector("#page").click();
-            nums++;
-            if (nums >= 20) {
-                clearTimeout(interval)
-            }
-            interval = setTimeout(repeat, 2000);
-        }
 
         document.querySelector("#page").click();
-        repeat()
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+
 
     })
 
