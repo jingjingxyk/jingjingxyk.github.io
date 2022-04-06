@@ -11,94 +11,101 @@ async function sleep(time) {
     })
 }
 
-function repeat(number)
-{
-    for(let i=0;i<number;i++)
-    {
-        setTimeout(()=>{
-            document.querySelector("#page").click();
-        },2000);
-    }
-}
 
 (async () => {
-    let browserURL='http://localhost:9222';
-    const browser = await  puppeteer.connect({browserURL});
+    let browserURL = 'http://localhost:9222';
+    const browser = await puppeteer.connect({browserURL});
     const page = await browser.newPage();
     await page.setJavaScriptEnabled(true);
     await page.setViewport({width: 1920, height: 1080});
-    await page.goto('http://www.yntv.cn/list.html?sectionid=31',{
+    await page.goto('http://www.yntv.cn/list.html?sectionid=31', {
         waitUntil: 'networkidle2',
         timeout: 300000
     });
     await sleep(10)
     await page.evaluate(() => {
+        let nums = 1;
+        let interval = null;
+
+        function repeat() {
+            document.querySelector("#page").click();
+            nums++;
+            if (nums >= 20) {
+                clearTimeout(interval)
+            }
+            interval = setTimeout(repeat, 2000);
+        }
 
         document.querySelector("#page").click();
-        repeat(9)
+        repeat()
+
     })
 
     const res = await page.evaluate(() => {
-        let res=Array.from(document.querySelectorAll("#liebiao .tuwen-con-box")).map((current_value)=>{
+        let res = Array.from(document.querySelectorAll("#liebiao .tuwen-con-box")).map((current_value) => {
             console.log(current_value)
             return {
-                "content_title": current_value.querySelector(".tuwen-con-box-ri-title").innerText ,
-                "created_at": current_value.querySelector(".tuwen-con-box-le .time").innerText ,
+                "content_title": current_value.querySelector(".tuwen-con-box-ri-title").innerText,
+                "created_at": current_value.querySelector(".tuwen-con-box-le .time").innerText,
                 "url": current_value.querySelector(".tuwen-con-box-ri a").href
 
             }
         })
-       // console.log(JSON.stringify(res))
+        // console.log(JSON.stringify(res))
         return JSON.stringify(res);
     });
 
     console.log(JSON.parse(res));
-    let set=new Set();
-    let days_data={};
-    JSON.parse(res).map((currentValue)=>{
-        let days=currentValue.created_at.match(/(\d{4})年(\d{2})月(\d{1,2})日\s+(\d{1,2}):(\d{1,2})/i)
+    let set = new Set();
+    let days_data = {};
+    JSON.parse(res).map((currentValue) => {
+        let days = currentValue.created_at.match(/(\d{4})年(\d{2})月(\d{1,2})日\s+(\d{1,2}):(\d{1,2})/i)
 
-        let day=`${days[1]}-${days[2]}-${days[3]}`;
-        if( !set.has(day)) {
+        let day = `${days[1]}-${days[2]}-${days[3]}`;
+        if (!set.has(day)) {
             set.add(day)
         }
-        if(typeof days_data[day] == "undefined"){
-            days_data[day]=[];
-        }else{
+        if (typeof days_data[day] == "undefined") {
+            days_data[day] = [];
+        } else {
             days_data[day].push(currentValue)
         }
 
 
     })
-    console.log( days_data)
+    console.log(days_data)
 
 
     let current_date = new Date();
     let curernt_day = current_date.getDate();
-    let curernt_month = current_date.getMonth()+1;
+    let curernt_month = current_date.getMonth() + 1;
     let curernt_year = current_date.getFullYear();
 
 
-    if(curernt_month<10){ curernt_month='0'+curernt_month}
-   // if(curernt_day<10){curernt_day='0'+curernt_day}
+    if (curernt_month < 10) {
+        curernt_month = '0' + curernt_month
+    }
+    // if(curernt_day<10){curernt_day='0'+curernt_day}
 
-    let current=curernt_year+'-'+curernt_month+'-'+curernt_day
+    let current = curernt_year + '-' + curernt_month + '-' + curernt_day
 
 
-   // yesterday
+    // yesterday
     current_date.setDate(current_date.getDate() - 1);
     let yesterday_day = current_date.getDate();
-    let yesterday_month = current_date.getMonth()+1;
+    let yesterday_month = current_date.getMonth() + 1;
     let yesterday_year = current_date.getFullYear();
 
-    if(yesterday_month<10){ yesterday_month='0'+yesterday_month}
-    let yesterday=yesterday_year+'-'+yesterday_month+'-'+yesterday_day
+    if (yesterday_month < 10) {
+        yesterday_month = '0' + yesterday_month
+    }
+    let yesterday = yesterday_year + '-' + yesterday_month + '-' + yesterday_day
 
-    console.log(current,yesterday)
+    console.log(current, yesterday)
     console.log('==================')
-    set.forEach((key,val)=>{
+    set.forEach((key, val) => {
         console.log(key + ": " + val)
-        if( 1 || key === current || key === yesterday) {
+        if (1 || key === current || key === yesterday) {
 
             fs.writeFileSync(__dirname + `/yn_xwlb_content/${key}.json`, JSON.stringify(days_data[key]), function (error) {
                 if (error) {
@@ -115,7 +122,7 @@ function repeat(number)
 
     //await sleep(180)
     //await sleep(100000);
-   // await browser.close();
+    // await browser.close();
     await page.close();
     await browser.disconnect();
 })();
