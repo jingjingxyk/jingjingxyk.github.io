@@ -20,9 +20,8 @@ jobs:
                     node-version: ${{ matrix.node }}
             -   name: 'npm install, build, and test'
                 run: bash setup-gh-pages.sh
-            -   name: 'run chromium'
-#                run: bash run-chromium.sh
-                run: bash yn_xwlb/run-docker.sh
+            -   name: 'run chromium in container'
+                run: bash run-docker.sh
             -   name: 'get data'
                 run:  |
                     bash  chromium-credits/get-chromium-credits.sh

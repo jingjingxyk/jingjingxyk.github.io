@@ -9,7 +9,7 @@ __DIR__=$(
 cd ${__DIR__}
 
 
-docker run --rm --name chromium  -d -p 9221:9221 -p 9222:9222 wenba100xie/chromium:debian-11-20220404T0526Z bash /workspace/startup.sh
+docker run --rm --name chromium  -d -p 9221:9221 -p 9222:9222 wenba100xie/chromium:debian-11-20220406T0535Z
 
 sleep 5
 docker ps
