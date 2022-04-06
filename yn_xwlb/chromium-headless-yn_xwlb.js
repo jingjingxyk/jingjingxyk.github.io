@@ -27,6 +27,7 @@ async function sleep(time) {
         document.querySelector("#page").click();
 
     })
+    await sleep(20)
     const res = await page.evaluate(() => {
         let res = Array.from(document.querySelectorAll("#liebiao .tuwen-con-box")).map((current_value) => {
             console.log(current_value)
