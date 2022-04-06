@@ -11,6 +11,15 @@ async function sleep(time) {
     })
 }
 
+function repeat(number)
+{
+    for(let i=0;i<number;i++)
+    {
+        setTimeout(()=>{
+            document.querySelector("#page").click();
+        },2000);
+    }
+}
 
 (async () => {
     let browserURL='http://localhost:9222';
@@ -26,9 +35,7 @@ async function sleep(time) {
     await page.evaluate(() => {
 
         document.querySelector("#page").click();
-        setTimeout(()=>{
-            document.querySelector("#page").click();
-        },2000);
+        repeat(9)
     })
 
     const res = await page.evaluate(() => {
@@ -91,7 +98,7 @@ async function sleep(time) {
     console.log('==================')
     set.forEach((key,val)=>{
         console.log(key + ": " + val)
-        if(key === current || key === yesterday) {
+        if( 1 || key === current || key === yesterday) {
 
             fs.writeFileSync(__dirname + `/yn_xwlb_content/${key}.json`, JSON.stringify(days_data[key]), function (error) {
                 if (error) {
