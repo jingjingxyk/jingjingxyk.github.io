@@ -11,7 +11,7 @@ cd ${__DIR__}
 
 docker run --rm --name chromium  -d -p 9221:9221 -p 9222:9222  --dns="223.5.5.5" --dns="223.6.6.6" wenba100xie/chromium:debian-11-20220406T0535Z
 
-sleep 5
+
 docker ps
 container_id=$(docker ps | sed -n '2p' | awk '{print $1}')
 docker logs $container_id
