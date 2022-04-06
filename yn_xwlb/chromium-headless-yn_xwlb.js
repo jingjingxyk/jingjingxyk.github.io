@@ -22,9 +22,8 @@ async function sleep(time) {
         waitUntil: 'networkidle2',
         timeout: 300000
     });
-    await sleep(10)
+
     await page.evaluate(() => {
-
         document.querySelector("#page").click();
         document.querySelector("#page").click();
         document.querySelector("#page").click();
@@ -33,12 +32,9 @@ async function sleep(time) {
         document.querySelector("#page").click();
         document.querySelector("#page").click();
         document.querySelector("#page").click();
-        document.querySelector("#page").click();
-        document.querySelector("#page").click();
-
 
     })
-
+    await sleep(20)
     const res = await page.evaluate(() => {
         let res = Array.from(document.querySelectorAll("#liebiao .tuwen-con-box")).map((current_value) => {
             console.log(current_value)
@@ -103,7 +99,7 @@ async function sleep(time) {
     console.log('==================')
     set.forEach((key, val) => {
         console.log(key + ": " + val)
-        if (1 || key === current || key === yesterday) {
+        if ( key === current || key === yesterday) {
 
             fs.writeFileSync(__dirname + `/yn_xwlb_content/${key}.json`, JSON.stringify(days_data[key]), function (error) {
                 if (error) {
