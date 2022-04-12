@@ -22,6 +22,9 @@ docker exec -i $container_id ls -lh  /workspace/
 #docker exec -i $container_id /usr/local/bin/supervisorctl update
 docker exec -i $container_id /usr/local/bin/supervisorctl status
 
+# wait startup chromium
+sleep 15
+
 
 
 
