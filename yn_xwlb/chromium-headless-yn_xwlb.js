@@ -25,6 +25,14 @@ async function sleep(time) {
 
     await page.evaluate(() => {
         document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
 
     })
     await sleep(90)
