@@ -25,14 +25,6 @@ async function sleep(time) {
 
     await page.evaluate(() => {
         document.querySelector("#page").click();
-        document.querySelector("#page").click();
-        document.querySelector("#page").click();
-        document.querySelector("#page").click();
-        document.querySelector("#page").click();
-        document.querySelector("#page").click();
-        document.querySelector("#page").click();
-        document.querySelector("#page").click();
-        document.querySelector("#page").click();
 
     })
     await sleep(90)
@@ -100,7 +92,7 @@ async function sleep(time) {
     console.log('==================')
     set.forEach((key, val) => {
         console.log(key + ": " + val)
-        if ( 1 ||   key === current || key === yesterday) {
+        if ( key === current || key === yesterday) {
 
             fs.writeFileSync(__dirname + `/yn_xwlb_content/${key}.json`, JSON.stringify(days_data[key]), function (error) {
                 if (error) {
