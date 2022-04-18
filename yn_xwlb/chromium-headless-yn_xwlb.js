@@ -70,6 +70,14 @@ async function sleep(time) {
         document.querySelector("#page").click();
         document.querySelector("#page").click();
         document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
+        document.querySelector("#page").click();
 
     })
     await sleep(180)
