@@ -47,8 +47,9 @@ async function sleep(time) {
     let days_data = {};
     JSON.parse(res).map((currentValue) => {
         let days = currentValue.created_at.match(/(\d{4})年(\d{2})月(\d{1,2})日\s+(\d{1,2}):(\d{1,2})/i)
-
+        console.log(days)
         let day = `${days[1]}-${days[2]}-${days[3]}`;
+        console.log(day)
         if (!set.has(day)) {
             set.add(day)
         }
