@@ -24,6 +24,7 @@ async function sleep(time) {
     });
 
     await page.evaluate(() => {
+
         document.querySelector("#page").click();
         document.querySelector("#page").click();
         document.querySelector("#page").click();
@@ -80,7 +81,7 @@ async function sleep(time) {
         document.querySelector("#page").click();
 
     })
-    await sleep(180)
+    await sleep(60)
     const res = await page.evaluate(() => {
         let res = Array.from(document.querySelectorAll("#liebiao .tuwen-con-box")).map((current_value) => {
             console.log(current_value)
@@ -146,18 +147,14 @@ async function sleep(time) {
     console.log('==================')
     set.forEach((key, val) => {
         console.log(key + ": " + val)
+        let year=key.slice(0,3)
+        console.log(year)
+        let dir=__dirname + `/yn_xwlb_content/${year}`
+        fs.existsSync(dir) || fs.mkdirSync(dir, {recursive: true});
         if ( 1 || key === current || key === yesterday) {
-
-            fs.writeFileSync(__dirname + `/yn_xwlb_content/${key}.json`, JSON.stringify(days_data[key]), function (error) {
-                if (error) {
-                    console.log('写入失败')
-                } else {
-                    console.log('写入成功了')
-                }
-            })
+            console.log(key,val)
+            fs.writeFileSync(`${dir}/${key}.json`, JSON.stringify(days_data[key]))
         }
-
-
     })
 
 
