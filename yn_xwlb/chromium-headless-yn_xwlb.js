@@ -147,7 +147,7 @@ async function sleep(time) {
     console.log('==================')
     set.forEach((key, val) => {
         console.log(key + ": " + val)
-        let year=key.slice(0,3)
+        let year=key.slice(0,4)
         console.log(year)
         let dir=__dirname + `/yn_xwlb_content/${year}`
         fs.existsSync(dir) || fs.mkdirSync(dir, {recursive: true});
