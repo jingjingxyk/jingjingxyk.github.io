@@ -31,6 +31,7 @@ jobs:
                     cp -f chromium-credits/chromium-credits.json gh-pages/
                     rm -rf yn_xwlb/yn_xwlb_content/.gitkeep
                     test $(ls -A yn_xwlb/yn_xwlb_content/ | wc -l) -ge 1 &&  cp -rf yn_xwlb/yn_xwlb_content/* gh-pages/yn_xwlb_content/
+                    ls -lh gh-pages/
             -   name: 'Deploy GitHub Pages'
                 uses: peaceiris/actions-gh-pages@v3
                 with:
