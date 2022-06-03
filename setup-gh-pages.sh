@@ -24,10 +24,10 @@ bash build-local-doc.sh
 cd ${__DIR__}
 cp Thanks-Mirror/index.html ./Thanks-Mirror.html
 
-cd extension/test/extension-v3-test
+cd ReplaceGoogleCDN/extension/test/extension-v3-test
 bash build-prepare-codelab.sh
 cd ${__DIR__}
-cp extension/test/extension-v3-testreplace-google-frontend-cdn ./replace-google-frontend-cdn
+cp -rf ReplaceGoogleCDN/extension/test/extension-v3-test/replace-google-frontend-cdn ./replace-google-frontend-cdn
 
 npm install
 mkdir -p gh-pages/yn_xwlb_content
@@ -35,8 +35,10 @@ mkdir -p gh-pages/gh-pages
 
 cp -f index.html gh-pages/
 cp -f CNAME gh-pages
+
 cp -f ./Thanks-Mirror.html gh-pages
 cp -rf replace-google-frontend-cdn gh-pages
+
 npm run build
 git branch -a
 
