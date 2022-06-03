@@ -29,6 +29,8 @@ bash build-prepare-codelab.sh
 cd ${__DIR__}
 cp -rf ReplaceGoogleCDN/extension/test/extension-v3-test/replace-google-frontend-cdn ./replace-google-frontend-cdn
 
+cd ${__DIR__}
+
 npm install
 mkdir -p gh-pages/yn_xwlb_content
 mkdir -p gh-pages/gh-pages
