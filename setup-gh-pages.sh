@@ -15,6 +15,7 @@ echo $(id -g)
 
 sudo apt install -y iputils-ping net-tools dnsutils iproute2 procps iputils-ping lsof git python3 python3-pip
 
+:<<EOF
 git clone https://github.com/jingjingxyk/Thanks-Mirror.git --depth=1 --progress
 git clone https://github.com/jingjingxyk/ReplaceGoogleCDN.git --depth=1 --progress
 
@@ -28,6 +29,7 @@ cd ReplaceGoogleCDN/extension/test/extension-v3-test
 bash build-prepare-codelab.sh
 cd ${__DIR__}
 cp -rf ReplaceGoogleCDN/extension/test/extension-v3-test/replace-google-frontend-cdn ./replace-google-frontend-cdn
+EOF
 
 cd ${__DIR__}
 
