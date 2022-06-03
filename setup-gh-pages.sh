@@ -40,8 +40,10 @@ mkdir -p gh-pages/gh-pages
 cp -f index.html gh-pages/
 cp -f CNAME gh-pages
 
+:<<EOF
 cp -f ./Thanks-Mirror.html gh-pages
 cp -rf replace-google-frontend-cdn gh-pages
+EOF
 
 npm run build
 git branch -a
