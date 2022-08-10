@@ -1,4 +1,4 @@
-# jingjingxyk-github-io
+# jingjingxyk.github.io
 
 ## [Deployment with GITHUB_TOKEN](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-first-deployment-with-github_token)
 ## [actions-gh-pages-readme](https://github.com/peaceiris/actions-gh-pages#readme)

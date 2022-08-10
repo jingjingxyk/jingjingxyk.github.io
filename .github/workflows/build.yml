@@ -20,7 +20,9 @@ jobs:
             -   name: 'create chromium extension release archive '
                 run: bash tools/setup-gh-pages-step-02-chromium-extension.sh
             -   name: 'run chromium in docker'
-                run: bash tools/run-chromium-in-docker.sh
+                run: bash tools/run-chromium-in-docker-step-03.sh
+            -   name: 'get chromium credit data with puppeteer'
+                run: bash tools/get-chromium-credits-data-step-04.sh
             -   name: 'Deploy GitHub Pages'
                 uses: peaceiris/actions-gh-pages@v3
                 with:

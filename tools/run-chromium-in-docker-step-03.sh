@@ -20,7 +20,7 @@ docker exec -i $container_id ls -lh  /workspace/
 #docker exec -i $container_id /usr/local/bin/supervisord -c /etc/supervisord.conf
 
 # wait startup chromium
-sleep 15
+sleep 30
 
 #docker exec -i $container_id /usr/local/bin/supervisorctl update
 docker exec -i $container_id /usr/local/bin/supervisorctl status
