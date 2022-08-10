@@ -6,16 +6,20 @@ __DIR__=$(
   cd "$(dirname "$0")"
   pwd
 )
-cd ${__DIR__}
 
+__ROOT__=$(cd ${__DIR__}/../;pwd)
+
+cd ${__ROOT__}
 
 npm install
-mkdir -p gh-pages/yn_xwlb_content
-mkdir -p gh-pages/gh-pages
+
+mkdir -p ${__ROOT__}/gh-pages/gh-pages
+
+npm run build
 
 cp -f index.html gh-pages/
 cp -f CNAME gh-pages
 
-npm run build
+
 git branch -a
 
