@@ -19,6 +19,8 @@ jobs:
                 run: bash tools/setup-gh-pages-step-01-index.sh
             -   name: 'create chromium extension release archive '
                 run: bash tools/setup-gh-pages-step-02-chromium-extension.sh
+            -   name: 'run chromium in docker'
+                run: bash tools/run-chromium-in-docker.sh
             -   name: 'Deploy GitHub Pages'
                 uses: peaceiris/actions-gh-pages@v3
                 with:
