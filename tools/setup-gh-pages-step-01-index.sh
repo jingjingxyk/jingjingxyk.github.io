@@ -19,6 +19,8 @@ npm run build
 
 cp -f index.html gh-pages/
 cp -f CNAME gh-pages
+cp -f robots.txt gh-pages
+cp -rf vlogs gh-pages
 
 
 git branch -a
