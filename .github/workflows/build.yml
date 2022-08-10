@@ -11,7 +11,7 @@ jobs:
         timeout-minutes: 180
         steps:
             -   name: "build dependencies 1"
-                run: bash tools/install-build-deps-01.sh
+                run: pwd && bash tools/install-build-deps-01.sh
             -   name: "build dependencies 2"
                 run: bash tools/install-build-deps-02.sh
             -   name: 'create index.html'
