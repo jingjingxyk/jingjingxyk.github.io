@@ -11,7 +11,7 @@ yn_xwlb/yn_xwlb_content/*
 !yn_xwlb/yn_xwlb_content/.gitkeep
 yn_xwlb/package-lock.json
 chromium-credits/package-lock.json
-
+tools/dist
 # GIT/SVN generated files #
 ###########################
 *.diff

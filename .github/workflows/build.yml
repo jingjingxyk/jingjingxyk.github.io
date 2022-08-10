@@ -9,15 +9,11 @@ jobs:
     build:
         runs-on: ubuntu-20.04
         timeout-minutes: 180
-        strategy:
-            matrix:
-                node-version: [ 16.x ]
         steps:
-            -   uses: actions/checkout@v3
-            -   name: 'Use Node.js'
-                uses: actions/setup-node@v3
-                with:
-                    node-version: ${{ matrix.node }}
+            -   name: "build dependencies 1"
+                run: bash tools/install-build-deps.sh
+            -   name: "build dependencies 2"
+                run: bash tools/install-build-deps.sh
             -   name: 'npm install, build, and test'
                 run: bash tools/setup-gh-pages-step-01.sh
             -   name: 'Deploy GitHub Pages'

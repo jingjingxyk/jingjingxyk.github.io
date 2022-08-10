@@ -9,13 +9,6 @@ __DIR__=$(
 cd ${__DIR__}
 
 
-cat /etc/os-release
-echo $(id -u)
-echo $(id -g)
-
-sudo apt install -y iputils-ping net-tools dnsutils iproute2 procps iputils-ping lsof git python3 python3-pip
-
-
 npm install
 mkdir -p gh-pages/yn_xwlb_content
 mkdir -p gh-pages/gh-pages
