@@ -16,7 +16,7 @@ cd ${__ROOT__}/with-puppeteer-get-data
 pwd
 
 npm install
-node get-credit.js
+node get-chromium-credit.js
 
 cp chromium-credits.json ${__ROOT__}/gh-pages/
 
