@@ -4,7 +4,7 @@ on:
         branches:
             - main
     schedule:
-            -  cron: "30 14 * * *"
+            -  cron: "30 14 01 * *"
 jobs:
     build:
         runs-on: ubuntu-20.04
@@ -14,24 +14,12 @@ jobs:
                 node-version: [ 16.x ]
         steps:
             -   uses: actions/checkout@v3
-            -   name: Use Node.js
+            -   name: 'Use Node.js'
                 uses: actions/setup-node@v3
                 with:
                     node-version: ${{ matrix.node }}
             -   name: 'npm install, build, and test'
-                run: bash setup-gh-pages.sh
-            -   name: 'run chromium in container'
-                run: bash run-docker.sh
-            -   name: 'get data'
-                run:  |
-                    bash  chromium-credits/get-chromium-credits.sh
-                    bash  yn_xwlb/get-yn-xwlb-data.sh
-            -   name: 'copy data'
-                run: |
-                    cp -f chromium-credits/chromium-credits.json gh-pages/
-                    rm -rf yn_xwlb/yn_xwlb_content/.gitkeep
-                    test $(ls -A yn_xwlb/yn_xwlb_content/ | wc -l) -ge 1 &&  cp -rf yn_xwlb/yn_xwlb_content/* gh-pages/yn_xwlb_content/
-                    ls -lh gh-pages/
+                run: bash tools/setup-gh-pages-step-01.sh
             -   name: 'Deploy GitHub Pages'
                 uses: peaceiris/actions-gh-pages@v3
                 with:

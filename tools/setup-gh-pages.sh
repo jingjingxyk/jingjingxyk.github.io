@@ -15,9 +15,10 @@ echo $(id -g)
 
 sudo apt install -y iputils-ping net-tools dnsutils iproute2 procps iputils-ping lsof git python3 python3-pip
 
-:<<EOF
+:<<\EOF
 git clone https://github.com/jingjingxyk/Thanks-Mirror.git --depth=1 --progress
 git clone https://github.com/jingjingxyk/ReplaceGoogleCDN.git --depth=1 --progress
+git clone https://github.com/jingjingxyk/extension-v3-test.git --depth=1 --progress
 
 cd Thanks-Mirror
 bash build-local-doc.sh
@@ -40,7 +41,7 @@ mkdir -p gh-pages/gh-pages
 cp -f index.html gh-pages/
 cp -f CNAME gh-pages
 
-:<<EOF
+:<<\EOF
 cp -f ./Thanks-Mirror.html gh-pages
 cp -rf replace-google-frontend-cdn gh-pages
 EOF
