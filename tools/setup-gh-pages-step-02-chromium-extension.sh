@@ -35,3 +35,5 @@ cp dist/extension-v3-test.zip ${__ROOT__}/gh-pages/chromium-extension/extension-
 
 unset http_proxy
 unset https_proxy
+
+ls ${__ROOT__}/gh-pages/chromium-extension/ > ${__ROOT__}/gh-pages/chromium-extension/index.txt
