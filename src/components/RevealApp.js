@@ -23,19 +23,19 @@
         maxScale: 1,
         dependencies: [
             // Interpret Markdown in <section> elements
-            { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '/ajax/libs/reveal.js/4.3.1/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 
             // Syntax highlight for <code> elements
-            { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/plugin/highlight/highlight.js', async: true },
+            { src: '/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.js', async: true },
 
             // Zoom in and out with Alt+click
-            { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/plugin/zoom/zoom.js', async: true },
+            { src: '/ajax/libs/reveal.js/4.3.1/plugin/zoom/zoom.js', async: true },
 
             // Speaker notes
-            { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/plugin/notes/notes.js', async: true },
+            { src: '/ajax/libs/reveal.js/4.3.1/plugin/notes/notes.js', async: true },
 
             // MathJax
-            { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/plugin/math/math.js', async: true }
+            { src: '/ajax/libs/reveal.js/4.3.1/plugin/math/math.js', async: true }
         ]
     });
 
