@@ -23,6 +23,8 @@ jobs:
                 run: bash tools/run-chromium-in-docker-step-03.sh
             -   name: 'get chromium credit data with puppeteer'
                 run: bash tools/get-chromium-credits-data-step-04.sh
+            -   name: 'prepare frontend deps'
+                run: bash tools/build-frontend-libs.sh
             -   name: 'last setup gh-page'
                 run: bash tools/setup-gh-pages-step-last.sh
             -   name: 'Deploy GitHub Pages'
