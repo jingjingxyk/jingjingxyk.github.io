@@ -11,17 +11,10 @@ __ROOT__=$(cd ${__DIR__}/../;pwd)
 
 cd ${__ROOT__}
 
-npm install
-
 mkdir -p ${__ROOT__}/gh-pages/gh-pages
-
-npm run build
-
-cp -f index.html gh-pages/
-cp -f CNAME gh-pages
-cp -f robots.txt gh-pages
-cp -rf vlogs gh-pages
+mkdir -p ${__ROOT__}/gh-pages/chromium-extension
 
 
-git branch -a
+
+
 

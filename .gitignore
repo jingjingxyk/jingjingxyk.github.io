@@ -12,6 +12,9 @@ with-puppeteer-get-data/yn_xwlb_content/*
 with-puppeteer-get-data/package-lock.json
 chromium-credits/package-lock.json
 tools/dist
+ajax
+
+
 # GIT/SVN generated files #
 ###########################
 *.diff

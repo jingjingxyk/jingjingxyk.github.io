@@ -14,7 +14,10 @@ mkdir -p ${__DIR__}/dist
 
 cd ${__DIR__}/dist
 
-git clone https://github.com/justjavac/ReplaceGoogleCDN.git --depth=1 --progress
+export http_proxy=${1:+'http://127.0.0.1:8015'}
+export https_proxy=${1:+'http://127.0.0.1:8015'}
+
+test -d ReplaceGoogleCDN/.git || git clone https://github.com/justjavac/ReplaceGoogleCDN.git --depth=1 --progress
 
 cd ReplaceGoogleCDN
 bash release-archive.sh
@@ -24,9 +27,11 @@ cp dist/extension-v3.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCD
 
 cd ${__DIR__}/dist
 
-git clone https://github.com/jingjingxyk/extension-v3-test.git --depth=1 --progress
+test -d extension-v3-test/.git ||  git clone https://github.com/jingjingxyk/extension-v3-test.git --depth=1 --progress
 
 cd extension-v3-test
 bash tools/release-archive.sh
 cp dist/extension-v3-test.zip ${__ROOT__}/gh-pages/chromium-extension/extension-v3-test.zip
 
+unset http_proxy
+unset https_proxy

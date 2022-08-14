@@ -14,7 +14,7 @@ module.exports = {
 //    filename: "[hash].js",
 //    filename: "main.js",
     filename: "[name].js",
-    path: path.resolve(__dirname, 'gh-pages/dist'),
+    path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
