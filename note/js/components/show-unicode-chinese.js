@@ -17,11 +17,12 @@ let show_unicode_chinese = () => {
             color:rgb(248,248,242);
 
             color:#31c27c;
-            */
-            background: #f8f8f8;
+
             background: url(/note/images/bkg.gif);
 
             color: rgb(248,248,242);
+            */
+            background: #f8f8f8;
             font-family: Monaco,bitstream vera sans mono,lucida console,Terminal,monospace;
         }
         h2{
@@ -43,7 +44,6 @@ let show_unicode_chinese = () => {
         }
     </style>
     <article class="content"  >
-    这里输入
    </article>
     <footer>
      Copyright © 2012-<span class="current-year"></span>
