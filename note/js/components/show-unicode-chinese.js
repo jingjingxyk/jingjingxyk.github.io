@@ -52,7 +52,6 @@ let show_unicode_chinese = () => {
 
           //document.documentElement.setAttribute("contenteditable","true");
           document.documentElement.setAttribute("charset","utf-8");
-            console.log(chinese_unicode_str())
           document.querySelector('.current-year').innerHTML=(new Date()).getFullYear();
 
         </script>
