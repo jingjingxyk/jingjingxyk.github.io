@@ -21,5 +21,6 @@ cp -f robots.txt gh-pages
 cp -rf vlogs gh-pages
 cp -rf dist gh-pages/
 cp -rf ajax gh-pages/
+cp -rf note gh-pages/
 git branch -a
 
