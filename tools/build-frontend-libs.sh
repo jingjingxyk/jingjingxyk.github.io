@@ -19,40 +19,52 @@ mkdir -p ${__ROOT__}/ajax/libs/
 
 test -d reveal.js/.git || git clone -b 4.3.1   https://github.com/hakimel/reveal.js.git --depth=1  --progress
 test -d Modernizr/.git ||  git clone -b v3.12.0  https://github.com/Modernizr/Modernizr.git  --depth=1  --progress
-#test -d samples/.git ||  git clone https://github.com/webrtc/samples.git  --depth=1  --progress
+# test -d samples/.git ||  git clone https://github.com/webrtc/samples.git  --depth=1  --progress
 test -d frontend-utils/.git ||  git clone -b main https://github.com/jingjingxyk/frontend-utils.git  --depth=1 --progress
 test -f adapter-latest.js || wget -O adapter-latest.js	https://webrtc.github.io/adapter/adapter-latest.js
+test -d highlight.js/.git || git clone -b 11.6.0	https://github.com/highlightjs/highlight.js.git --depth=1  --progress
+# test -d three.js/.git || git clone -b 11.6.0	https://github.com/mrdoob/three.js.git --depth=1  --progress
 
 unset http_proxy
 unset https_proxy
 
 
+cd ${__DIR__}/dist
 cd  reveal.js/
 #npm install
 #npm run build
 mkdir -p ${__ROOT__}/ajax/libs/reveal.js/4.3.1
-
 cp -rf  dist/* ${__ROOT__}/ajax/libs/reveal.js/4.3.1/
 cp -rf  plugin ${__ROOT__}/ajax/libs/reveal.js/4.3.1/
 
+
 cd ${__DIR__}/dist
-
-
 cp -f frontend-utils/utils.js ${__ROOT__}/ajax/libs/utils.js
 
-cd ${__DIR__}/dist
 
+cd ${__DIR__}/dist
 cp -rf adapter-latest.js ${__ROOT__}/ajax/libs/
 
-cd ${__DIR__}/dist
 
+cd ${__DIR__}/dist
 cd Modernizr/
 npm install
 ./bin/modernizr --help
 ./bin/modernizr -c lib/config-all.json --uglify -d modernizr.min.js
-
 mkdir -p ${__ROOT__}/ajax/libs/modernizr/3.12.0/
 cp modernizr.min.js ${__ROOT__}/ajax/libs/modernizr/3.12.0/
+
+
+cd ${__DIR__}/dist
+cd highlight.js
+npm install
+npm run build-cdn
+
+
+
+mkdir -p ${__ROOT__}/ajax/libs/highlight.js/11.6.0
+cp -rf build/* ${__ROOT__}/ajax/libs/highlight.js/11.6.0
+
 
 cd ${__ROOT__}
 
