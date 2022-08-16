@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>note</title>
+    <meta name="author" content="jingjingxyk,好吧，你想说啥"/>
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=Edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta content="always" name="referrer"/>
+    <link type="text/css" rel="stylesheet"  href="./css/app.css" />
+</head>
+<body>
+<div class="wrap">
+    <div class="content">
+        <header>
+
+        </header>
+        <div >
+            <div><h3 class="self_define_browser_editor">一、浏览器自带编辑器</h3></div>
+            <div><h3 class="show-unicode-chinese"><a>二、展示UNICODE 汉字</a></h3></div>
+        </div>
+    </div>
+</div>
+<script type="module">
+    import { self_define_browser_editor } from '/note/js/components/self-define-browser-editor.js'
+    import { show_unicode_chinese } from '/note/js/components/show-unicode-chinese.js'
+    document.addEventListener('DOMContentLoaded',()=>{
+        document.querySelector('.self_define_browser_editor').addEventListener('click',()=>{
+            self_define_browser_editor()
+        })
+        document.querySelector('.show-unicode-chinese').addEventListener('click',()=>{
+            show_unicode_chinese()
+        })
+    })
+
+</script>
+</body>
+</html>
