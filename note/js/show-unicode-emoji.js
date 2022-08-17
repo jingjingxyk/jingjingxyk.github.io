@@ -30,9 +30,9 @@ let show_unicode_emoji = () => {
                 h2{
                     color: #c5955d;
                 }
-                .content,article{
-                    font-size:2rem;
-                    line-height: 2.4rem;
+                .content-contianer{
+                    font-size:1.4rem;
+                    line-height: 1.8rem;
                     /*
                     letter-spacing: 1rem;
                     word-spacing:1rem;
@@ -48,7 +48,7 @@ let show_unicode_emoji = () => {
             </style>
       </head>
       <body>
-           <article class="content"  > </article>
+           <article class="content-contianer"  > </article>
       </body>
 </html>
 `;
@@ -56,7 +56,7 @@ let show_unicode_emoji = () => {
     let newWindow = window.open("", "_blank");
     //let  newWindow=window
     newWindow.document.write(template)
-    newWindow.document.querySelector('.content').innerText=unicode_emoji_str();
+    newWindow.document.querySelector('.content-contianer').innerText=unicode_emoji_str();
     newWindow.document.title = "显示unicode emoji";
     newWindow.focus();
 };

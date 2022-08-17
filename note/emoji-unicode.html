@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>显示unicode汉字</title>
+    <title>显示unicode emoji</title>
     <meta name="author" content="jingjingxyk,好吧，你想说啥"/>
     <meta name="description" content="显示unicode emoji">
     <meta http-equiv="Cache-Control" content="no-transform"/>
@@ -30,9 +30,9 @@
         h2{
             color: #c5955d;
         }
-        .content,article{
-            font-size: 1.1rem;
-            line-height: 1.4rem;
+        .content-contianer{
+            font-size:1.4rem;
+            line-height: 1.8rem;
             /*
             letter-spacing: 1rem;
             word-spacing:1rem;
@@ -49,8 +49,7 @@
 <body>
 <div class="wrap">
     <div class="content">
-        <article class="content"  >
-        </article>
+        <div class="content-contianer"></div>
         <footer>
             Copyright © 2012-<span class="current-year"></span>
         </footer>
@@ -58,7 +57,7 @@
             import {unicode_emoji_str} from '/note/js/components/emoji-unicode.js'
             document.documentElement.setAttribute("charset","utf-8");
             document.querySelector('.current-year').innerHTML=(new Date()).getFullYear();
-            document.querySelector('.content').innetText=unicode_emoji_str();
+            document.querySelector('.content-contianer').innerText=unicode_emoji_str();
         </script>
     </div>
 </div>
