@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>显示unicode汉字</title>
     <meta name="author" content="jingjingxyk,好吧，你想说啥"/>
-    <meta name="description" content="汉字Unicode编码范围">
+    <meta name="description" content="显示unicode emoji">
     <meta http-equiv="Cache-Control" content="no-transform"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=Edge">
@@ -55,10 +55,10 @@
             Copyright © 2012-<span class="current-year"></span>
         </footer>
         <script type="module">
-            import {chinese_unicode_str} from '/note/js/components/chinese-unicode.js'
+            import {unicode_emoji_str} from '/note/js/components/emoji-unicode.js'
             document.documentElement.setAttribute("charset","utf-8");
             document.querySelector('.current-year').innerHTML=(new Date()).getFullYear();
-            document.querySelector('.content').append(chinese_unicode_str());
+            document.querySelector('.content').innetText=unicode_emoji_str();
         </script>
     </div>
 </div>
