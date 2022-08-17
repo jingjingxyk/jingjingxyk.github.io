@@ -22,3 +22,7 @@ zip -r ${__ROOT__}/gh-pages/release/release.zip . \
 cd ${__ROOT__}
 
 #unzip  -d ${__ROOT__}/gh-pages/release/ ${__ROOT__}/gh-pages/release/release.zip
+
+# wget -O jingjingxyk.github.io.zip https://www.jingjingxyk.com/release/release.zip
+# mkdir -p jingjingxyk.github.io
+# unzip  -d jingjingxyk.github.io jingjingxyk.github.io.zip
