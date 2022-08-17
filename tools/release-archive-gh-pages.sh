@@ -17,7 +17,7 @@ mkdir -p ${__ROOT__}/gh-pages/release
 cd ${__ROOT__}/gh-pages/
 
 zip -r ${__ROOT__}/gh-pages/release/release.zip . \
-  -x "${__ROOT__}/gh-pages/release/*"
+  -x "${__ROOT__}/gh-pages/release/*" \
   -x "${__ROOT__}/gh-pages/CNAME"
 
 cd ${__ROOT__}
