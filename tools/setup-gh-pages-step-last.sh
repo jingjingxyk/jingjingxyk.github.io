@@ -22,5 +22,6 @@ cp -rf vlogs gh-pages
 cp -rf dist gh-pages/
 cp -rf ajax gh-pages/
 cp -rf note gh-pages/
+bash tools/release-archive-gh-pages.sh
 git branch -a
 
