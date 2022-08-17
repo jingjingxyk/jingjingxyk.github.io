@@ -20,19 +20,30 @@
         </header>
         <div >
             <div><h3 class="self_define_browser_editor">一、浏览器自带编辑器</h3></div>
-            <div><h3 class="show-unicode-chinese"><a>二、展示UNICODE 汉字</a></h3></div>
+            <div><h3 class="show-unicode-chinese"><a>二、展示汉字Unicode编码范围</a></h3></div>
+            <div><h3 class="show-unicode-emoji"><a>三、emoji表情的Unicode编码范围</a></h3></div>
+        </div>
+        <div >
+           <ul>
+               <li><a href="chinese-unicode.html" target="_blank">展示汉字</a></li>
+               <li><a href="emoji-unicode.html" target="_blank">emoji表情</a></li>
+           </ul>
         </div>
     </div>
 </div>
 <script type="module">
     import { self_define_browser_editor } from '/note/js/components/self-define-browser-editor.js'
-    import { show_unicode_chinese } from '/note/js/components/show-unicode-chinese.js'
+    import { show_unicode_chinese } from '/note/js/show-unicode-chinese.js'
+    import { show_unicode_emoji } from '/note/js/show-unicode-emoji.js'
     document.addEventListener('DOMContentLoaded',()=>{
         document.querySelector('.self_define_browser_editor').addEventListener('click',()=>{
             self_define_browser_editor()
         })
         document.querySelector('.show-unicode-chinese').addEventListener('click',()=>{
             show_unicode_chinese()
+        })
+        document.querySelector('.show-unicode-emoji').addEventListener('click',()=>{
+            show_unicode_emoji()
         })
     })
 

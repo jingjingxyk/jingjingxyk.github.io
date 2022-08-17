@@ -7,3 +7,13 @@ body{
 h3{
     color: #c5955d;
 }
+
+ul li{
+    color:#fff;
+    font-size:1.4rem;
+}
+ul li a {
+    color: #31c27c;
+    color: #17ff2e;
+    text-decoration: none;
+}
