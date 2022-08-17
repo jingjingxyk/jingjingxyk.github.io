@@ -30,14 +30,18 @@
         h2{
             color: #c5955d;
         }
-        .content,article{
-            font-size: 1.1rem;
-            line-height: 1.4rem;
+        .content-contianer {
+            font-size: 1.3rem;
+            line-height: 1.9rem;
             /*
             letter-spacing: 1rem;
             word-spacing:1rem;
 
              */
+        }
+        .content-contianer span{
+            display: inline-block;
+            margin-left:4px;
         }
         footer{
             position: fixed;
@@ -49,8 +53,7 @@
 <body>
 <div class="wrap">
     <div class="content">
-        <article class="content"  >
-        </article>
+        <div class="content-contianer" > </div>
         <footer>
             Copyright © 2012-<span class="current-year"></span>
         </footer>
@@ -58,7 +61,8 @@
             import {chinese_unicode_str} from '/note/js/components/chinese-unicode.js'
             document.documentElement.setAttribute("charset","utf-8");
             document.querySelector('.current-year').innerHTML=(new Date()).getFullYear();
-            document.querySelector('.content').append(chinese_unicode_str());
+            document.querySelector('.content-contianer').append(chinese_unicode_str());
+
         </script>
     </div>
 </div>

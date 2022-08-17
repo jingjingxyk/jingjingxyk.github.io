@@ -30,14 +30,18 @@ let show_unicode_chinese = () => {
             h2{
                 color: #c5955d;
             }
-            .content,article{
-                font-size: 1.1rem;
-                line-height: 1.4rem;
+            .content-contianer{
+                font-size: 1.3rem;
+                line-height: 1.9rem;
                 /*
                 letter-spacing: 1rem;
                 word-spacing:1rem;
 
                  */
+            }
+            .content-contianer span{
+                display: inline-block;
+                margin-left:4px;
             }
            footer{
                position: fixed;
@@ -47,7 +51,7 @@ let show_unicode_chinese = () => {
         </style>
     </head>
     <body>
-        <article class="content"  ></article>
+        <div class="content-contianer"  ></div>
     </body>
 </html>
 
@@ -56,7 +60,7 @@ let show_unicode_chinese = () => {
 
     let newWindow = window.open("", "_blank");
     newWindow.document.write(template)
-    newWindow.document.querySelector('.content').append(chinese_unicode_str());
+    newWindow.document.querySelector('.content-contianer').append(chinese_unicode_str());
     newWindow.document.title = "显示unicode汉字";
     newWindow.focus();
 };
