@@ -22,6 +22,7 @@
         minScale: 1,
         maxScale: 1,
         dependencies: [
+            /*
             // Interpret Markdown in <section> elements
             { src: '/ajax/libs/reveal.js/4.3.1/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 
@@ -36,6 +37,8 @@
 
             // MathJax
             { src: '/ajax/libs/reveal.js/4.3.1/plugin/math/math.js', async: true }
+
+             */
         ]
     });
 
