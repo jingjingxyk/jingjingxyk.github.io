@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>何以中国</title>
+    <meta name="keywords" content="jingjingxyk,好吧，你想说啥,何以中国"/>
+    <meta name="description" content="jingjingxyk,好吧，你想说啥,何以中国"/>
+    <meta name="author" content="jingjingxyk,好吧，你想说啥"/>
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=Edge">
+    <meta name="renderer" content="webkit">
+    <!--
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+    <meta content="always" name="referrer"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
+    <meta name="apple-mobile-web-app-title" content="title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <!--
+    <link rel="stylesheet" type="text/css" href="/public/dist/app.css"/>
+    -->
+    <style>
+        .backgrounds{
+            background-color:#000;
+        }
+        section h1{
+            color:#fffb00 !important;
+            font-weight:700;
+        }
+        .reveal .progress{
+            background-color:#6a01f0 !important;
+        }
+        .controls{
+            background-color:#a9a9a9;
+        }
+        a{
+            text-decoration: none;
+            color:#0969da;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="main">
+        <div class="container">
+            <div id="content"></div>
+        </div>
+    </div>
+</div>
+<script type="module">
+    import {marked} from '/ajax/libs/marked/v4.1.0/marked.esm.js'
+
+    fetch('./何以中国.md')
+        .then((x) => x.text())
+        .then((x) => {
+            console.log(x);
+            document.getElementById('content').innerHTML =
+                marked.parse(x);
+        });
+
+</script>
+
+</body>
+</html>
