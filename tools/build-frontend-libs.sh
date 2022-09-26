@@ -25,6 +25,9 @@ test -f adapter-latest.js || wget -O adapter-latest.js	https://webrtc.github.io/
 test -d highlight.js/.git || git clone -b 11.6.0	https://github.com/highlightjs/highlight.js.git --depth=1  --progress
 # test -d three.js/.git || git clone -b 11.6.0	https://github.com/mrdoob/three.js.git --depth=1  --progress
 
+test -d marked/.git || git clone -b v4.1.0	https://github.com/markedjs/marked.git --depth=1  --progress
+
+
 unset http_proxy
 unset https_proxy
 
@@ -64,6 +67,16 @@ npm run build-cdn
 
 mkdir -p ${__ROOT__}/ajax/libs/highlight.js/11.6.0
 cp -rf build/* ${__ROOT__}/ajax/libs/highlight.js/11.6.0
+
+
+cd ${__DIR__}/dist
+cd marked
+npm install
+npm run build
+
+mkdir -p ${__ROOT__}/ajax/libs/marked/v4.1.0
+cp -rf marked.min.js  ${__ROOT__}/ajax/libs/marked/v4.1.0
+cp -rf lib/*  ${__ROOT__}/ajax/libs/marked/v4.1.0
 
 
 cd ${__ROOT__}
