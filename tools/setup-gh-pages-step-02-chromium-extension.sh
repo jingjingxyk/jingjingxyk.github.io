@@ -21,8 +21,8 @@ test -d ReplaceGoogleCDN/.git || git clone https://github.com/justjavac/ReplaceG
 
 cd ReplaceGoogleCDN
 bash release-archive.sh
-cp dist/extension-v2.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN-v2.zip
-cp dist/extension-v3.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN-v3.zip
+cp dist/ReplaceGoogleCDN-v2.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN-v2.zip
+cp dist/ReplaceGoogleCDN-v3.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN-v3.zip
 
 
 cd ${__DIR__}/dist
