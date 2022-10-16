@@ -1,4 +1,5 @@
 ReplaceGoogleCDN-v2.zip
 ReplaceGoogleCDN-v3.zip
+ReplaceGoogleCDN.zip
 extension-v3-test
 extension-v3-test.zip
