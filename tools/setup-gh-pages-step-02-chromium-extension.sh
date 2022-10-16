@@ -18,8 +18,13 @@ export http_proxy=${1:+'http://127.0.0.1:8015'}
 export https_proxy=${1:+'http://127.0.0.1:8015'}
 
 test -d ReplaceGoogleCDN/.git || git clone https://github.com/justjavac/ReplaceGoogleCDN.git --depth=1 --progress
+zip -r ReplaceGoogleCDN.zip ReplaceGoogleCDN
+
+# 源码
+cp -f ReplaceGoogleCDN.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN.zip
 
 cd ReplaceGoogleCDN
+# 构建打包
 bash release-archive.sh
 cp dist/ReplaceGoogleCDN-v2.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN-v2.zip
 cp dist/ReplaceGoogleCDN-v3.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN-v3.zip
