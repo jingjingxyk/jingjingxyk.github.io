@@ -15,6 +15,8 @@ jobs:
                 run: pwd && bash tools/install-build-deps-01.sh
             -   name: "build dependencies 2"
                 run: bash tools/install-build-deps-02.sh
+            -   name: 'get_latest_docker_containerd_k8s_version'
+                run: bash tools/get_latest_docker_containerd_k8s.sh
             -   name: 'create index.html'
                 run: bash tools/setup-gh-pages-step-01-index.sh
             -   name: 'create chromium extension release archive '
