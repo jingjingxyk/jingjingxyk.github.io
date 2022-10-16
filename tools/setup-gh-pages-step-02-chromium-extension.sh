@@ -38,7 +38,7 @@ cd extension-v3-test
 bash tools/release-archive.sh
 cp dist/extension-v3-test.zip ${__ROOT__}/gh-pages/chromium-extension/extension-v3-test.zip
 mkdir -p ${__ROOT__}/gh-pages/chromium-extension/extension-v3-test/rules/
-cp rules/*.json ${__ROOT__}/gh-pages/chromium-extension/extension-v3-test/rules/
+cp -rf rules/ ${__ROOT__}/gh-pages/chromium-extension/extension-v3-test/rules/
 
 unset http_proxy
 unset https_proxy
