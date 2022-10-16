@@ -43,4 +43,4 @@ cp -rf rules/ ${__ROOT__}/gh-pages/chromium-extension/extension-v3-test/rules/
 unset http_proxy
 unset https_proxy
 
-ls ${__ROOT__}/gh-pages/chromium-extension/ > ${__ROOT__}/gh-pages/index.txt
+ls ${__ROOT__}/gh-pages/chromium-extension/ > ${__ROOT__}/gh-pages/chromium-extension/index.txt
