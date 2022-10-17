@@ -12,3 +12,12 @@ mkdir -p ${__ROOT__}/gh-pages/
 
 
 curl -Lo ${__ROOT__}/gh-pages/dl.k8s.io.stable-1.txt https://dl.k8s.io/release/stable-1.txt
+
+# curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+# https://docs.docker.com/engine/install/debian/
+
+# curl -fsSL https://get.docker.com -o get-docker.sh
+# DRY_RUN=1 sh ./get-docker.sh
+
+# https://github.com/containerd/containerd/blob/main/docs/getting-started.md
