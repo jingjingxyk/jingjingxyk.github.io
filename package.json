@@ -35,7 +35,8 @@
     "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.7.6"
+    "@babel/runtime": "^7.7.6",
+    "docsify": "^4.12.2"
   },
   "bugs": {
     "url": "https://github.com/jingjingxyk/jingjingxyk.github.io/issues"

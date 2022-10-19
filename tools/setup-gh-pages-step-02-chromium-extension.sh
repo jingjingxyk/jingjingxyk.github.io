@@ -26,8 +26,8 @@ cp -f ReplaceGoogleCDN.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogle
 cd ReplaceGoogleCDN
 # 构建打包
 bash release-archive.sh
-cp dist/ReplaceGoogleCDN-v2.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN-v2.zip
-cp dist/ReplaceGoogleCDN-v3.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN-v3.zip
+cp -f dist/ReplaceGoogleCDN-v2.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN-v2.zip
+cp -f dist/ReplaceGoogleCDN-v3.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN-v3.zip
 
 
 cd ${__DIR__}/dist
@@ -36,7 +36,7 @@ test -d extension-v3-test/.git ||  git clone https://github.com/jingjingxyk/exte
 
 cd extension-v3-test
 bash tools/release-archive.sh
-cp dist/extension-v3-test.zip ${__ROOT__}/gh-pages/chromium-extension/extension-v3-test.zip
+cp -f dist/extension-v3-test.zip ${__ROOT__}/gh-pages/chromium-extension/extension-v3-test.zip
 mkdir -p ${__ROOT__}/gh-pages/chromium-extension/extension-v3-test/rules/
 cp -rf rules/* ${__ROOT__}/gh-pages/chromium-extension/extension-v3-test/rules/
 
