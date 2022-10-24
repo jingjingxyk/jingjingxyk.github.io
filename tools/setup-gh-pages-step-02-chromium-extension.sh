@@ -43,4 +43,24 @@ cp -rf rules/* ${__ROOT__}/gh-pages/chromium-extension/extension-v3-test/rules/
 unset http_proxy
 unset https_proxy
 
+cd ${__DIR__}/dist/
+
+# 下载谷歌翻译扩展源码
+mkdir -p jingjingxyk-ReplaceGoogleCDN
+cd jingjingxyk-ReplaceGoogleCDN
+
+test -d ReplaceGoogleCDN/.git || git clone https://github.com/jingjingxyk/ReplaceGoogleCDN.git --depth=1 --progress
+cd ReplaceGoogleCDN
+# bash  extension/tools/download-chromium-extension.sh --proxy 1  # 使用代理
+bash  extension/tools/download-chromium-extension.sh
+cd extension/tools/temp/
+zip -r google-translate.zip google-translate
+cp google-translate.zip ${__ROOT__}/gh-pages/chromium-extension/
+cp google-translate.crx ${__ROOT__}/gh-pages/chromium-extension/
+
+
+cd ${__DIR__}
+
+
+
 ls ${__ROOT__}/gh-pages/chromium-extension/ > ${__ROOT__}/gh-pages/chromium-extension/index.txt
