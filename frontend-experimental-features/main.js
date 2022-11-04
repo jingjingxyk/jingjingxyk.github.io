@@ -48,7 +48,7 @@ document.body.appendChild(script);
 
 //浏览器控制台执行代码 ，检查效果
 //模块加载测试
-/*
+
 (() => {
     let script = document.createElement("script");
     script.setAttribute(
@@ -59,5 +59,5 @@ document.body.appendChild(script);
         script.setAttribute("charset", "utf-8"),
         document.body.appendChild(script);
 })();
-*/
+
 
