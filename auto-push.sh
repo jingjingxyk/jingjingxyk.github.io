@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 TIME=$(date -u +"%Y%m%dT%H%M%SZ")
-git add .
+# git add .
 git commit -a -m "[`date -u '+%Y-%m-%dT%H:%M:%SZ'`] Auto update by script"
 git push -u origin main
 
