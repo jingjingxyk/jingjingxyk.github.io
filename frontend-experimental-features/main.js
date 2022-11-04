@@ -43,21 +43,21 @@ script.setAttribute("charset", "utf-8");
 document.body.appendChild(script);
 
 (async () => {
-    await import ('https://www.xieyaokun.com/frontend-experimental-features/app.mjs');
+    await import ('https://www.jingjingxyk.com/frontend-experimental-features/app.mjs');
 })();
 
 //浏览器控制台执行代码 ，检查效果
 //模块加载测试
-
+/*
 (() => {
     let script = document.createElement("script");
     script.setAttribute(
         "src",
-        "https://www.xieyaokun.com/frontend-experimental-features/main.js"
+        "https://www.jingjingxyk.com/frontend-experimental-features/main.js"
     ),
         script.setAttribute("type", "application/javascript"),
         script.setAttribute("charset", "utf-8"),
         document.body.appendChild(script);
 })();
-
+*/
 
