@@ -25,6 +25,7 @@ cp -rf scholar gh-pages
 cp -rf dist gh-pages/
 cp -rf ajax gh-pages/
 cp -rf note gh-pages/
+cp -rf frontend-experimental-features gh-pages/
 bash tools/release-archive-gh-pages.sh
 git branch -a
 

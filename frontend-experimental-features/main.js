@@ -32,25 +32,32 @@ observer.observe(targetNode, config);
 observer.disconnect();
 
 
-import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.146.0/three.module.min.js'
+let script = document.createElement("script");
+script.setAttribute(
+    "src",
+    "https://www.jingjingxyk.com/ajax/libs/adapter-latest.js"
+);
+//script.setAttribute("type", "module");
+script.setAttribute("type", "application/javascript");
+script.setAttribute("charset", "utf-8");
+document.body.appendChild(script);
 
-const scene = new THREE.Scene();
-
+(async () => {
+    await import ('https://www.xieyaokun.com/frontend-experimental-features/app.mjs');
+})();
 
 //浏览器控制台执行代码 ，检查效果
 //模块加载测试
-/*
+
 (() => {
     let script = document.createElement("script");
     script.setAttribute(
         "src",
         "https://www.xieyaokun.com/frontend-experimental-features/main.js"
     ),
-        script.setAttribute("type", "module"),
-        //script.setAttribute("type", "application/javascript"),
+        script.setAttribute("type", "application/javascript"),
         script.setAttribute("charset", "utf-8"),
         document.body.appendChild(script);
 })();
 
 
- */
