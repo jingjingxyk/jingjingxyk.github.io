@@ -1,8 +1,8 @@
 window.performance.getEntries().map(x => {
     //console.log(x)
     console.log(x.entryType, x.name, x.type, x.initiatorType, x.nextHopProtocol)
-   // let URLSearchParams = new URL(x.name);
-   // console.log(URLSearchParams)
+    // let URLSearchParams = new URL(x.name);
+    // console.log(URLSearchParams)
 });
 
 {
@@ -65,6 +65,24 @@ window.performance.getEntries().map(x => {
     head.insertBefore(script, head.lastChild);
 
 */
+
+{
+    let link = document.createElement("link");
+    link.setAttribute('rel', "stylesheet")
+    link.setAttribute('charset', "utf-8")
+    link.setAttribute('type', "text/css")
+    link.setAttribute('href', "https://www.jingjingxyk/ajax/libs/highlight.js/11.6.0/styles/default.min.css")
+    document.head.appendChild(link)
+}
+{
+
+    let link = document.createElement("link");
+    link.setAttribute('rel', "stylesheet")
+    link.setAttribute('charset', "utf-8")
+    link.setAttribute('type', "text/css")
+    link.setAttribute('href', "/ajax/libs/highlight.js/11.6.0/styles/monokai-sublime.min.css")
+    document.head.appendChild(link)
+}
 
 (async () => {
     await import ('https://www.jingjingxyk.com/frontend-experimental-features/app.mjs');
