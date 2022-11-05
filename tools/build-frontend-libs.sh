@@ -26,6 +26,7 @@ test -d highlight.js/.git || git clone -b 11.6.0	https://github.com/highlightjs/
 # test -d three.js/.git || git clone -b 11.6.0	https://github.com/mrdoob/three.js.git --depth=1  --progress
 
 test -d marked/.git || git clone -b v4.1.0	https://github.com/markedjs/marked.git --depth=1  --progress
+test -d svelte-jsoneditor/.git || git clone -b main https://github.com/josdejong/svelte-jsoneditor.git --depth=1 --progress
 
 
 unset http_proxy
@@ -42,11 +43,13 @@ cp -rf  plugin ${__ROOT__}/ajax/libs/reveal.js/4.3.1/
 
 
 cd ${__DIR__}/dist
-cp -f frontend-utils/utils.js ${__ROOT__}/ajax/libs/utils.js
+mkdir -p ${__ROOT__}/ajax/libs/jingjingxyk/frontend-utils/
+cp -f frontend-utils/utils.js ${__ROOT__}/ajax/libs/jingjingxyk/frontend-utils/utils.js
 
 
 cd ${__DIR__}/dist
-cp -rf adapter-latest.js ${__ROOT__}/ajax/libs/
+mkdir -p ${__ROOT__}/ajax/libs/webrtc/adapter
+cp -rf adapter-latest.js ${__ROOT__}/ajax/libs/webrtc/adapter
 
 
 cd ${__DIR__}/dist
@@ -77,6 +80,17 @@ npm run build
 mkdir -p ${__ROOT__}/ajax/libs/marked/v4.1.0
 cp -rf marked.min.js  ${__ROOT__}/ajax/libs/marked/v4.1.0
 cp -rf lib/*  ${__ROOT__}/ajax/libs/marked/v4.1.0
+
+
+
+
+cd ${__DIR__}/dist
+
+mkdir -p ${__ROOT__}/ajax/libs/josdejong/svelte-jsoneditor/main
+cd svelte-jsoneditor
+npm install
+npm run release:build
+cp -rf package-vanilla/* ${__ROOT__}/ajax/libs/josdejong/svelte-jsoneditor/main
 
 
 cd ${__ROOT__}

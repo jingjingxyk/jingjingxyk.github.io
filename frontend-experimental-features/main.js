@@ -38,7 +38,7 @@ window.performance.getEntries().map(x => {
     let script = document.createElement("script");
     script.setAttribute(
         "src",
-        "https://www.jingjingxyk.com/ajax/libs/adapter-latest.js"
+        "https://www.jingjingxyk.com/ajax/libs/webrtc/adapter/adapter-latest.js"
     );
     //script.setAttribute("type", "module");
     script.setAttribute("type", "application/javascript");
