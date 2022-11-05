@@ -1,8 +1,8 @@
 window.performance.getEntries().map(x => {
     //console.log(x)
     console.log(x.entryType, x.name, x.type, x.initiatorType, x.nextHopProtocol)
-    let URLSearchParams = new URL(x.name);
-    console.log(URLSearchParams)
+   // let URLSearchParams = new URL(x.name);
+   // console.log(URLSearchParams)
 });
 
 {
