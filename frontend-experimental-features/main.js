@@ -1,7 +1,8 @@
 window.performance.getEntries().map(x => {
     //console.log(x)
     console.log(x.entryType, x.name, x.type, x.initiatorType, x.nextHopProtocol)
-
+    let URLSearchParams = new URL(x.name);
+    console.log(URLSearchParams)
 });
 
 {
@@ -46,6 +47,24 @@ window.performance.getEntries().map(x => {
     document.body.appendChild(script);
 
 }
+/*
+
+    {
+        // 用 document.designMode 可开启 Chrome 网页"上帝"模式，可编辑网页
+        document.designMode='on'
+    //or
+        document.body.contentEditable='true';
+    //or
+        document.documentElement.setAttribute("contenteditable","true");
+
+
+    }
+    let script=document.createElement('script');
+
+    const head = document.head || document.getElementsByTagName("head")[0] || document.documentElement;
+    head.insertBefore(script, head.lastChild);
+
+*/
 
 (async () => {
     await import ('https://www.jingjingxyk.com/frontend-experimental-features/app.mjs');

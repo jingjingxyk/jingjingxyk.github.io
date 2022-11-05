@@ -28,6 +28,7 @@ test -d highlight.js/.git || git clone -b 11.6.0	https://github.com/highlightjs/
 test -d marked/.git || git clone -b v4.1.0	https://github.com/markedjs/marked.git --depth=1  --progress
 test -d svelte-jsoneditor/.git || git clone -b main https://github.com/josdejong/svelte-jsoneditor.git --depth=1 --progress
 
+curl -Lo opencv.js https://docs.opencv.org/5.x/opencv.js
 
 unset http_proxy
 unset https_proxy
@@ -92,6 +93,9 @@ npm install
 npm run release:build
 cp -rf package-vanilla/* ${__ROOT__}/ajax/libs/josdejong/svelte-jsoneditor/main
 
+cd ${__DIR__}/dist
+mkdir -p ${__ROOT__}/ajax/libs/opencv/5.x/
+cp -f opencv.js ${__ROOT__}/ajax/libs/opencv/5.x/
 
 cd ${__ROOT__}
 
