@@ -80,7 +80,7 @@ window.performance.getEntries().map(x => {
     link.setAttribute('rel', "stylesheet")
     link.setAttribute('charset', "utf-8")
     link.setAttribute('type', "text/css")
-    link.setAttribute('href', "/ajax/libs/highlight.js/11.6.0/styles/monokai-sublime.min.css")
+    link.setAttribute('href', "https://www.jingjingxyk/ajax/libs/highlight.js/11.6.0/styles/monokai-sublime.min.css")
     document.head.appendChild(link)
 }
 
