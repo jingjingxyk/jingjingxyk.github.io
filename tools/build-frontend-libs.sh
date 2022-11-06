@@ -27,6 +27,8 @@ test -d highlight.js/.git || git clone -b 11.6.0	https://github.com/highlightjs/
 
 test -d marked/.git || git clone -b v4.1.0	https://github.com/markedjs/marked.git --depth=1  --progress
 test -d svelte-jsoneditor/.git || git clone -b main https://github.com/josdejong/svelte-jsoneditor.git --depth=1 --progress
+#test -d SIP.js/.git || git clone -b main https://github.com/onsip/SIP.js.git --depth=1 --progress
+test -d SIP.js/.git || git clone -b 0.21.2 https://github.com/onsip/SIP.js.git --depth=1 --progress
 
 curl -Lo opencv.js https://docs.opencv.org/5.x/opencv.js
 
@@ -97,5 +99,13 @@ cd ${__DIR__}/dist
 mkdir -p ${__ROOT__}/ajax/libs/opencv/5.x/
 cp -f opencv.js ${__ROOT__}/ajax/libs/opencv/5.x/
 
+cd ${__DIR__}/dist
+mkdir -p ${__ROOT__}/ajax/libs/sip.js/0.21.2
+cd SIP.js
+npm install
+npm run build
+npm run build-bundles
+cp -rf lib ${__ROOT__}/ajax/libs/sip.js/0.21.2
+cp -rf dist/* ${__ROOT__}/ajax/libs/sip.js/0.21.2
 cd ${__ROOT__}
 
