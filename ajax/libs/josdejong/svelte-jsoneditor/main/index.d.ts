@@ -26842,7 +26842,7 @@ interface Logger {
     warn(...args: unknown[]): unknown;
     error(...args: unknown[]): unknown;
 }
-declare class Ajv {
+declare class Ajv$1 {
     opts: InstanceOptions;
     errors?: ErrorObject[] | null;
     logger: Logger;
@@ -26886,17 +26886,17 @@ declare class Ajv {
     addSchema(schema: AnySchema | AnySchema[], // If array is passed, `key` will be ignored
     key?: string, // Optional schema key. Can be passed to `validate` method instead of schema object or id/ref. One schema per instance can have empty `id` and `key`.
     _meta?: boolean, // true if schema is a meta-schema. Used internally, addMetaSchema should be used instead.
-    _validateSchema?: boolean | "log"): Ajv;
+    _validateSchema?: boolean | "log"): Ajv$1;
     addMetaSchema(schema: AnySchemaObject, key?: string, // schema key
-    _validateSchema?: boolean | "log"): Ajv;
+    _validateSchema?: boolean | "log"): Ajv$1;
     validateSchema(schema: AnySchema, throwOrLogError?: boolean): boolean | Promise<unknown>;
     getSchema<T = unknown>(keyRef: string): AnyValidateFunction<T> | undefined;
-    removeSchema(schemaKeyRef?: AnySchema | string | RegExp): Ajv;
-    addVocabulary(definitions: Vocabulary): Ajv;
-    addKeyword(kwdOrDef: string | KeywordDefinition, def?: KeywordDefinition): Ajv;
+    removeSchema(schemaKeyRef?: AnySchema | string | RegExp): Ajv$1;
+    addVocabulary(definitions: Vocabulary): Ajv$1;
+    addKeyword(kwdOrDef: string | KeywordDefinition, def?: KeywordDefinition): Ajv$1;
     getKeyword(keyword: string): AddedKeywordDefinition | boolean;
-    removeKeyword(keyword: string): Ajv;
-    addFormat(name: string, format: Format): Ajv;
+    removeKeyword(keyword: string): Ajv$1;
+    addFormat(name: string, format: Format): Ajv$1;
     errorsText(errors?: ErrorObject[] | null | undefined, // optional array of validation errors
     { separator, dataVar }?: ErrorsTextOptions): string;
     $dataMetaSchema(metaSchema: AnySchemaObject, keywordsJsonPointers: string[]): AnySchemaObject;
@@ -26948,7 +26948,7 @@ interface SchemaCxt {
     jtdMetadata?: boolean;
     readonly createErrors?: boolean;
     readonly opts: InstanceOptions;
-    readonly self: Ajv;
+    readonly self: Ajv$1;
 }
 interface SchemaObjCxt extends SchemaCxt {
     readonly schema: AnySchemaObject;
@@ -27021,7 +27021,7 @@ interface DataValidationCxt<T extends string | number = string | number> {
     };
 }
 interface ValidateFunction<T = unknown> {
-    (this: Ajv | any, data: any, dataCxt?: DataValidationCxt): data is T;
+    (this: Ajv$1 | any, data: any, dataCxt?: DataValidationCxt): data is T;
     errors?: null | ErrorObject[];
     evaluated?: Evaluated;
     schema: AnySchema;
@@ -27152,16 +27152,35 @@ interface UriResolver {
     serialize(component: URIComponents): string;
 }
 
+declare class Ajv extends Ajv$1 {
+    _addVocabularies(): void;
+    _addDefaultMetaSchema(): void;
+    defaultMeta(): string | AnySchemaObject | undefined;
+}
+
+interface AjvValidatorOptions {
+    schema: JSONValue;
+    schemaDefinitions?: JSONValue;
+    ajvOptions?: Options;
+    onCreateAjv?: (ajv: Ajv) => Ajv | void;
+}
 /**
  * Create a JSON Schema validator powered by Ajv.
- * @param schema
- * @param [schemaDefinitions=undefined]
+ * @param options
+ * @property schema
+ *                    The JSON schema to validate (required).
+ * @property [schemaDefinitions=undefined]
  *                    An object containing JSON Schema definitions
  *                    which can be referenced using $ref
- * @param [ajvOptions=undefined] Optional extra options for Ajv
+ * @property [ajvOptions=undefined]
+ *                    Optional extra options for Ajv
+ * @property [onCreateAjv=undefined]
+ *                    An optional callback function allowing to apply additional
+ *                    configuration on the provided Ajv instance, or return
+ *                    your own Ajv instance and ignore the provided one.
  * @return Returns a validation function
  */
-declare function createAjvValidator(schema: JSONValue, schemaDefinitions?: JSONValue, ajvOptions?: Options): Validator;
+declare function createAjvValidator(options: AjvValidatorOptions): Validator;
 
 declare const lodashQueryLanguage: QueryLanguage;
 
@@ -27246,4 +27265,4 @@ declare function stringifyJSONPath(path: JSONPath): string;
  */
 declare function parseJSONPath(path: string): JSONPath;
 
-export { AbsolutePopupOptions, AfterPatchCallback, AfterSelection, BooleanToggle, CaretPosition, CaretType, ClipboardValues, ColorPicker, Content, ContentErrors, ContentParseError, ContentValidationErrors, DocumentState, DragInsideAction, DragInsideProps, DraggingState, DropdownButtonItem, EditableValue, EnumValue, EscapeValue, ExtendedSearchResultItem, FontAwesomeIcon, HistoryItem, InsertType, InsideSelection, JSONContent, JsonEditor as JSONEditor, JSONEditorPropsOptional, JSONNodeItem, JSONNodeProp, JSONParser, JSONPatchDocument, JSONPatchResult, JSONPath, JSONPathParser, JSONPointer, JSONPointerMap, JSONSelection, JSONValue, KeySelection, MenuButtonItem, MenuItem, MenuSeparatorItem, MenuSpaceItem, MessageAction, Mode, MultiSelection, NestedValidationError, OnBlur, OnChange, OnChangeMode, OnChangeQueryLanguage, OnChangeStatus, OnClassName, OnContextMenu, OnError, OnFind, OnFocus, OnPaste, OnPasteJson, OnPatch, OnRenderMenu, OnRenderValue, OnSelect, OnSort, ParseError, PastedJson, PopupEntry, QueryLanguage, QueryLanguageOptions, ReadonlyValue, RenderValueComponentDescription, RenderValueProps, RenderValuePropsOptional, RenderedItem, RichValidationError, SearchField, SearchResult, SearchResultItem, Section, SelectionType, SortModalCallback, TextContent, TextLocation, TimestampTag, TransformModalCallback, TransformModalOptions, TreeModeContext, UnescapeValue, ValidationError$1 as ValidationError, ValidationSeverity, Validator, ValueNormalization, ValueSelection, VisibleSection, compileJSONPointer, compileJSONPointerProp, createAfterSelection, createAjvValidator, createInsideSelection, createKeySelection, createMultiSelection, createValueSelection, deleteIn, estimateSerializedSize, existsIn, getIn, immutableJSONPatch, insertAt, isAfterSelection, isContent, isEditingSelection, isEqualParser, isInsideSelection, isJSONContent, isKeySelection, isLargeContent, isMultiSelection, isTextContent, isValueSelection, javascriptQueryLanguage, jmespathQueryLanguage, lodashQueryLanguage, parseFrom, parseJSONPath, parseJSONPointer, parsePath, renderJSONSchemaEnum, renderValue, revertJSONPatch, setIn, stringifyJSONPath, toJSONContent, toTextContent, updateIn };
+export { AbsolutePopupOptions, AfterPatchCallback, AfterSelection, AjvValidatorOptions, BooleanToggle, CaretPosition, CaretType, ClipboardValues, ColorPicker, Content, ContentErrors, ContentParseError, ContentValidationErrors, DocumentState, DragInsideAction, DragInsideProps, DraggingState, DropdownButtonItem, EditableValue, EnumValue, EscapeValue, ExtendedSearchResultItem, FontAwesomeIcon, HistoryItem, InsertType, InsideSelection, JSONContent, JsonEditor as JSONEditor, JSONEditorPropsOptional, JSONNodeItem, JSONNodeProp, JSONParser, JSONPatchDocument, JSONPatchResult, JSONPath, JSONPathParser, JSONPointer, JSONPointerMap, JSONSelection, JSONValue, KeySelection, MenuButtonItem, MenuItem, MenuSeparatorItem, MenuSpaceItem, MessageAction, Mode, MultiSelection, NestedValidationError, OnBlur, OnChange, OnChangeMode, OnChangeQueryLanguage, OnChangeStatus, OnClassName, OnContextMenu, OnError, OnFind, OnFocus, OnPaste, OnPasteJson, OnPatch, OnRenderMenu, OnRenderValue, OnSelect, OnSort, ParseError, PastedJson, PopupEntry, QueryLanguage, QueryLanguageOptions, ReadonlyValue, RenderValueComponentDescription, RenderValueProps, RenderValuePropsOptional, RenderedItem, RichValidationError, SearchField, SearchResult, SearchResultItem, Section, SelectionType, SortModalCallback, TextContent, TextLocation, TimestampTag, TransformModalCallback, TransformModalOptions, TreeModeContext, UnescapeValue, ValidationError$1 as ValidationError, ValidationSeverity, Validator, ValueNormalization, ValueSelection, VisibleSection, compileJSONPointer, compileJSONPointerProp, createAfterSelection, createAjvValidator, createInsideSelection, createKeySelection, createMultiSelection, createValueSelection, deleteIn, estimateSerializedSize, existsIn, getIn, immutableJSONPatch, insertAt, isAfterSelection, isContent, isEditingSelection, isEqualParser, isInsideSelection, isJSONContent, isKeySelection, isLargeContent, isMultiSelection, isTextContent, isValueSelection, javascriptQueryLanguage, jmespathQueryLanguage, lodashQueryLanguage, parseFrom, parseJSONPath, parseJSONPointer, parsePath, renderJSONSchemaEnum, renderValue, revertJSONPatch, setIn, stringifyJSONPath, toJSONContent, toTextContent, updateIn };
