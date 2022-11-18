@@ -156,16 +156,16 @@ declare class SvelteComponentTyped<Props extends Record<string, any> = any, Even
     constructor(options: ComponentConstructorOptions<Props>);
 }
 
-declare type JSONPointer = string;
-declare type JSONPath = string[];
-declare type JSONPrimitive = string | number | boolean | null;
-declare type JSONValue = {
+type JSONPointer = string;
+type JSONPath = string[];
+type JSONPrimitive = string | number | boolean | null;
+type JSONValue = {
     [key: string]: JSONValue;
 } | JSONValue[] | JSONPrimitive;
-declare type JSONObject = {
+type JSONObject = {
     [key: string]: JSONValue;
 };
-declare type JSONArray = JSONValue[];
+type JSONArray = JSONValue[];
 interface JSONPatchAdd {
     op: 'add';
     path: JSONPointer;
@@ -195,16 +195,16 @@ interface JSONPatchTest {
     path: JSONPointer;
     value: JSONValue;
 }
-declare type JSONPatchOperation = JSONPatchAdd | JSONPatchRemove | JSONPatchReplace | JSONPatchCopy | JSONPatchMove | JSONPatchTest;
-declare type JSONPatchDocument = JSONPatchOperation[];
-declare type JSONPatchOptions = {
+type JSONPatchOperation = JSONPatchAdd | JSONPatchRemove | JSONPatchReplace | JSONPatchCopy | JSONPatchMove | JSONPatchTest;
+type JSONPatchDocument = JSONPatchOperation[];
+type JSONPatchOptions = {
     before?: (document: JSONValue, operation: JSONPatchOperation) => {
         document?: JSONValue;
         operation?: JSONPatchOperation;
     };
     after?: (document: JSONValue, operation: JSONPatchOperation, previousDocument: JSONValue) => JSONValue;
 };
-declare type RevertJSONPatchOptions = {
+type RevertJSONPatchOptions = {
     before?: (document: JSONValue, operation: JSONPatchOperation, revertOperations: JSONPatchOperation[]) => {
         document?: JSONValue;
         revertOperations?: JSONPatchOperation[];
@@ -765,9 +765,11 @@ type IconName = 'monero' |
   'dribbble' | 
   'stumbleupon-circle' | 
   'internet-explorer' | 
+  'stubber' | 
   'telegram' | 
   'telegram-plane' | 
   'old-republic' | 
+  'odysee' | 
   'square-whatsapp' | 
   'whatsapp-square' | 
   'node-js' | 
@@ -1162,6 +1164,7 @@ type IconName = 'monero' |
   'sun-plant-wilt' | 
   'toilets-portable' | 
   'hockey-puck' | 
+  'mustache' | 
   'hyphen' | 
   'table' | 
   'user-chef' | 
@@ -1487,6 +1490,7 @@ type IconName = 'monero' |
   'square-rss' | 
   'rss-square' | 
   'face-zany' | 
+  'tricycle' | 
   'land-mine-on' | 
   'square-arrow-up-left' | 
   'i-cursor' | 
@@ -1982,6 +1986,7 @@ type IconName = 'monero' |
   'umbrella-alt' | 
   'rectangle-history-circle-plus' | 
   'underline' | 
+  'prescription-bottle-pill' | 
   'user-pen' | 
   'user-edit' | 
   'binary-slash' | 
@@ -2015,6 +2020,7 @@ type IconName = 'monero' |
   'car-battery' | 
   'battery-car' | 
   'face-downcast-sweat' | 
+  'mailbox-flag-up' | 
   'memo-circle-info' | 
   'gift' | 
   'dice-two' | 
@@ -2156,6 +2162,7 @@ type IconName = 'monero' |
   'chair' | 
   'circle-check' | 
   'check-circle' | 
+  'square-dashed-circle-plus' | 
   'money-simple-from-bracket' | 
   'bat' | 
   'circle-stop' | 
@@ -2316,6 +2323,7 @@ type IconName = 'monero' |
   'square-dollar' | 
   'dollar-square' | 
   'usd-square' | 
+  'phone-arrow-right' | 
   'hand-holding-seedling' | 
   'message-check' | 
   'comment-alt-check' | 
@@ -2432,6 +2440,7 @@ type IconName = 'monero' |
   'snowmobile' | 
   'face-hushed' | 
   'comments-dollar' | 
+  'pickaxe' | 
   'link-simple-slash' | 
   'democrat' | 
   'face-confused' | 
@@ -2670,6 +2679,7 @@ type IconName = 'monero' |
   'apple-whole' | 
   'apple-alt' | 
   'kitchen-set' | 
+  'diamond-half' | 
   'lock-keyhole' | 
   'lock-alt' | 
   'r' | 
@@ -2707,6 +2717,7 @@ type IconName = 'monero' |
   'fast-backward' | 
   'recycle' | 
   'user-astronaut' | 
+  'interrobang' | 
   'plane-slash' | 
   'circle-dashed' | 
   'trademark' | 
@@ -2755,6 +2766,7 @@ type IconName = 'monero' |
   'circle-question' | 
   'question-circle' | 
   'image-user' | 
+  'buoy' | 
   'plane-departure' | 
   'handshake-slash' | 
   'book-bookmark' | 
@@ -3199,6 +3211,7 @@ type IconName = 'monero' |
   'info-circle' | 
   'fishing-rod' | 
   'hammer-crash' | 
+  'message-heart' | 
   'cloud-meatball' | 
   'camera-polaroid' | 
   'camera' | 
@@ -3211,9 +3224,11 @@ type IconName = 'monero' |
   'arrow-down-1-9' | 
   'sort-numeric-asc' | 
   'sort-numeric-down' | 
+  'buoy-mooring' | 
   'square-4' | 
   'hand-holding-droplet' | 
   'hand-holding-water' | 
+  'tricycle-adult' | 
   'waveform' | 
   'water' | 
   'star-sharp-half-stroke' | 
@@ -3293,6 +3308,7 @@ type IconName = 'monero' |
   'signal-bars-fair' | 
   'signal-alt2' | 
   'sportsball' | 
+  'game-console-handheld-crank' | 
   'train-subway' | 
   'subway' | 
   'chart-gantt' | 
@@ -3325,7 +3341,6 @@ type IconName = 'monero' |
   'flame' | 
   'right-to-line' | 
   'arrow-alt-to-right' | 
-  'child-rifle' | 
   'gif' | 
   'chess' | 
   'trash-slash' | 
@@ -3904,6 +3919,7 @@ type IconName = 'monero' |
   'hat-chef' | 
   'hand-back-point-right' | 
   'dove' | 
+  'snowflake-droplets' | 
   'battery-empty' | 
   'battery0' | 
   'grid-4' | 
@@ -4104,7 +4120,9 @@ type IconName = 'monero' |
   'lacrosse-stick-ball' | 
   'truck-fast' | 
   'shipping-fast' | 
+  'user-magnifying-glass' | 
   'star-sharp' | 
+  'comment-heart' | 
   'circle-1' | 
   'circle-star' | 
   'star-circle' | 
@@ -4124,6 +4142,7 @@ type IconName = 'monero' |
   'arrow-right-long-to-line' | 
   'square-arrow-down' | 
   'arrow-square-down' | 
+  'diamond-half-stroke' | 
   'clapperboard' | 
   'square-chevron-left' | 
   'chevron-square-left' | 
@@ -4165,6 +4184,8 @@ type IconName = 'monero' |
   'share-from-square' | 
   'share-square' | 
   'keynote' | 
+  'child-combatant' | 
+  'child-rifle' | 
   'gun' | 
   'square-phone' | 
   'phone-square' | 
@@ -4285,6 +4306,7 @@ type IconName = 'monero' |
   'link-horizontal-slash' | 
   'chain-horizontal-slash' | 
   'holly-berry' | 
+  'nose' | 
   'chevron-left' | 
   'bacteria' | 
   'clouds' | 
@@ -5281,6 +5303,7 @@ type IconName = 'monero' |
   'sun-plant-wilt' | 
   'toilets-portable' | 
   'hockey-puck' | 
+  'mustache' | 
   'hyphen' | 
   'table' | 
   'user-chef' | 
@@ -5606,6 +5629,7 @@ type IconName = 'monero' |
   'square-rss' | 
   'rss-square' | 
   'face-zany' | 
+  'tricycle' | 
   'land-mine-on' | 
   'square-arrow-up-left' | 
   'i-cursor' | 
@@ -6101,6 +6125,7 @@ type IconName = 'monero' |
   'umbrella-alt' | 
   'rectangle-history-circle-plus' | 
   'underline' | 
+  'prescription-bottle-pill' | 
   'user-pen' | 
   'user-edit' | 
   'binary-slash' | 
@@ -6134,6 +6159,7 @@ type IconName = 'monero' |
   'car-battery' | 
   'battery-car' | 
   'face-downcast-sweat' | 
+  'mailbox-flag-up' | 
   'memo-circle-info' | 
   'gift' | 
   'dice-two' | 
@@ -6275,6 +6301,7 @@ type IconName = 'monero' |
   'chair' | 
   'circle-check' | 
   'check-circle' | 
+  'square-dashed-circle-plus' | 
   'money-simple-from-bracket' | 
   'bat' | 
   'circle-stop' | 
@@ -6435,6 +6462,7 @@ type IconName = 'monero' |
   'square-dollar' | 
   'dollar-square' | 
   'usd-square' | 
+  'phone-arrow-right' | 
   'hand-holding-seedling' | 
   'message-check' | 
   'comment-alt-check' | 
@@ -6551,6 +6579,7 @@ type IconName = 'monero' |
   'snowmobile' | 
   'face-hushed' | 
   'comments-dollar' | 
+  'pickaxe' | 
   'link-simple-slash' | 
   'democrat' | 
   'face-confused' | 
@@ -6789,6 +6818,7 @@ type IconName = 'monero' |
   'apple-whole' | 
   'apple-alt' | 
   'kitchen-set' | 
+  'diamond-half' | 
   'lock-keyhole' | 
   'lock-alt' | 
   'r' | 
@@ -6826,6 +6856,7 @@ type IconName = 'monero' |
   'fast-backward' | 
   'recycle' | 
   'user-astronaut' | 
+  'interrobang' | 
   'plane-slash' | 
   'circle-dashed' | 
   'trademark' | 
@@ -6874,6 +6905,7 @@ type IconName = 'monero' |
   'circle-question' | 
   'question-circle' | 
   'image-user' | 
+  'buoy' | 
   'plane-departure' | 
   'handshake-slash' | 
   'book-bookmark' | 
@@ -7318,6 +7350,7 @@ type IconName = 'monero' |
   'info-circle' | 
   'fishing-rod' | 
   'hammer-crash' | 
+  'message-heart' | 
   'cloud-meatball' | 
   'camera-polaroid' | 
   'camera' | 
@@ -7330,9 +7363,11 @@ type IconName = 'monero' |
   'arrow-down-1-9' | 
   'sort-numeric-asc' | 
   'sort-numeric-down' | 
+  'buoy-mooring' | 
   'square-4' | 
   'hand-holding-droplet' | 
   'hand-holding-water' | 
+  'tricycle-adult' | 
   'waveform' | 
   'water' | 
   'star-sharp-half-stroke' | 
@@ -7412,6 +7447,7 @@ type IconName = 'monero' |
   'signal-bars-fair' | 
   'signal-alt2' | 
   'sportsball' | 
+  'game-console-handheld-crank' | 
   'train-subway' | 
   'subway' | 
   'chart-gantt' | 
@@ -7444,7 +7480,6 @@ type IconName = 'monero' |
   'flame' | 
   'right-to-line' | 
   'arrow-alt-to-right' | 
-  'child-rifle' | 
   'gif' | 
   'chess' | 
   'trash-slash' | 
@@ -8023,6 +8058,7 @@ type IconName = 'monero' |
   'hat-chef' | 
   'hand-back-point-right' | 
   'dove' | 
+  'snowflake-droplets' | 
   'battery-empty' | 
   'battery0' | 
   'grid-4' | 
@@ -8223,7 +8259,9 @@ type IconName = 'monero' |
   'lacrosse-stick-ball' | 
   'truck-fast' | 
   'shipping-fast' | 
+  'user-magnifying-glass' | 
   'star-sharp' | 
+  'comment-heart' | 
   'circle-1' | 
   'circle-star' | 
   'star-circle' | 
@@ -8243,6 +8281,7 @@ type IconName = 'monero' |
   'arrow-right-long-to-line' | 
   'square-arrow-down' | 
   'arrow-square-down' | 
+  'diamond-half-stroke' | 
   'clapperboard' | 
   'square-chevron-left' | 
   'chevron-square-left' | 
@@ -8284,6 +8323,8 @@ type IconName = 'monero' |
   'share-from-square' | 
   'share-square' | 
   'keynote' | 
+  'child-combatant' | 
+  'child-rifle' | 
   'gun' | 
   'square-phone' | 
   'phone-square' | 
@@ -8404,6 +8445,7 @@ type IconName = 'monero' |
   'link-horizontal-slash' | 
   'chain-horizontal-slash' | 
   'holly-berry' | 
+  'nose' | 
   'chevron-left' | 
   'bacteria' | 
   'clouds' | 
@@ -9400,6 +9442,7 @@ type IconName = 'monero' |
   'sun-plant-wilt' | 
   'toilets-portable' | 
   'hockey-puck' | 
+  'mustache' | 
   'hyphen' | 
   'table' | 
   'user-chef' | 
@@ -9725,6 +9768,7 @@ type IconName = 'monero' |
   'square-rss' | 
   'rss-square' | 
   'face-zany' | 
+  'tricycle' | 
   'land-mine-on' | 
   'square-arrow-up-left' | 
   'i-cursor' | 
@@ -10220,6 +10264,7 @@ type IconName = 'monero' |
   'umbrella-alt' | 
   'rectangle-history-circle-plus' | 
   'underline' | 
+  'prescription-bottle-pill' | 
   'user-pen' | 
   'user-edit' | 
   'binary-slash' | 
@@ -10253,6 +10298,7 @@ type IconName = 'monero' |
   'car-battery' | 
   'battery-car' | 
   'face-downcast-sweat' | 
+  'mailbox-flag-up' | 
   'memo-circle-info' | 
   'gift' | 
   'dice-two' | 
@@ -10394,6 +10440,7 @@ type IconName = 'monero' |
   'chair' | 
   'circle-check' | 
   'check-circle' | 
+  'square-dashed-circle-plus' | 
   'money-simple-from-bracket' | 
   'bat' | 
   'circle-stop' | 
@@ -10554,6 +10601,7 @@ type IconName = 'monero' |
   'square-dollar' | 
   'dollar-square' | 
   'usd-square' | 
+  'phone-arrow-right' | 
   'hand-holding-seedling' | 
   'message-check' | 
   'comment-alt-check' | 
@@ -10670,6 +10718,7 @@ type IconName = 'monero' |
   'snowmobile' | 
   'face-hushed' | 
   'comments-dollar' | 
+  'pickaxe' | 
   'link-simple-slash' | 
   'democrat' | 
   'face-confused' | 
@@ -10908,6 +10957,7 @@ type IconName = 'monero' |
   'apple-whole' | 
   'apple-alt' | 
   'kitchen-set' | 
+  'diamond-half' | 
   'lock-keyhole' | 
   'lock-alt' | 
   'r' | 
@@ -10945,6 +10995,7 @@ type IconName = 'monero' |
   'fast-backward' | 
   'recycle' | 
   'user-astronaut' | 
+  'interrobang' | 
   'plane-slash' | 
   'circle-dashed' | 
   'trademark' | 
@@ -10993,6 +11044,7 @@ type IconName = 'monero' |
   'circle-question' | 
   'question-circle' | 
   'image-user' | 
+  'buoy' | 
   'plane-departure' | 
   'handshake-slash' | 
   'book-bookmark' | 
@@ -11437,6 +11489,7 @@ type IconName = 'monero' |
   'info-circle' | 
   'fishing-rod' | 
   'hammer-crash' | 
+  'message-heart' | 
   'cloud-meatball' | 
   'camera-polaroid' | 
   'camera' | 
@@ -11449,9 +11502,11 @@ type IconName = 'monero' |
   'arrow-down-1-9' | 
   'sort-numeric-asc' | 
   'sort-numeric-down' | 
+  'buoy-mooring' | 
   'square-4' | 
   'hand-holding-droplet' | 
   'hand-holding-water' | 
+  'tricycle-adult' | 
   'waveform' | 
   'water' | 
   'star-sharp-half-stroke' | 
@@ -11531,6 +11586,7 @@ type IconName = 'monero' |
   'signal-bars-fair' | 
   'signal-alt2' | 
   'sportsball' | 
+  'game-console-handheld-crank' | 
   'train-subway' | 
   'subway' | 
   'chart-gantt' | 
@@ -11563,7 +11619,6 @@ type IconName = 'monero' |
   'flame' | 
   'right-to-line' | 
   'arrow-alt-to-right' | 
-  'child-rifle' | 
   'gif' | 
   'chess' | 
   'trash-slash' | 
@@ -12142,6 +12197,7 @@ type IconName = 'monero' |
   'hat-chef' | 
   'hand-back-point-right' | 
   'dove' | 
+  'snowflake-droplets' | 
   'battery-empty' | 
   'battery0' | 
   'grid-4' | 
@@ -12342,7 +12398,9 @@ type IconName = 'monero' |
   'lacrosse-stick-ball' | 
   'truck-fast' | 
   'shipping-fast' | 
+  'user-magnifying-glass' | 
   'star-sharp' | 
+  'comment-heart' | 
   'circle-1' | 
   'circle-star' | 
   'star-circle' | 
@@ -12362,6 +12420,7 @@ type IconName = 'monero' |
   'arrow-right-long-to-line' | 
   'square-arrow-down' | 
   'arrow-square-down' | 
+  'diamond-half-stroke' | 
   'clapperboard' | 
   'square-chevron-left' | 
   'chevron-square-left' | 
@@ -12403,6 +12462,8 @@ type IconName = 'monero' |
   'share-from-square' | 
   'share-square' | 
   'keynote' | 
+  'child-combatant' | 
+  'child-rifle' | 
   'gun' | 
   'square-phone' | 
   'phone-square' | 
@@ -12523,6 +12584,7 @@ type IconName = 'monero' |
   'link-horizontal-slash' | 
   'chain-horizontal-slash' | 
   'holly-berry' | 
+  'nose' | 
   'chevron-left' | 
   'bacteria' | 
   'clouds' | 
@@ -13519,6 +13581,7 @@ type IconName = 'monero' |
   'sun-plant-wilt' | 
   'toilets-portable' | 
   'hockey-puck' | 
+  'mustache' | 
   'hyphen' | 
   'table' | 
   'user-chef' | 
@@ -13844,6 +13907,7 @@ type IconName = 'monero' |
   'square-rss' | 
   'rss-square' | 
   'face-zany' | 
+  'tricycle' | 
   'land-mine-on' | 
   'square-arrow-up-left' | 
   'i-cursor' | 
@@ -14339,6 +14403,7 @@ type IconName = 'monero' |
   'umbrella-alt' | 
   'rectangle-history-circle-plus' | 
   'underline' | 
+  'prescription-bottle-pill' | 
   'user-pen' | 
   'user-edit' | 
   'binary-slash' | 
@@ -14372,6 +14437,7 @@ type IconName = 'monero' |
   'car-battery' | 
   'battery-car' | 
   'face-downcast-sweat' | 
+  'mailbox-flag-up' | 
   'memo-circle-info' | 
   'gift' | 
   'dice-two' | 
@@ -14513,6 +14579,7 @@ type IconName = 'monero' |
   'chair' | 
   'circle-check' | 
   'check-circle' | 
+  'square-dashed-circle-plus' | 
   'money-simple-from-bracket' | 
   'bat' | 
   'circle-stop' | 
@@ -14673,6 +14740,7 @@ type IconName = 'monero' |
   'square-dollar' | 
   'dollar-square' | 
   'usd-square' | 
+  'phone-arrow-right' | 
   'hand-holding-seedling' | 
   'message-check' | 
   'comment-alt-check' | 
@@ -14789,6 +14857,7 @@ type IconName = 'monero' |
   'snowmobile' | 
   'face-hushed' | 
   'comments-dollar' | 
+  'pickaxe' | 
   'link-simple-slash' | 
   'democrat' | 
   'face-confused' | 
@@ -15027,6 +15096,7 @@ type IconName = 'monero' |
   'apple-whole' | 
   'apple-alt' | 
   'kitchen-set' | 
+  'diamond-half' | 
   'lock-keyhole' | 
   'lock-alt' | 
   'r' | 
@@ -15064,6 +15134,7 @@ type IconName = 'monero' |
   'fast-backward' | 
   'recycle' | 
   'user-astronaut' | 
+  'interrobang' | 
   'plane-slash' | 
   'circle-dashed' | 
   'trademark' | 
@@ -15112,6 +15183,7 @@ type IconName = 'monero' |
   'circle-question' | 
   'question-circle' | 
   'image-user' | 
+  'buoy' | 
   'plane-departure' | 
   'handshake-slash' | 
   'book-bookmark' | 
@@ -15556,6 +15628,7 @@ type IconName = 'monero' |
   'info-circle' | 
   'fishing-rod' | 
   'hammer-crash' | 
+  'message-heart' | 
   'cloud-meatball' | 
   'camera-polaroid' | 
   'camera' | 
@@ -15568,9 +15641,11 @@ type IconName = 'monero' |
   'arrow-down-1-9' | 
   'sort-numeric-asc' | 
   'sort-numeric-down' | 
+  'buoy-mooring' | 
   'square-4' | 
   'hand-holding-droplet' | 
   'hand-holding-water' | 
+  'tricycle-adult' | 
   'waveform' | 
   'water' | 
   'star-sharp-half-stroke' | 
@@ -15650,6 +15725,7 @@ type IconName = 'monero' |
   'signal-bars-fair' | 
   'signal-alt2' | 
   'sportsball' | 
+  'game-console-handheld-crank' | 
   'train-subway' | 
   'subway' | 
   'chart-gantt' | 
@@ -15682,7 +15758,6 @@ type IconName = 'monero' |
   'flame' | 
   'right-to-line' | 
   'arrow-alt-to-right' | 
-  'child-rifle' | 
   'gif' | 
   'chess' | 
   'trash-slash' | 
@@ -16261,6 +16336,7 @@ type IconName = 'monero' |
   'hat-chef' | 
   'hand-back-point-right' | 
   'dove' | 
+  'snowflake-droplets' | 
   'battery-empty' | 
   'battery0' | 
   'grid-4' | 
@@ -16461,7 +16537,9 @@ type IconName = 'monero' |
   'lacrosse-stick-ball' | 
   'truck-fast' | 
   'shipping-fast' | 
+  'user-magnifying-glass' | 
   'star-sharp' | 
+  'comment-heart' | 
   'circle-1' | 
   'circle-star' | 
   'star-circle' | 
@@ -16481,6 +16559,7 @@ type IconName = 'monero' |
   'arrow-right-long-to-line' | 
   'square-arrow-down' | 
   'arrow-square-down' | 
+  'diamond-half-stroke' | 
   'clapperboard' | 
   'square-chevron-left' | 
   'chevron-square-left' | 
@@ -16522,6 +16601,8 @@ type IconName = 'monero' |
   'share-from-square' | 
   'share-square' | 
   'keynote' | 
+  'child-combatant' | 
+  'child-rifle' | 
   'gun' | 
   'square-phone' | 
   'phone-square' | 
@@ -16642,6 +16723,7 @@ type IconName = 'monero' |
   'link-horizontal-slash' | 
   'chain-horizontal-slash' | 
   'holly-berry' | 
+  'nose' | 
   'chevron-left' | 
   'bacteria' | 
   'clouds' | 
@@ -17638,6 +17720,7 @@ type IconName = 'monero' |
   'sun-plant-wilt' | 
   'toilets-portable' | 
   'hockey-puck' | 
+  'mustache' | 
   'hyphen' | 
   'table' | 
   'user-chef' | 
@@ -17963,6 +18046,7 @@ type IconName = 'monero' |
   'square-rss' | 
   'rss-square' | 
   'face-zany' | 
+  'tricycle' | 
   'land-mine-on' | 
   'square-arrow-up-left' | 
   'i-cursor' | 
@@ -18458,6 +18542,7 @@ type IconName = 'monero' |
   'umbrella-alt' | 
   'rectangle-history-circle-plus' | 
   'underline' | 
+  'prescription-bottle-pill' | 
   'user-pen' | 
   'user-edit' | 
   'binary-slash' | 
@@ -18491,6 +18576,7 @@ type IconName = 'monero' |
   'car-battery' | 
   'battery-car' | 
   'face-downcast-sweat' | 
+  'mailbox-flag-up' | 
   'memo-circle-info' | 
   'gift' | 
   'dice-two' | 
@@ -18632,6 +18718,7 @@ type IconName = 'monero' |
   'chair' | 
   'circle-check' | 
   'check-circle' | 
+  'square-dashed-circle-plus' | 
   'money-simple-from-bracket' | 
   'bat' | 
   'circle-stop' | 
@@ -18792,6 +18879,7 @@ type IconName = 'monero' |
   'square-dollar' | 
   'dollar-square' | 
   'usd-square' | 
+  'phone-arrow-right' | 
   'hand-holding-seedling' | 
   'message-check' | 
   'comment-alt-check' | 
@@ -18908,6 +18996,7 @@ type IconName = 'monero' |
   'snowmobile' | 
   'face-hushed' | 
   'comments-dollar' | 
+  'pickaxe' | 
   'link-simple-slash' | 
   'democrat' | 
   'face-confused' | 
@@ -19146,6 +19235,7 @@ type IconName = 'monero' |
   'apple-whole' | 
   'apple-alt' | 
   'kitchen-set' | 
+  'diamond-half' | 
   'lock-keyhole' | 
   'lock-alt' | 
   'r' | 
@@ -19183,6 +19273,7 @@ type IconName = 'monero' |
   'fast-backward' | 
   'recycle' | 
   'user-astronaut' | 
+  'interrobang' | 
   'plane-slash' | 
   'circle-dashed' | 
   'trademark' | 
@@ -19231,6 +19322,7 @@ type IconName = 'monero' |
   'circle-question' | 
   'question-circle' | 
   'image-user' | 
+  'buoy' | 
   'plane-departure' | 
   'handshake-slash' | 
   'book-bookmark' | 
@@ -19675,6 +19767,7 @@ type IconName = 'monero' |
   'info-circle' | 
   'fishing-rod' | 
   'hammer-crash' | 
+  'message-heart' | 
   'cloud-meatball' | 
   'camera-polaroid' | 
   'camera' | 
@@ -19687,9 +19780,11 @@ type IconName = 'monero' |
   'arrow-down-1-9' | 
   'sort-numeric-asc' | 
   'sort-numeric-down' | 
+  'buoy-mooring' | 
   'square-4' | 
   'hand-holding-droplet' | 
   'hand-holding-water' | 
+  'tricycle-adult' | 
   'waveform' | 
   'water' | 
   'star-sharp-half-stroke' | 
@@ -19769,6 +19864,7 @@ type IconName = 'monero' |
   'signal-bars-fair' | 
   'signal-alt2' | 
   'sportsball' | 
+  'game-console-handheld-crank' | 
   'train-subway' | 
   'subway' | 
   'chart-gantt' | 
@@ -19801,7 +19897,6 @@ type IconName = 'monero' |
   'flame' | 
   'right-to-line' | 
   'arrow-alt-to-right' | 
-  'child-rifle' | 
   'gif' | 
   'chess' | 
   'trash-slash' | 
@@ -20380,6 +20475,7 @@ type IconName = 'monero' |
   'hat-chef' | 
   'hand-back-point-right' | 
   'dove' | 
+  'snowflake-droplets' | 
   'battery-empty' | 
   'battery0' | 
   'grid-4' | 
@@ -20580,7 +20676,9 @@ type IconName = 'monero' |
   'lacrosse-stick-ball' | 
   'truck-fast' | 
   'shipping-fast' | 
+  'user-magnifying-glass' | 
   'star-sharp' | 
+  'comment-heart' | 
   'circle-1' | 
   'circle-star' | 
   'star-circle' | 
@@ -20600,6 +20698,7 @@ type IconName = 'monero' |
   'arrow-right-long-to-line' | 
   'square-arrow-down' | 
   'arrow-square-down' | 
+  'diamond-half-stroke' | 
   'clapperboard' | 
   'square-chevron-left' | 
   'chevron-square-left' | 
@@ -20641,6 +20740,8 @@ type IconName = 'monero' |
   'share-from-square' | 
   'share-square' | 
   'keynote' | 
+  'child-combatant' | 
+  'child-rifle' | 
   'gun' | 
   'square-phone' | 
   'phone-square' | 
@@ -20761,6 +20862,7 @@ type IconName = 'monero' |
   'link-horizontal-slash' | 
   'chain-horizontal-slash' | 
   'holly-berry' | 
+  'nose' | 
   'chevron-left' | 
   'bacteria' | 
   'clouds' | 
@@ -21757,6 +21859,7 @@ type IconName = 'monero' |
   'sun-plant-wilt' | 
   'toilets-portable' | 
   'hockey-puck' | 
+  'mustache' | 
   'hyphen' | 
   'table' | 
   'user-chef' | 
@@ -22082,6 +22185,7 @@ type IconName = 'monero' |
   'square-rss' | 
   'rss-square' | 
   'face-zany' | 
+  'tricycle' | 
   'land-mine-on' | 
   'square-arrow-up-left' | 
   'i-cursor' | 
@@ -22577,6 +22681,7 @@ type IconName = 'monero' |
   'umbrella-alt' | 
   'rectangle-history-circle-plus' | 
   'underline' | 
+  'prescription-bottle-pill' | 
   'user-pen' | 
   'user-edit' | 
   'binary-slash' | 
@@ -22610,6 +22715,7 @@ type IconName = 'monero' |
   'car-battery' | 
   'battery-car' | 
   'face-downcast-sweat' | 
+  'mailbox-flag-up' | 
   'memo-circle-info' | 
   'gift' | 
   'dice-two' | 
@@ -22751,6 +22857,7 @@ type IconName = 'monero' |
   'chair' | 
   'circle-check' | 
   'check-circle' | 
+  'square-dashed-circle-plus' | 
   'money-simple-from-bracket' | 
   'bat' | 
   'circle-stop' | 
@@ -22911,6 +23018,7 @@ type IconName = 'monero' |
   'square-dollar' | 
   'dollar-square' | 
   'usd-square' | 
+  'phone-arrow-right' | 
   'hand-holding-seedling' | 
   'message-check' | 
   'comment-alt-check' | 
@@ -23027,6 +23135,7 @@ type IconName = 'monero' |
   'snowmobile' | 
   'face-hushed' | 
   'comments-dollar' | 
+  'pickaxe' | 
   'link-simple-slash' | 
   'democrat' | 
   'face-confused' | 
@@ -23265,6 +23374,7 @@ type IconName = 'monero' |
   'apple-whole' | 
   'apple-alt' | 
   'kitchen-set' | 
+  'diamond-half' | 
   'lock-keyhole' | 
   'lock-alt' | 
   'r' | 
@@ -23302,6 +23412,7 @@ type IconName = 'monero' |
   'fast-backward' | 
   'recycle' | 
   'user-astronaut' | 
+  'interrobang' | 
   'plane-slash' | 
   'circle-dashed' | 
   'trademark' | 
@@ -23350,6 +23461,7 @@ type IconName = 'monero' |
   'circle-question' | 
   'question-circle' | 
   'image-user' | 
+  'buoy' | 
   'plane-departure' | 
   'handshake-slash' | 
   'book-bookmark' | 
@@ -23794,6 +23906,7 @@ type IconName = 'monero' |
   'info-circle' | 
   'fishing-rod' | 
   'hammer-crash' | 
+  'message-heart' | 
   'cloud-meatball' | 
   'camera-polaroid' | 
   'camera' | 
@@ -23806,9 +23919,11 @@ type IconName = 'monero' |
   'arrow-down-1-9' | 
   'sort-numeric-asc' | 
   'sort-numeric-down' | 
+  'buoy-mooring' | 
   'square-4' | 
   'hand-holding-droplet' | 
   'hand-holding-water' | 
+  'tricycle-adult' | 
   'waveform' | 
   'water' | 
   'star-sharp-half-stroke' | 
@@ -23888,6 +24003,7 @@ type IconName = 'monero' |
   'signal-bars-fair' | 
   'signal-alt2' | 
   'sportsball' | 
+  'game-console-handheld-crank' | 
   'train-subway' | 
   'subway' | 
   'chart-gantt' | 
@@ -23920,7 +24036,6 @@ type IconName = 'monero' |
   'flame' | 
   'right-to-line' | 
   'arrow-alt-to-right' | 
-  'child-rifle' | 
   'gif' | 
   'chess' | 
   'trash-slash' | 
@@ -24499,6 +24614,7 @@ type IconName = 'monero' |
   'hat-chef' | 
   'hand-back-point-right' | 
   'dove' | 
+  'snowflake-droplets' | 
   'battery-empty' | 
   'battery0' | 
   'grid-4' | 
@@ -24699,7 +24815,9 @@ type IconName = 'monero' |
   'lacrosse-stick-ball' | 
   'truck-fast' | 
   'shipping-fast' | 
+  'user-magnifying-glass' | 
   'star-sharp' | 
+  'comment-heart' | 
   'circle-1' | 
   'circle-star' | 
   'star-circle' | 
@@ -24719,6 +24837,7 @@ type IconName = 'monero' |
   'arrow-right-long-to-line' | 
   'square-arrow-down' | 
   'arrow-square-down' | 
+  'diamond-half-stroke' | 
   'clapperboard' | 
   'square-chevron-left' | 
   'chevron-square-left' | 
@@ -24760,6 +24879,8 @@ type IconName = 'monero' |
   'share-from-square' | 
   'share-square' | 
   'keynote' | 
+  'child-combatant' | 
+  'child-rifle' | 
   'gun' | 
   'square-phone' | 
   'phone-square' | 
@@ -24880,6 +25001,7 @@ type IconName = 'monero' |
   'link-horizontal-slash' | 
   'chain-horizontal-slash' | 
   'holly-berry' | 
+  'nose' | 
   'chevron-left' | 
   'bacteria' | 
   'clouds' | 
@@ -25525,20 +25647,20 @@ type IconName = 'monero' |
   'turn-up' | 
   'level-up-alt';
 
-declare type TextContent = {
+type TextContent = {
     text: string;
 } | {
     json: undefined;
     text: string;
 };
-declare type JSONContent = {
+type JSONContent = {
     json: JSONValue;
 } | {
     json: JSONValue;
     text: undefined;
 };
-declare type Content = JSONContent | TextContent;
-declare type JSONParser = JSON;
+type Content = JSONContent | TextContent;
+type JSONParser = JSON;
 interface JSONPathParser {
     parse: (pathStr: string) => JSONPath;
     stringify: (path: JSONPath) => string;
@@ -25580,7 +25702,7 @@ interface JSONPatchResult {
     undo: JSONPatchDocument;
     redo: JSONPatchDocument;
 }
-declare type AfterPatchCallback = (patchedJson: JSONValue, patchedState: DocumentState) => {
+type AfterPatchCallback = (patchedJson: JSONValue, patchedState: DocumentState) => {
     json?: JSONValue;
     state?: DocumentState;
 };
@@ -25627,18 +25749,18 @@ interface ValueSelection {
     };
     edit?: boolean;
 }
-declare type JSONSelection = MultiSelection | AfterSelection | InsideSelection | KeySelection | ValueSelection;
-declare type JSONPointerMap<T> = {
+type JSONSelection = MultiSelection | AfterSelection | InsideSelection | KeySelection | ValueSelection;
+type JSONPointerMap<T> = {
     [pointer: JSONPointer]: T;
 };
-declare type ClipboardValues = Array<{
+type ClipboardValues = Array<{
     key: string;
     value: JSONValue;
 }>;
 /**
  * @deprecated Use IconDefinition instead of FontAwesomeIcon
  */
-declare type FontAwesomeIcon = IconDefinition;
+type FontAwesomeIcon = IconDefinition;
 interface DropdownButtonItem {
     text: string;
     onClick: () => void;
@@ -25660,7 +25782,7 @@ interface MenuSeparatorItem {
 interface MenuSpaceItem {
     space: true;
 }
-declare type MenuItem = MenuButtonItem | MenuSeparatorItem | MenuSpaceItem;
+type MenuItem = MenuButtonItem | MenuSeparatorItem | MenuSpaceItem;
 interface MessageAction {
     text: string;
     title: string;
@@ -25682,7 +25804,7 @@ interface ValidationError$1 {
 interface NestedValidationError extends ValidationError$1 {
     isChildError?: boolean;
 }
-declare type Validator = (json: JSONValue) => ValidationError$1[];
+type Validator = (json: JSONValue) => ValidationError$1[];
 interface ParseError {
     position: number | null;
     line: number | null;
@@ -25696,7 +25818,7 @@ interface ContentParseError {
 interface ContentValidationErrors {
     validationErrors: ValidationError$1[];
 }
-declare type ContentErrors = ContentParseError | ContentValidationErrors;
+type ContentErrors = ContentParseError | ContentValidationErrors;
 interface RichValidationError extends ValidationError$1 {
     line?: number;
     column?: number;
@@ -25739,29 +25861,29 @@ interface QueryLanguageOptions {
         paths?: string[][];
     };
 }
-declare type OnChangeQueryLanguage = (queryLanguageId: string) => void;
+type OnChangeQueryLanguage = (queryLanguageId: string) => void;
 interface OnChangeStatus {
     contentErrors: ContentErrors;
     patchResult: JSONPatchResult | null;
 }
-declare type OnChange = ((content: Content, previousContent: Content, status: OnChangeStatus) => void) | null;
-declare type OnSelect = (selection: JSONSelection) => void;
-declare type OnPatch = (operations: JSONPatchDocument, afterPatch?: AfterPatchCallback) => void;
-declare type OnSort = (operations: JSONPatchDocument) => void;
-declare type OnFind = (findAndReplace: boolean) => void;
-declare type OnPaste = (pastedText: string) => void;
-declare type OnPasteJson = (pastedJson: {
+type OnChange = ((content: Content, previousContent: Content, status: OnChangeStatus) => void) | null;
+type OnSelect = (selection: JSONSelection) => void;
+type OnPatch = (operations: JSONPatchDocument, afterPatch?: AfterPatchCallback) => void;
+type OnSort = (operations: JSONPatchDocument) => void;
+type OnFind = (findAndReplace: boolean) => void;
+type OnPaste = (pastedText: string) => void;
+type OnPasteJson = (pastedJson: {
     path: JSONPath;
     contents: JSONValue;
 }) => void;
-declare type OnRenderValue = (props: RenderValueProps) => RenderValueComponentDescription[];
-declare type OnClassName = (path: JSONPath, value: JSONValue) => string | undefined;
-declare type OnChangeMode = (mode: Mode) => void;
-declare type OnContextMenu = (contextMenuProps: AbsolutePopupOptions) => void;
-declare type OnRenderMenu = (mode: 'tree' | 'text' | 'repair', items: MenuItem[]) => MenuItem[] | undefined | void;
-declare type OnError = (error: Error) => void;
-declare type OnFocus = () => void;
-declare type OnBlur = () => void;
+type OnRenderValue = (props: RenderValueProps) => RenderValueComponentDescription[];
+type OnClassName = (path: JSONPath, value: JSONValue) => string | undefined;
+type OnChangeMode = (mode: Mode) => void;
+type OnContextMenu = (contextMenuProps: AbsolutePopupOptions) => void;
+type OnRenderMenu = (mode: 'tree' | 'text' | 'repair', items: MenuItem[]) => MenuItem[] | undefined | void;
+type OnError = (error: Error) => void;
+type OnFocus = () => void;
+type OnBlur = () => void;
 interface SearchResult {
     items: ExtendedSearchResultItem[];
     itemsMap: JSONPointerMap<ExtendedSearchResultItem[]>;
@@ -25786,12 +25908,12 @@ interface ValueNormalization {
     escapeValue: (unescapedValue: unknown) => string;
     unescapeValue: (escapedValue: string) => string;
 }
-declare type PastedJson = {
+type PastedJson = {
     contents: JSONValue;
     path: JSONPath;
 } | undefined;
-declare type EscapeValue = (value: JSONValue) => string;
-declare type UnescapeValue = (escapedValue: string) => string;
+type EscapeValue = (value: JSONValue) => string;
+type UnescapeValue = (escapedValue: string) => string;
 interface DragInsideProps {
     json: JSONValue;
     selection: JSONSelection;
@@ -25801,7 +25923,7 @@ interface DragInsideProps {
         height: number;
     }>;
 }
-declare type DragInsideAction = {
+type DragInsideAction = {
     beforePath: JSONPath;
     offset: number;
 } | {
@@ -25828,7 +25950,7 @@ interface HistoryItem {
         textIsRepaired: boolean;
     };
 }
-declare type InsertType = 'value' | 'object' | 'array' | 'structure';
+type InsertType = 'value' | 'object' | 'array' | 'structure';
 interface PopupEntry {
     id: number;
     component: SvelteComponentTyped;
@@ -26041,9 +26163,9 @@ declare const __propDef$6: {
     };
     slots: {};
 };
-declare type JsonEditorProps = typeof __propDef$6.props;
-declare type JsonEditorEvents = typeof __propDef$6.events;
-declare type JsonEditorSlots = typeof __propDef$6.slots;
+type JsonEditorProps = typeof __propDef$6.props;
+type JsonEditorEvents = typeof __propDef$6.events;
+type JsonEditorSlots = typeof __propDef$6.slots;
 declare class JsonEditor extends SvelteComponentTyped<JsonEditorProps, JsonEditorEvents, JsonEditorSlots> {
     get get(): () => Content;
     get set(): (newContent: Content) => void;
@@ -26074,9 +26196,9 @@ declare const __propDef$5: {
     };
     slots: {};
 };
-declare type BooleanToggleProps = typeof __propDef$5.props;
-declare type BooleanToggleEvents = typeof __propDef$5.events;
-declare type BooleanToggleSlots = typeof __propDef$5.slots;
+type BooleanToggleProps = typeof __propDef$5.props;
+type BooleanToggleEvents = typeof __propDef$5.events;
+type BooleanToggleSlots = typeof __propDef$5.slots;
 declare class BooleanToggle extends SvelteComponentTyped<BooleanToggleProps, BooleanToggleEvents, BooleanToggleSlots> {
 }
 
@@ -26093,9 +26215,9 @@ declare const __propDef$4: {
     };
     slots: {};
 };
-declare type ColorPickerProps = typeof __propDef$4.props;
-declare type ColorPickerEvents = typeof __propDef$4.events;
-declare type ColorPickerSlots = typeof __propDef$4.slots;
+type ColorPickerProps = typeof __propDef$4.props;
+type ColorPickerEvents = typeof __propDef$4.events;
+type ColorPickerSlots = typeof __propDef$4.slots;
 declare class ColorPicker extends SvelteComponentTyped<ColorPickerProps, ColorPickerEvents, ColorPickerSlots> {
 }
 
@@ -26117,9 +26239,9 @@ declare const __propDef$3: {
     };
     slots: {};
 };
-declare type EditableValueProps = typeof __propDef$3.props;
-declare type EditableValueEvents = typeof __propDef$3.events;
-declare type EditableValueSlots = typeof __propDef$3.slots;
+type EditableValueProps = typeof __propDef$3.props;
+type EditableValueEvents = typeof __propDef$3.events;
+type EditableValueSlots = typeof __propDef$3.slots;
 declare class EditableValue extends SvelteComponentTyped<EditableValueProps, EditableValueEvents, EditableValueSlots> {
 }
 
@@ -26141,9 +26263,9 @@ declare const __propDef$2: {
     };
     slots: {};
 };
-declare type EnumValueProps = typeof __propDef$2.props;
-declare type EnumValueEvents = typeof __propDef$2.events;
-declare type EnumValueSlots = typeof __propDef$2.slots;
+type EnumValueProps = typeof __propDef$2.props;
+type EnumValueEvents = typeof __propDef$2.events;
+type EnumValueSlots = typeof __propDef$2.slots;
 declare class EnumValue extends SvelteComponentTyped<EnumValueProps, EnumValueEvents, EnumValueSlots> {
 }
 
@@ -26162,9 +26284,9 @@ declare const __propDef$1: {
     };
     slots: {};
 };
-declare type ReadonlyValueProps = typeof __propDef$1.props;
-declare type ReadonlyValueEvents = typeof __propDef$1.events;
-declare type ReadonlyValueSlots = typeof __propDef$1.slots;
+type ReadonlyValueProps = typeof __propDef$1.props;
+type ReadonlyValueEvents = typeof __propDef$1.events;
+type ReadonlyValueSlots = typeof __propDef$1.slots;
 declare class ReadonlyValue extends SvelteComponentTyped<ReadonlyValueProps, ReadonlyValueEvents, ReadonlyValueSlots> {
 }
 
@@ -26177,9 +26299,9 @@ declare const __propDef: {
     };
     slots: {};
 };
-declare type TimestampTagProps = typeof __propDef.props;
-declare type TimestampTagEvents = typeof __propDef.events;
-declare type TimestampTagSlots = typeof __propDef.slots;
+type TimestampTagProps = typeof __propDef.props;
+type TimestampTagEvents = typeof __propDef.events;
+type TimestampTagSlots = typeof __propDef.slots;
 declare class TimestampTag extends SvelteComponentTyped<TimestampTagProps, TimestampTagEvents, TimestampTagSlots> {
 }
 
