@@ -25671,7 +25671,8 @@ interface VisibleSection {
 }
 declare enum Mode {
     text = "text",
-    tree = "tree"
+    tree = "tree",
+    table = "table"
 }
 declare enum SelectionType {
     after = "after",
@@ -25695,6 +25696,7 @@ interface DocumentState {
     enforceStringMap: JSONPointerMap<boolean>;
     visibleSectionsMap: JSONPointerMap<VisibleSection[]>;
     selection: JSONSelection | undefined;
+    sortedColumn: SortedColumn | undefined;
 }
 interface JSONPatchResult {
     json: JSONValue;
@@ -25761,14 +25763,8 @@ type ClipboardValues = Array<{
  * @deprecated Use IconDefinition instead of FontAwesomeIcon
  */
 type FontAwesomeIcon = IconDefinition;
-interface DropdownButtonItem {
-    text: string;
-    onClick: () => void;
-    icon?: IconDefinition;
-    title?: string;
-    disabled?: boolean;
-}
-interface MenuButtonItem {
+interface MenuButton {
+    type: 'button';
     onClick: () => void;
     icon?: IconDefinition;
     text?: string;
@@ -25776,13 +25772,58 @@ interface MenuButtonItem {
     className?: string;
     disabled?: boolean;
 }
+interface MenuDropDownButton {
+    type: 'dropdown-button';
+    main: MenuButton;
+    width?: string;
+    items: MenuButton[];
+}
+/**
+ * @deprecated: DropdownButtonItem is renamed to MenuButton
+ */
+type DropdownButtonItem = MenuButton;
+/**
+ * @deprecated: MenuButtonItem is renamed to MenuButton
+ */
+type MenuButtonItem = MenuButton;
+interface MenuLabel {
+    type: 'label';
+    text: string;
+}
+interface MenuSeparator {
+    type: 'separator';
+}
+/**
+ * @deprecated: MenuSeparatorItem is replaced with MenuSeparator
+ */
 interface MenuSeparatorItem {
+    /**
+     * @deprecated: MenuSeparatorItem is replaced with MenuSeparator
+     */
     separator: true;
 }
+interface MenuSpace {
+    type: 'space';
+}
+/**
+ * @deprecated: MenuSpaceItem is replaced with MenuSpace
+ */
 interface MenuSpaceItem {
+    /**
+     * @deprecated: MenuSpaceItem is replaced with MenuSpace
+     */
     space: true;
 }
-type MenuItem = MenuButtonItem | MenuSeparatorItem | MenuSpaceItem;
+type MenuItem = MenuButton | MenuSeparator | MenuSeparatorItem | MenuSpace | MenuSpaceItem;
+type ContextMenuColumn = {
+    type: 'column';
+    items: Array<MenuButton | MenuDropDownButton | MenuLabel | MenuSeparator>;
+};
+type ContextMenuRow = {
+    type: 'row';
+    items: Array<MenuButton | MenuDropDownButton | ContextMenuColumn>;
+};
+type ContextMenuItem = MenuButton | MenuDropDownButton | MenuSeparator | ContextMenuRow;
 interface MessageAction {
     text: string;
     title: string;
@@ -25869,21 +25910,32 @@ interface OnChangeStatus {
 type OnChange = ((content: Content, previousContent: Content, status: OnChangeStatus) => void) | null;
 type OnSelect = (selection: JSONSelection) => void;
 type OnPatch = (operations: JSONPatchDocument, afterPatch?: AfterPatchCallback) => void;
-type OnSort = (operations: JSONPatchDocument) => void;
+type OnChangeText = (updatedText: string, afterPatch?: AfterPatchCallback) => void;
+type OnSort = (params: {
+    operations: JSONPatchDocument;
+    rootPath: any;
+    itemPath: JSONPath;
+    direction: 1 | -1;
+}) => void;
 type OnFind = (findAndReplace: boolean) => void;
 type OnPaste = (pastedText: string) => void;
 type OnPasteJson = (pastedJson: {
     path: JSONPath;
     contents: JSONValue;
 }) => void;
+type OnExpand = (path: JSONPath) => boolean;
 type OnRenderValue = (props: RenderValueProps) => RenderValueComponentDescription[];
 type OnClassName = (path: JSONPath, value: JSONValue) => string | undefined;
 type OnChangeMode = (mode: Mode) => void;
 type OnContextMenu = (contextMenuProps: AbsolutePopupOptions) => void;
-type OnRenderMenu = (mode: 'tree' | 'text' | 'repair', items: MenuItem[]) => MenuItem[] | undefined | void;
+type OnRenderMenu = (mode: 'tree' | 'text' | 'table', items: MenuItem[]) => MenuItem[] | undefined;
 type OnError = (error: Error) => void;
 type OnFocus = () => void;
 type OnBlur = () => void;
+type OnSortModal = (props: SortModalCallback) => void;
+type OnTransformModal = (props: TransformModalCallback) => void;
+type OnJSONEditorModal = (props: JSONEditorModalCallback) => void;
+type FindNextInside = (path: JSONPath) => JSONSelection | undefined;
 interface SearchResult {
     items: ExtendedSearchResultItem[];
     itemsMap: JSONPointerMap<ExtendedSearchResultItem[]>;
@@ -25993,22 +26045,28 @@ interface JSONEditorPropsOptional {
     onFocus?: OnFocus;
     onBlur?: OnBlur;
 }
-interface TreeModeContext {
+interface JSONEditorContext {
     readOnly: boolean;
     parser: JSONParser;
     normalization: ValueNormalization;
     getJson: () => JSONValue;
     getDocumentState: () => DocumentState;
     findElement: (path: JSONPath) => Element | null;
+    findNextInside: FindNextInside;
     focus: () => void;
     onPatch: (operations: JSONPatchDocument, afterPatch?: AfterPatchCallback) => JSONPatchResult;
-    onInsert: (type: InsertType) => void;
-    onExpand: (path: JSONPath, expanded: boolean, recursive?: boolean) => void;
     onSelect: OnSelect;
     onFind: OnFind;
-    onExpandSection: (path: JSONPath, section: Section) => void;
     onPasteJson: (newPastedJson: PastedJson) => void;
     onRenderValue: OnRenderValue;
+}
+interface TreeModeContext extends JSONEditorContext {
+    getJson: () => JSONValue;
+    getDocumentState: () => DocumentState;
+    findElement: (path: JSONPath) => Element | null;
+    onInsert: (type: InsertType) => void;
+    onExpand: (path: JSONPath, expanded: boolean, recursive?: boolean) => void;
+    onExpandSection: (path: JSONPath, section: Section) => void;
     onContextMenu: OnContextMenu;
     onClassName: OnClassName;
     onDrag: (event: Event) => void;
@@ -26021,7 +26079,6 @@ interface RenderValuePropsOptional {
     enforceString?: boolean;
     selection?: JSONSelection;
     searchResultItems?: SearchResultItem[];
-    isSelected?: boolean;
     isEditing?: boolean;
     parser?: JSONParser;
     normalization?: ValueNormalization;
@@ -26029,6 +26086,7 @@ interface RenderValuePropsOptional {
     onPasteJson?: OnPasteJson;
     onSelect?: OnSelect;
     onFind?: OnFind;
+    findNextInside?: FindNextInside;
     focus?: () => void;
 }
 interface RenderValueProps extends RenderValuePropsOptional {
@@ -26038,7 +26096,6 @@ interface RenderValueProps extends RenderValuePropsOptional {
     enforceString: boolean;
     selection: JSONSelection | undefined;
     searchResultItems: SearchResultItem[] | undefined;
-    isSelected: boolean;
     isEditing: boolean;
     parser: JSONParser;
     normalization: ValueNormalization;
@@ -26046,6 +26103,7 @@ interface RenderValueProps extends RenderValuePropsOptional {
     onPasteJson: OnPasteJson;
     onSelect: OnSelect;
     onFind: OnFind;
+    findNextInside: FindNextInside;
     focus: () => void;
 }
 interface JSONNodeProp {
@@ -26089,7 +26147,7 @@ interface RenderValueComponentDescription {
 }
 interface TransformModalOptions {
     id?: string;
-    selectedPath?: JSONPath;
+    rootPath?: JSONPath;
     onTransform?: (state: {
         operations: JSONPatchDocument;
         json: JSONValue;
@@ -26097,23 +26155,37 @@ interface TransformModalOptions {
     }) => void;
     onClose?: () => void;
 }
-interface TransformModalCallback extends TransformModalOptions {
+interface TransformModalCallback {
     id: string;
-    selectedPath: JSONPath;
+    rootPath: JSONPath;
     json: JSONValue;
-    onTransform: (state: {
-        operations: JSONPatchDocument;
-        json: JSONValue;
-        transformedJson: JSONValue;
-    }) => void;
+    onTransform: (operations: JSONPatchDocument) => void;
     onClose: () => void;
 }
 interface SortModalCallback {
     id: string;
     json: JSONValue;
-    selectedPath: JSONPath;
+    rootPath: JSONPath;
     onSort: OnSort;
     onClose: () => void;
+}
+interface JSONEditorModalCallback {
+    content: Content;
+    path: JSONPath;
+    onPatch: OnPatch;
+    onClose: () => void;
+}
+declare enum SortDirection {
+    asc = "asc",
+    desc = "desc"
+}
+interface TableCellIndex {
+    rowIndex: number;
+    columnIndex: number;
+}
+interface SortedColumn {
+    path: JSONPath;
+    sortDirection: SortDirection;
 }
 
 declare const __propDef$6: {
@@ -26128,6 +26200,7 @@ declare const __propDef$6: {
         statusBar?: boolean;
         escapeControlCharacters?: boolean;
         escapeUnicodeCharacters?: boolean;
+        flattenColumns?: boolean;
         parser?: JSONParser;
         validator?: Validator | null;
         validationParser?: JSONParser;
@@ -26147,7 +26220,7 @@ declare const __propDef$6: {
         set?: (newContent: Content) => void;
         update?: (updatedContent: Content) => void;
         patch?: (operations: JSONPatchDocument) => JSONPatchResult;
-        expand?: (callback?: (path: JSONPath) => boolean) => void;
+        expand?: (callback?: OnExpand) => void;
         transform?: (options: TransformModalOptions) => void;
         validate?: () => ContentErrors;
         acceptAutoRepair?: () => Content;
@@ -26171,7 +26244,7 @@ declare class JsonEditor extends SvelteComponentTyped<JsonEditorProps, JsonEdito
     get set(): (newContent: Content) => void;
     get update(): (updatedContent: Content) => void;
     get patch(): (operations: JSONPatchDocument) => JSONPatchResult;
-    get expand(): (callback?: (path: JSONPath) => boolean) => void;
+    get expand(): (callback?: OnExpand) => void;
     get transform(): (options: TransformModalOptions) => void;
     get validate(): () => ContentErrors;
     get acceptAutoRepair(): () => Content;
@@ -26233,6 +26306,7 @@ declare const __propDef$3: {
         onSelect: OnSelect;
         onFind: OnFind;
         focus: () => void;
+        findNextInside: FindNextInside;
     };
     events: {
         [evt: string]: CustomEvent<any>;
@@ -26251,7 +26325,7 @@ declare const __propDef$2: {
         value: JSONValue;
         parser: JSONParser;
         readOnly: boolean;
-        isSelected: boolean;
+        selection: JSONSelection | undefined;
         onPatch: OnPatch;
         options: {
             value: unknown;
@@ -26305,7 +26379,7 @@ type TimestampTagSlots = typeof __propDef.slots;
 declare class TimestampTag extends SvelteComponentTyped<TimestampTagProps, TimestampTagEvents, TimestampTagSlots> {
 }
 
-declare function renderValue({ path, value, readOnly, enforceString, searchResultItems, isEditing, parser, normalization, onPatch, onPasteJson, onSelect, onFind, focus }: RenderValueProps): RenderValueComponentDescription[];
+declare function renderValue({ path, value, readOnly, enforceString, searchResultItems, isEditing, parser, normalization, onPatch, onPasteJson, onSelect, onFind, findNextInside, focus }: RenderValueProps): RenderValueComponentDescription[];
 
 /**
  * Search the JSON schema for enums defined at given props.path. If found,
@@ -27388,4 +27462,4 @@ declare function stringifyJSONPath(path: JSONPath): string;
  */
 declare function parseJSONPath(path: string): JSONPath;
 
-export { AbsolutePopupOptions, AfterPatchCallback, AfterSelection, AjvValidatorOptions, BooleanToggle, CaretPosition, CaretType, ClipboardValues, ColorPicker, Content, ContentErrors, ContentParseError, ContentValidationErrors, DocumentState, DragInsideAction, DragInsideProps, DraggingState, DropdownButtonItem, EditableValue, EnumValue, EscapeValue, ExtendedSearchResultItem, FontAwesomeIcon, HistoryItem, InsertType, InsideSelection, JSONContent, JsonEditor as JSONEditor, JSONEditorPropsOptional, JSONNodeItem, JSONNodeProp, JSONParser, JSONPatchDocument, JSONPatchResult, JSONPath, JSONPathParser, JSONPointer, JSONPointerMap, JSONSelection, JSONValue, KeySelection, MenuButtonItem, MenuItem, MenuSeparatorItem, MenuSpaceItem, MessageAction, Mode, MultiSelection, NestedValidationError, OnBlur, OnChange, OnChangeMode, OnChangeQueryLanguage, OnChangeStatus, OnClassName, OnContextMenu, OnError, OnFind, OnFocus, OnPaste, OnPasteJson, OnPatch, OnRenderMenu, OnRenderValue, OnSelect, OnSort, ParseError, PastedJson, PopupEntry, QueryLanguage, QueryLanguageOptions, ReadonlyValue, RenderValueComponentDescription, RenderValueProps, RenderValuePropsOptional, RenderedItem, RichValidationError, SearchField, SearchResult, SearchResultItem, Section, SelectionType, SortModalCallback, TextContent, TextLocation, TimestampTag, TransformModalCallback, TransformModalOptions, TreeModeContext, UnescapeValue, ValidationError$1 as ValidationError, ValidationSeverity, Validator, ValueNormalization, ValueSelection, VisibleSection, compileJSONPointer, compileJSONPointerProp, createAfterSelection, createAjvValidator, createInsideSelection, createKeySelection, createMultiSelection, createValueSelection, deleteIn, estimateSerializedSize, existsIn, getIn, immutableJSONPatch, insertAt, isAfterSelection, isContent, isEditingSelection, isEqualParser, isInsideSelection, isJSONContent, isKeySelection, isLargeContent, isMultiSelection, isTextContent, isValueSelection, javascriptQueryLanguage, jmespathQueryLanguage, lodashQueryLanguage, parseFrom, parseJSONPath, parseJSONPointer, parsePath, renderJSONSchemaEnum, renderValue, revertJSONPatch, setIn, stringifyJSONPath, toJSONContent, toTextContent, updateIn };
+export { AbsolutePopupOptions, AfterPatchCallback, AfterSelection, AjvValidatorOptions, BooleanToggle, CaretPosition, CaretType, ClipboardValues, ColorPicker, Content, ContentErrors, ContentParseError, ContentValidationErrors, ContextMenuColumn, ContextMenuItem, ContextMenuRow, DocumentState, DragInsideAction, DragInsideProps, DraggingState, DropdownButtonItem, EditableValue, EnumValue, EscapeValue, ExtendedSearchResultItem, FindNextInside, FontAwesomeIcon, HistoryItem, InsertType, InsideSelection, JSONContent, JsonEditor as JSONEditor, JSONEditorContext, JSONEditorModalCallback, JSONEditorPropsOptional, JSONNodeItem, JSONNodeProp, JSONParser, JSONPatchDocument, JSONPatchResult, JSONPath, JSONPathParser, JSONPointer, JSONPointerMap, JSONSelection, JSONValue, KeySelection, MenuButton, MenuButtonItem, MenuDropDownButton, MenuItem, MenuLabel, MenuSeparator, MenuSeparatorItem, MenuSpace, MenuSpaceItem, MessageAction, Mode, MultiSelection, NestedValidationError, OnBlur, OnChange, OnChangeMode, OnChangeQueryLanguage, OnChangeStatus, OnChangeText, OnClassName, OnContextMenu, OnError, OnExpand, OnFind, OnFocus, OnJSONEditorModal, OnPaste, OnPasteJson, OnPatch, OnRenderMenu, OnRenderValue, OnSelect, OnSort, OnSortModal, OnTransformModal, ParseError, PastedJson, PopupEntry, QueryLanguage, QueryLanguageOptions, ReadonlyValue, RenderValueComponentDescription, RenderValueProps, RenderValuePropsOptional, RenderedItem, RichValidationError, SearchField, SearchResult, SearchResultItem, Section, SelectionType, SortDirection, SortModalCallback, SortedColumn, TableCellIndex, TextContent, TextLocation, TimestampTag, TransformModalCallback, TransformModalOptions, TreeModeContext, UnescapeValue, ValidationError$1 as ValidationError, ValidationSeverity, Validator, ValueNormalization, ValueSelection, VisibleSection, compileJSONPointer, compileJSONPointerProp, createAfterSelection, createAjvValidator, createInsideSelection, createKeySelection, createMultiSelection, createValueSelection, deleteIn, estimateSerializedSize, existsIn, getIn, immutableJSONPatch, insertAt, isAfterSelection, isContent, isEditingSelection, isEqualParser, isInsideSelection, isJSONContent, isKeySelection, isLargeContent, isMultiSelection, isTextContent, isValueSelection, javascriptQueryLanguage, jmespathQueryLanguage, lodashQueryLanguage, parseFrom, parseJSONPath, parseJSONPointer, parsePath, renderJSONSchemaEnum, renderValue, revertJSONPatch, setIn, stringifyJSONPath, toJSONContent, toTextContent, updateIn };
