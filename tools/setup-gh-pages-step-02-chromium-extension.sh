@@ -29,6 +29,8 @@ bash release-archive.sh
 cp -f dist/ReplaceGoogleCDN-v2.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN-v2.zip
 cp -f dist/ReplaceGoogleCDN-v3.zip ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN-v3.zip
 
+mkdir -p ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN/rules/
+cp -rf extension/rules/* ${__ROOT__}/gh-pages/chromium-extension/ReplaceGoogleCDN/rules/
 
 cd ${__DIR__}/dist
 
