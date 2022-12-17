@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.4](https://github.com/josdejong/svelte-jsoneditor/compare/v0.11.3...v0.11.4) (2022-12-14)
+
+
+### Bug Fixes
+
+* method `scrollTo` not returning a promise anymore (regression since v0.11.0) ([524799f](https://github.com/josdejong/svelte-jsoneditor/commit/524799f8126f6b0f4bb36f5c81087b57d8af7496))
+
+### [0.11.3](https://github.com/josdejong/svelte-jsoneditor/compare/v0.11.2...v0.11.3) (2022-12-13)
+
+
+### Bug Fixes
+
+* [#206](https://github.com/josdejong/svelte-jsoneditor/issues/206) remove the fixed width of the mode toggle buttons ([8e0cda3](https://github.com/josdejong/svelte-jsoneditor/commit/8e0cda3c1c91e97b1c41ff28c5b0ac80cf8c26ab))
+* [#96](https://github.com/josdejong/svelte-jsoneditor/issues/96) add missing properties to `JSONEditorPropsOptional` ([410fd80](https://github.com/josdejong/svelte-jsoneditor/commit/410fd801297faa46afef201569bfd79792de17e1))
+* [#96](https://github.com/josdejong/svelte-jsoneditor/issues/96) make all properties of JSONEditorPropsOptional optional ([4bc33e8](https://github.com/josdejong/svelte-jsoneditor/commit/4bc33e88450396a1860db43baabe15986bfc7cd1))
+* cannot edit values of non-existing nested objects in table mode ([8127571](https://github.com/josdejong/svelte-jsoneditor/commit/8127571d74864587788811e08a64a5345d11ae19))
+* improve landing page message in table mode when opening an array without values ([f238a92](https://github.com/josdejong/svelte-jsoneditor/commit/f238a9236740d261456a5f7841ef0de2ecc7fb74))
+
+### [0.11.2](https://github.com/josdejong/svelte-jsoneditor/compare/v0.11.1...v0.11.2) (2022-12-09)
+
+
+### Bug Fixes
+
+* [#204](https://github.com/josdejong/svelte-jsoneditor/issues/204) unresolvable imports with `.ts` extension ([d45828b](https://github.com/josdejong/svelte-jsoneditor/commit/d45828b1d1f370ff25322ef1f5204c1050d4f60c))
+
 ### [0.11.1](https://github.com/josdejong/svelte-jsoneditor/compare/v0.11.0...v0.11.1) (2022-12-07)
 
 

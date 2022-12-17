@@ -26032,7 +26032,11 @@ interface JSONEditorPropsOptional {
     statusBar?: boolean;
     escapeControlCharacters?: boolean;
     escapeUnicodeCharacters?: boolean;
-    validator?: Validator;
+    flattenColumns?: true;
+    parser?: JSONParser;
+    validator?: Validator | null;
+    validationParser?: JSONParser;
+    pathParser?: JSONPathParser;
     queryLanguages?: QueryLanguage[];
     queryLanguageId?: string;
     onChangeQueryLanguage?: OnChangeQueryLanguage;
