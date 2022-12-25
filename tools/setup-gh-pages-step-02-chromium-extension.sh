@@ -53,6 +53,7 @@ cd chinese-programmer-wrong-pronunciation-chromium-extension
 bash release-archive.sh
 cp -f dist/chinese-programmer-wrong-pronunciation-chromium-extension.zip ${__ROOT__}/gh-pages/chromium-extension/chinese-programmer-wrong-pronunciation-chromium-extension.zip
 
+cd ${__DIR__}/dist/
 
 # 下载谷歌翻译扩展源码
 mkdir -p jingjingxyk-ReplaceGoogleCDN
