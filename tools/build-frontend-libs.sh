@@ -92,7 +92,7 @@ cd ${__DIR__}/dist
 mkdir -p ${__ROOT__}/ajax/libs/josdejong/svelte-jsoneditor/main
 cd svelte-jsoneditor
 npm install
-npm run release:build
+npm run release:build-and-test
 cp -rf package-vanilla/* ${__ROOT__}/ajax/libs/josdejong/svelte-jsoneditor/main
 
 cd ${__DIR__}/dist
