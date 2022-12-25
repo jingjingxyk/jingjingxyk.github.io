@@ -2,6 +2,7 @@ ReplaceGoogleCDN
 ReplaceGoogleCDN-v2.zip
 ReplaceGoogleCDN-v3.zip
 ReplaceGoogleCDN.zip
+chinese-programmer-wrong-pronunciation-chromium-extension.zip
 extension-v3-test
 extension-v3-test.zip
 google-translate.crx
