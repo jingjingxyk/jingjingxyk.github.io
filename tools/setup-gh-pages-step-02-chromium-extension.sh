@@ -47,6 +47,13 @@ unset https_proxy
 
 cd ${__DIR__}/dist/
 
+## 实现无页面跳转收听正确读音，而开发的chromium扩展
+test -d chinese-programmer-wrong-pronunciation-chromium-extension/.git ||  git clone https://github.com/jingjingxyk/chinese-programmer-wrong-pronunciation-chromium-extension.git --depth=1 --progress
+cd chinese-programmer-wrong-pronunciation-chromium-extension
+bash release-archive.sh
+cp -f dist/chinese-programmer-wrong-pronunciation-chromium-extension.zip ${__ROOT__}/gh-pages/chromium-extension/chinese-programmer-wrong-pronunciation-chromium-extension.zip
+
+
 # 下载谷歌翻译扩展源码
 mkdir -p jingjingxyk-ReplaceGoogleCDN
 cd jingjingxyk-ReplaceGoogleCDN
