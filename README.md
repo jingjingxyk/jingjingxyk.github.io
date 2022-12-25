@@ -121,7 +121,7 @@ https://facebook.github.io/react-vr/docs/getting-started.html#content
 ```
 https://github.com/GoogleChrome/puppeteer
 
-PUPPETEER_DOWNLOAD_HOST=https://storage.googleapis.com.cnpmjs.org
+PUPPETEER_DOWNLOAD_HOST=https://registry.npmmirror.com
 
 ```
 
