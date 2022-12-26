@@ -153,7 +153,7 @@ https://src.chromium.org/viewvc/chrome/trunk/src/
 
 ## freeswitch
 ```
-git clone https://stash.freeswitch.org/scm/fs/freeswitch.git freeswitch.git
+git clone https://github.com/signalwire/freeswitch.git
 
 ```
 
