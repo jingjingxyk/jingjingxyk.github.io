@@ -55,6 +55,7 @@ cp -f dist/chinese-programmer-wrong-pronunciation-chromium-extension.zip ${__ROO
 
 cd ${__DIR__}/dist/
 
+:<<'EOF'
 # 下载谷歌翻译扩展源码
 mkdir -p jingjingxyk-ReplaceGoogleCDN
 cd jingjingxyk-ReplaceGoogleCDN
@@ -67,7 +68,7 @@ cd extension/tools/temp/
 zip -r google-translate.zip google-translate
 cp google-translate.zip ${__ROOT__}/gh-pages/chromium-extension/
 cp google-translate.crx ${__ROOT__}/gh-pages/chromium-extension/
-
+EOF
 
 cd ${__DIR__}
 
