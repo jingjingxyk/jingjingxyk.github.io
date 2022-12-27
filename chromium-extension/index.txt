@@ -5,6 +5,4 @@ ReplaceGoogleCDN.zip
 chinese-programmer-wrong-pronunciation-chromium-extension.zip
 extension-v3-test
 extension-v3-test.zip
-google-translate.crx
-google-translate.zip
 index.txt
