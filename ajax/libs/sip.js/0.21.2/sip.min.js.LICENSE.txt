@@ -1,7 +1,7 @@
 /*!
  * 
  *  SIP version 0.21.2
- *  Copyright (c) 2014-2022 Junction Networks, Inc <http://www.onsip.com>
+ *  Copyright (c) 2014-2023 Junction Networks, Inc <http://www.onsip.com>
  *  Homepage: https://sipjs.com
  *  License: https://sipjs.com/license/
  *
