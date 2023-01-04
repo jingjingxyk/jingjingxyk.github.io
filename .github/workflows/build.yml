@@ -21,6 +21,8 @@ jobs:
                 run: bash tools/setup-gh-pages-step-01-index.sh
             -   name: 'create chromium extension release archive '
                 run: bash tools/setup-gh-pages-step-02-chromium-extension.sh
+            -   name: 'download cloud soft'
+                run: bash tools/setup-gh-pages-step-03-download-soft.sh
             -   name: 'run chromium in docker'
                 run: bash tools/run-chromium-in-docker-step-03.sh
             -   name: 'get chromium credit data with puppeteer'
