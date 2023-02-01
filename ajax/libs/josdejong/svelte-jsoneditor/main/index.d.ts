@@ -25861,10 +25861,10 @@ interface ContentValidationErrors {
 }
 type ContentErrors = ContentParseError | ContentValidationErrors;
 interface RichValidationError extends ValidationError$1 {
-    line?: number;
-    column?: number;
-    from: number;
-    to: number;
+    line: number | null;
+    column: number | null;
+    from: number | null;
+    to: number | null;
     actions: Array<{
         name: string;
         apply: () => void;
