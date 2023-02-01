@@ -25707,7 +25707,7 @@ interface JSONPatchResult {
 type AfterPatchCallback = (patchedJson: JSONValue, patchedState: DocumentState) => {
     json?: JSONValue;
     state?: DocumentState;
-};
+} | undefined;
 interface MultiSelection {
     type: SelectionType.multi;
     paths: JSONPath[];
@@ -25913,7 +25913,7 @@ type OnPatch = (operations: JSONPatchDocument, afterPatch?: AfterPatchCallback) 
 type OnChangeText = (updatedText: string, afterPatch?: AfterPatchCallback) => void;
 type OnSort = (params: {
     operations: JSONPatchDocument;
-    rootPath: any;
+    rootPath: JSONPath;
     itemPath: JSONPath;
     direction: 1 | -1;
 }) => void;
@@ -25928,7 +25928,12 @@ type OnRenderValue = (props: RenderValueProps) => RenderValueComponentDescriptio
 type OnClassName = (path: JSONPath, value: JSONValue) => string | undefined;
 type OnChangeMode = (mode: Mode) => void;
 type OnContextMenu = (contextMenuProps: AbsolutePopupOptions) => void;
-type OnRenderMenu = (mode: 'tree' | 'text' | 'table', items: MenuItem[]) => MenuItem[] | undefined;
+type RenderMenuContext = {
+    mode: 'tree' | 'text' | 'table';
+    modal: boolean;
+};
+type OnRenderMenu = (items: MenuItem[], context: RenderMenuContext) => MenuItem[] | undefined;
+type OnRenderMenuWithoutContext = (items: MenuItem[]) => MenuItem[] | undefined;
 type OnError = (error: Error) => void;
 type OnFocus = () => void;
 type OnBlur = () => void;
@@ -26011,6 +26016,7 @@ interface PopupEntry {
 }
 interface AbsolutePopupOptions {
     anchor?: Element;
+    position?: 'top' | 'left';
     left?: number;
     top?: number;
     width?: number;
@@ -26053,7 +26059,7 @@ interface JSONEditorContext {
     readOnly: boolean;
     parser: JSONParser;
     normalization: ValueNormalization;
-    getJson: () => JSONValue;
+    getJson: () => JSONValue | undefined;
     getDocumentState: () => DocumentState;
     findElement: (path: JSONPath) => Element | null;
     findNextInside: FindNextInside;
@@ -26065,7 +26071,7 @@ interface JSONEditorContext {
     onRenderValue: OnRenderValue;
 }
 interface TreeModeContext extends JSONEditorContext {
-    getJson: () => JSONValue;
+    getJson: () => JSONValue | undefined;
     getDocumentState: () => DocumentState;
     findElement: (path: JSONPath) => Element | null;
     onInsert: (type: InsertType) => void;
@@ -26141,7 +26147,7 @@ interface DraggingState {
     initialContentTop: number;
     selectionStartIndex: number;
     selectionItemsCount: number;
-    items: RenderedItem[] | null;
+    items: RenderedItem[];
     offset: number;
     didMoveItems: boolean;
 }
@@ -26191,49 +26197,52 @@ interface SortedColumn {
     path: JSONPath;
     sortDirection: SortDirection;
 }
+type JSONSchema = Record<string, unknown>;
+type JSONSchemaDefinitions = Record<string, JSONSchema>;
+type JSONSchemaEnum = Array<unknown>;
 
 declare const __propDef$6: {
     props: {
-        content?: Content;
-        readOnly?: boolean;
-        indentation?: number | string;
-        tabSize?: number;
-        mode?: Mode;
-        mainMenuBar?: boolean;
-        navigationBar?: boolean;
-        statusBar?: boolean;
-        escapeControlCharacters?: boolean;
-        escapeUnicodeCharacters?: boolean;
-        flattenColumns?: boolean;
-        parser?: JSONParser;
-        validator?: Validator | null;
-        validationParser?: JSONParser;
-        pathParser?: JSONPathParser;
-        queryLanguages?: QueryLanguage[];
-        queryLanguageId?: string;
-        onChangeQueryLanguage?: OnChangeQueryLanguage;
-        onChange?: OnChange;
-        onRenderValue?: OnRenderValue;
-        onClassName?: OnClassName;
-        onRenderMenu?: OnRenderMenu;
-        onChangeMode?: OnChangeMode;
-        onError?: OnError;
-        onFocus?: OnFocus;
-        onBlur?: OnBlur;
-        get?: () => Content;
-        set?: (newContent: Content) => void;
-        update?: (updatedContent: Content) => void;
-        patch?: (operations: JSONPatchDocument) => JSONPatchResult;
-        expand?: (callback?: OnExpand) => void;
-        transform?: (options: TransformModalOptions) => void;
-        validate?: () => ContentErrors;
-        acceptAutoRepair?: () => Content;
-        scrollTo?: (path: JSONPath) => void;
-        findElement?: (path: JSONPath) => Element;
-        focus?: () => void;
-        refresh?: () => void;
-        updateProps?: (props: JSONEditorPropsOptional) => void;
-        destroy?: () => void;
+        content?: Content | undefined;
+        readOnly?: boolean | undefined;
+        indentation?: string | number | undefined;
+        tabSize?: number | undefined;
+        mode?: Mode | undefined;
+        mainMenuBar?: boolean | undefined;
+        navigationBar?: boolean | undefined;
+        statusBar?: boolean | undefined;
+        escapeControlCharacters?: boolean | undefined;
+        escapeUnicodeCharacters?: boolean | undefined;
+        flattenColumns?: boolean | undefined;
+        parser?: JSON | undefined;
+        validator?: Validator | null | undefined;
+        validationParser?: JSON | undefined;
+        pathParser?: JSONPathParser | undefined;
+        queryLanguages?: QueryLanguage[] | undefined;
+        queryLanguageId?: string | undefined;
+        onChangeQueryLanguage?: OnChangeQueryLanguage | undefined;
+        onChange?: OnChange | undefined;
+        onRenderValue?: OnRenderValue | undefined;
+        onClassName?: OnClassName | undefined;
+        onRenderMenu?: OnRenderMenu | undefined;
+        onChangeMode?: OnChangeMode | undefined;
+        onError?: OnError | undefined;
+        onFocus?: OnFocus | undefined;
+        onBlur?: OnBlur | undefined;
+        get?: (() => Content) | undefined;
+        set?: ((newContent: Content) => void) | undefined;
+        update?: ((updatedContent: Content) => void) | undefined;
+        patch?: ((operations: JSONPatchDocument) => JSONPatchResult) | undefined;
+        expand?: ((callback?: OnExpand) => void) | undefined;
+        transform?: ((options: TransformModalOptions) => void) | undefined;
+        validate?: (() => ContentErrors) | undefined;
+        acceptAutoRepair?: (() => Content) | undefined;
+        scrollTo?: ((path: JSONPath) => void) | undefined;
+        findElement?: ((path: JSONPath) => Element) | undefined;
+        focus?: (() => void) | undefined;
+        refresh?: (() => void) | undefined;
+        updateProps?: ((props: JSONEditorPropsOptional) => void) | undefined;
+        destroy?: (() => void) | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;
@@ -26248,7 +26257,7 @@ declare class JsonEditor extends SvelteComponentTyped<JsonEditorProps, JsonEdito
     get set(): (newContent: Content) => void;
     get update(): (updatedContent: Content) => void;
     get patch(): (operations: JSONPatchDocument) => JSONPatchResult;
-    get expand(): (callback?: OnExpand) => void;
+    get expand(): (callback?: OnExpand | undefined) => void;
     get transform(): (options: TransformModalOptions) => void;
     get validate(): () => ContentErrors;
     get acceptAutoRepair(): () => Content;
@@ -26390,7 +26399,7 @@ declare function renderValue({ path, value, readOnly, enforceString, searchResul
  * return an EnumValue renderer. If not found, return null. In that case you
  * have to fallback on the default valueRender function
  */
-declare function renderJSONSchemaEnum(props: RenderValueProps, schema: JSONValue, schemaDefinitions: JSONValue): RenderValueComponentDescription[];
+declare function renderJSONSchemaEnum(props: RenderValueProps, schema: JSONSchema, schemaDefinitions?: JSONSchemaDefinitions): RenderValueComponentDescription[] | null;
 
 interface URIComponents {
     scheme?: string;
@@ -26427,9 +26436,9 @@ declare class _Code extends _CodeOrName {
     get str(): string;
     get names(): UsedNames;
 }
-declare type CodeItem = Name | string | number | boolean | null;
-declare type UsedNames = Record<string, number | undefined>;
-declare type Code = _Code | Name;
+type CodeItem = Name | string | number | boolean | null;
+type UsedNames = Record<string, number | undefined>;
+type Code = _Code | Name;
 
 interface NameGroup {
     prefix: string;
@@ -26440,7 +26449,7 @@ interface NameValue {
     key?: unknown;
     code?: Code;
 }
-declare type ValueReference = unknown;
+type ValueReference = unknown;
 interface ScopeOptions {
     prefixes?: Set<string>;
     parent?: Scope;
@@ -26450,18 +26459,18 @@ interface ValueScopeOptions extends ScopeOptions {
     es5?: boolean;
     lines?: boolean;
 }
-declare type ScopeStore = Record<string, ValueReference[] | undefined>;
-declare type ScopeValues = {
+type ScopeStore = Record<string, ValueReference[] | undefined>;
+type ScopeValues = {
     [Prefix in string]?: Map<unknown, ValueScopeName>;
 };
-declare type ScopeValueSets = {
+type ScopeValueSets = {
     [Prefix in string]?: Set<ValueScopeName>;
 };
 declare enum UsedValueState {
     Started = 0,
     Completed = 1
 }
-declare type UsedScopeValues = {
+type UsedScopeValues = {
     [Prefix in string]?: Map<ValueScopeName, UsedValueState | undefined>;
 };
 declare class Scope {
@@ -26504,8 +26513,8 @@ declare class ValueScope extends Scope {
     private _reduceValues;
 }
 
-declare type SafeExpr = Code | number | boolean | null;
-declare type Block = Code | (() => void);
+type SafeExpr = Code | number | boolean | null;
+type Block = Code | (() => void);
 interface CodeGenOptions {
     es5?: boolean;
     lines?: boolean;
@@ -26565,8 +26574,8 @@ declare class CodeGen {
 }
 
 declare const _jsonTypes: readonly ["string", "number", "integer", "boolean", "null", "object", "array"];
-declare type JSONType$1 = typeof _jsonTypes[number];
-declare type ValidationTypes = {
+type JSONType$1 = typeof _jsonTypes[number];
+type ValidationTypes = {
     [K in JSONType$1]: boolean | RuleGroup | undefined;
 };
 interface ValidationRules {
@@ -26594,7 +26603,7 @@ declare enum Type {
     Str = 1
 }
 
-declare type SubschemaArgs = Partial<{
+type SubschemaArgs = Partial<{
     keyword: string;
     schemaProp: string | number;
     schema: AnySchema;
@@ -26655,10 +26664,10 @@ declare class KeywordCxt implements KeywordErrorCxt {
     mergeValidEvaluated(schemaCxt: SchemaCxt, valid: Name): boolean | void;
 }
 
-declare type StrictNullChecksWrapper<Name extends string, Type> = undefined extends null ? `strictNullChecks must be true in tsconfig to use ${Name}` : Type;
-declare type UnionToIntersection<U> = (U extends any ? (_: U) => void : never) extends (_: infer I) => void ? I : never;
-declare type UncheckedPartialSchema<T> = Partial<UncheckedJSONSchemaType<T, true>>;
-declare type JSONType<T extends string, IsPartial extends boolean> = IsPartial extends true ? T | undefined : T;
+type StrictNullChecksWrapper<Name extends string, Type> = undefined extends null ? `strictNullChecks must be true in tsconfig to use ${Name}` : Type;
+type UnionToIntersection<U> = (U extends any ? (_: U) => void : never) extends (_: infer I) => void ? I : never;
+type UncheckedPartialSchema<T> = Partial<UncheckedJSONSchemaType<T, true>>;
+type JSONType<T extends string, IsPartial extends boolean> = IsPartial extends true ? T | undefined : T;
 interface NumberKeywords {
     minimum?: number;
     maximum?: number;
@@ -26673,7 +26682,7 @@ interface StringKeywords {
     pattern?: string;
     format?: string;
 }
-declare type UncheckedJSONSchemaType<T, IsPartial extends boolean> = (// these two unions allow arbitrary unions of types
+type UncheckedJSONSchemaType<T, IsPartial extends boolean> = (// these two unions allow arbitrary unions of types
 {
     anyOf: readonly UncheckedJSONSchemaType<T, IsPartial>[];
 } | {
@@ -26752,19 +26761,19 @@ declare type UncheckedJSONSchemaType<T, IsPartial extends boolean> = (// these t
     $defs?: Record<string, UncheckedJSONSchemaType<Known, true>>;
     definitions?: Record<string, UncheckedJSONSchemaType<Known, true>>;
 };
-declare type JSONSchemaType<T> = StrictNullChecksWrapper<"JSONSchemaType", UncheckedJSONSchemaType<T, false>>;
-declare type Known = {
+type JSONSchemaType<T> = StrictNullChecksWrapper<"JSONSchemaType", UncheckedJSONSchemaType<T, false>>;
+type Known = {
     [key: string]: Known;
 } | [Known, ...Known[]] | Known[] | number | string | boolean | null;
-declare type UncheckedPropertiesSchema<T> = {
+type UncheckedPropertiesSchema<T> = {
     [K in keyof T]-?: (UncheckedJSONSchemaType<T[K], false> & Nullable<T[K]>) | {
         $ref: string;
     };
 };
-declare type UncheckedRequiredMembers<T> = {
+type UncheckedRequiredMembers<T> = {
     [K in keyof T]-?: undefined extends T[K] ? never : K;
 }[keyof T];
-declare type Nullable<T> = undefined extends T ? {
+type Nullable<T> = undefined extends T ? {
     nullable: true;
     const?: null;
     enum?: Readonly<(T | null)[]>;
@@ -26777,11 +26786,11 @@ declare type Nullable<T> = undefined extends T ? {
 };
 
 /** numeric strings */
-declare type NumberType = "float32" | "float64" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32";
+type NumberType = "float32" | "float64" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32";
 /** string strings */
-declare type StringType = "string" | "timestamp";
+type StringType = "string" | "timestamp";
 /** Generic JTD Schema without inference of the represented type */
-declare type SomeJTDSchemaType = (// ref
+type SomeJTDSchemaType = (// ref
 {
     ref: string;
 } | {
@@ -26809,32 +26818,34 @@ declare type SomeJTDSchemaType = (// ref
     definitions?: Record<string, SomeJTDSchemaType>;
 };
 /** required keys of an object, not undefined */
-declare type RequiredKeys<T> = {
+type RequiredKeys<T> = {
     [K in keyof T]-?: undefined extends T[K] ? never : K;
 }[keyof T];
 /** optional or undifined-able keys of an object */
-declare type OptionalKeys<T> = {
+type OptionalKeys<T> = {
     [K in keyof T]-?: undefined extends T[K] ? K : never;
 }[keyof T];
 /** type is true if T is a union type */
-declare type IsUnion_<T, U extends T = T> = false extends (T extends unknown ? ([U] extends [T] ? false : true) : never) ? false : true;
-declare type IsUnion<T> = IsUnion_<T>;
+type IsUnion_<T, U extends T = T> = false extends (T extends unknown ? ([U] extends [T] ? false : true) : never) ? false : true;
+type IsUnion<T> = IsUnion_<T>;
 /** type is true if T is identically E */
-declare type TypeEquality<T, E> = [T] extends [E] ? ([E] extends [T] ? true : false) : false;
+type TypeEquality<T, E> = [T] extends [E] ? ([E] extends [T] ? true : false) : false;
 /** type is true if T or null is identically E or null*/
-declare type NullTypeEquality<T, E> = TypeEquality<T | null, E | null>;
+type NullTypeEquality<T, E> = TypeEquality<T | null, E | null>;
 /** gets only the string literals of a type or null if a type isn't a string literal */
-declare type EnumString<T> = [T] extends [never] ? null : T extends string ? string extends T ? null : T : null;
+type EnumString<T> = [T] extends [never] ? null : T extends string ? string extends T ? null : T : null;
 /** true if type is a union of string literals */
-declare type IsEnum<T> = null extends EnumString<Exclude<T, null>> ? false : true;
+type IsEnum<T> = null extends EnumString<T> ? false : true;
 /** true only if all types are array types (not tuples) */
-declare type IsElements<T> = false extends IsUnion<T> ? [T] extends [readonly unknown[]] ? undefined extends T[0.5] ? false : true : false : false;
+type IsElements<T> = false extends IsUnion<T> ? [T] extends [readonly unknown[]] ? undefined extends T[0.5] ? false : true : false : false;
 /** true if the the type is a values type */
-declare type IsValues<T> = false extends IsUnion<Exclude<T, null>> ? TypeEquality<keyof Exclude<T, null>, string> : false;
-/** true if type is a proeprties type and Union is false, or type is a discriminator type and Union is true */
-declare type IsRecord<T, Union extends boolean> = Union extends IsUnion<Exclude<T, null>> ? null extends EnumString<keyof Exclude<T, null>> ? false : true : false;
+type IsValues<T> = false extends IsUnion<T> ? TypeEquality<keyof T, string> : false;
+/** true if type is a properties type and Union is false, or type is a discriminator type and Union is true */
+type IsRecord<T, Union extends boolean> = Union extends IsUnion<T> ? null extends EnumString<keyof T> ? false : true : false;
+/** true if type represents an empty record */
+type IsEmptyRecord<T> = [T] extends [Record<string, never>] ? [T] extends [never] ? false : true : false;
 /** actual schema */
-declare type JTDSchemaType<T, D extends Record<string, unknown> = Record<string, never>> = (// refs - where null wasn't specified, must match exactly
+type JTDSchemaType<T, D extends Record<string, unknown> = Record<string, never>> = (// refs - where null wasn't specified, must match exactly
 (null extends EnumString<keyof D> ? never : ({
     [K in keyof D]: [T] extends [D[K]] ? {
         ref: K;
@@ -26857,13 +26868,18 @@ declare type JTDSchemaType<T, D extends Record<string, unknown> = Record<string,
     type: StringType;
 } : true extends NullTypeEquality<T, Date> ? {
     type: "timestamp";
-} : true extends IsEnum<T> ? {
+} : true extends IsEnum<Exclude<T, null>> ? {
     enum: EnumString<Exclude<T, null>>[];
 } : true extends IsElements<Exclude<T, null>> ? T extends readonly (infer E)[] ? {
     elements: JTDSchemaType<E, D>;
-} : never : true extends IsValues<T> ? T extends Record<string, infer V> ? {
+} : never : true extends IsEmptyRecord<Exclude<T, null>> ? {
+    properties: Record<string, never>;
+    optionalProperties?: Record<string, never>;
+} | {
+    optionalProperties: Record<string, never>;
+} : true extends IsValues<Exclude<T, null>> ? T extends Record<string, infer V> ? {
     values: JTDSchemaType<V, D>;
-} : never : true extends IsRecord<T, false> ? ([RequiredKeys<Exclude<T, null>>] extends [never] ? {
+} : never : true extends IsRecord<Exclude<T, null>, false> ? ([RequiredKeys<Exclude<T, null>>] extends [never] ? {
     properties?: Record<string, never>;
 } : {
     properties: {
@@ -26877,13 +26893,11 @@ declare type JTDSchemaType<T, D extends Record<string, unknown> = Record<string,
     };
 }) & {
     additionalProperties?: boolean;
-} : true extends IsRecord<T, true> ? {
+} : true extends IsRecord<Exclude<T, null>, true> ? {
     [K in keyof Exclude<T, null>]-?: Exclude<T, null>[K] extends string ? {
         discriminator: K;
         mapping: {
-            [M in Exclude<T, null>[K]]: JTDSchemaType<Omit<T extends {
-                [C in K]: M;
-            } ? T : never, K>, D>;
+            [M in Exclude<T, null>[K]]: JTDSchemaType<Omit<T extends Record<K, M> ? T : never, K>, D>;
         };
     } : never;
 }[keyof Exclude<T, null>] : never) & (null extends T ? {
@@ -26896,7 +26910,7 @@ declare type JTDSchemaType<T, D extends Record<string, unknown> = Record<string,
         [K in keyof D]: JTDSchemaType<D[K], D>;
     };
 };
-declare type JTDDataDef<S, D extends Record<string, unknown>> = // ref
+type JTDDataDef<S, D extends Record<string, unknown>> = // ref
 (S extends {
     ref: string;
 } ? D extends {
@@ -26941,7 +26955,7 @@ declare type JTDDataDef<S, D extends Record<string, unknown>> = // ref
 }[keyof S["mapping"]] : never : unknown) | (S extends {
     nullable: true;
 } ? null : never);
-declare type JTDDataType<S> = S extends {
+type JTDDataType<S> = S extends {
     definitions: Record<string, unknown>;
 } ? JTDDataDef<S, S["definitions"]> : JTDDataDef<S, Record<string, never>>;
 
@@ -26958,7 +26972,7 @@ declare class MissingRefError extends Error {
     constructor(resolver: UriResolver, baseId: string, ref: string, msg?: string);
 }
 
-declare type Options = CurrentOptions & DeprecatedOptions;
+type Options = CurrentOptions & DeprecatedOptions;
 interface CurrentOptions {
     strict?: boolean | "log";
     strictSchema?: boolean | "log";
@@ -27032,12 +27046,12 @@ interface DeprecatedOptions {
     /** @deprecated */
     unicode?: boolean;
 }
-declare type RequiredInstanceOptions = {
+type RequiredInstanceOptions = {
     [K in "strictSchema" | "strictNumbers" | "strictTypes" | "strictTuples" | "strictRequired" | "inlineRefs" | "loopRequired" | "loopEnum" | "meta" | "messages" | "schemaId" | "addUsedSchema" | "validateSchema" | "validateFormats" | "int32range" | "unicodeRegExp" | "uriResolver"]: NonNullable<Options[K]>;
 } & {
     code: InstanceCodeOptions;
 };
-declare type InstanceOptions = Options & RequiredInstanceOptions;
+type InstanceOptions = Options & RequiredInstanceOptions;
 interface Logger {
     log(...args: unknown[]): unknown;
     warn(...args: unknown[]): unknown;
@@ -27112,11 +27126,11 @@ interface ErrorsTextOptions {
     dataVar?: string;
 }
 
-declare type LocalRefs = {
+type LocalRefs = {
     [Ref in string]?: AnySchemaObject;
 };
 
-declare type SchemaRefs = {
+type SchemaRefs = {
     [Ref in string]?: SchemaEnv | AnySchema;
 };
 interface SchemaCxt {
@@ -27201,9 +27215,9 @@ interface SchemaObject extends _SchemaObject {
 interface AsyncSchema extends _SchemaObject {
     $async: true;
 }
-declare type AnySchemaObject = SchemaObject | AsyncSchema;
-declare type Schema = SchemaObject | boolean;
-declare type AnySchema = Schema | AsyncSchema;
+type AnySchemaObject = SchemaObject | AsyncSchema;
+type Schema = SchemaObject | boolean;
+type AnySchema = Schema | AsyncSchema;
 interface SourceCode {
     validateName: ValueScopeName;
     validateCode: string;
@@ -27229,10 +27243,10 @@ interface ValidateFunction<T = unknown> {
     schemaEnv: SchemaEnv;
     source?: SourceCode;
 }
-declare type EvaluatedProperties = {
+type EvaluatedProperties = {
     [K in string]?: true;
 } | true;
-declare type EvaluatedItems = number | true;
+type EvaluatedItems = number | true;
 interface Evaluated {
     props?: EvaluatedProperties;
     items?: EvaluatedItems;
@@ -27243,7 +27257,7 @@ interface AsyncValidateFunction<T = unknown> extends ValidateFunction<T> {
     (...args: Parameters<ValidateFunction<T>>): Promise<T>;
     $async: true;
 }
-declare type AnyValidateFunction<T = any> = ValidateFunction<T> | AsyncValidateFunction<T>;
+type AnyValidateFunction<T = any> = ValidateFunction<T> | AsyncValidateFunction<T>;
 interface ErrorObject<K extends string = string, P = Record<string, any>, S = unknown> {
     keyword: K;
     instancePath: string;
@@ -27274,8 +27288,8 @@ interface CodeKeywordDefinition extends _KeywordDef {
     code: (cxt: KeywordCxt, ruleType?: string) => void;
     trackErrors?: boolean;
 }
-declare type MacroKeywordFunc = (schema: any, parentSchema: AnySchemaObject, it: SchemaCxt) => AnySchema;
-declare type CompileKeywordFunc = (schema: any, parentSchema: AnySchemaObject, it: SchemaObjCxt) => DataValidateFunction;
+type MacroKeywordFunc = (schema: any, parentSchema: AnySchemaObject, it: SchemaCxt) => AnySchema;
+type CompileKeywordFunc = (schema: any, parentSchema: AnySchemaObject, it: SchemaObjCxt) => DataValidateFunction;
 interface DataValidateFunction {
     (...args: Parameters<ValidateFunction>): boolean | Promise<any>;
     errors?: Partial<ErrorObject>[];
@@ -27296,8 +27310,8 @@ interface FuncKeywordDefinition extends _KeywordDef {
 interface MacroKeywordDefinition extends FuncKeywordDefinition {
     macro: MacroKeywordFunc;
 }
-declare type KeywordDefinition = CodeKeywordDefinition | FuncKeywordDefinition | MacroKeywordDefinition;
-declare type AddedKeywordDefinition = KeywordDefinition & {
+type KeywordDefinition = CodeKeywordDefinition | FuncKeywordDefinition | MacroKeywordDefinition;
+type AddedKeywordDefinition = KeywordDefinition & {
     type: JSONType$1[];
     schemaType: JSONType$1[];
 };
@@ -27305,7 +27319,7 @@ interface KeywordErrorDefinition {
     message: string | Code | ((cxt: KeywordErrorCxt) => string | Code);
     params?: Code | ((cxt: KeywordErrorCxt) => Code);
 }
-declare type Vocabulary = (KeywordDefinition | string)[];
+type Vocabulary = (KeywordDefinition | string)[];
 interface KeywordErrorCxt {
     gen: CodeGen;
     keyword: string;
@@ -27320,12 +27334,12 @@ interface KeywordErrorCxt {
     params: KeywordCxtParams;
     it: SchemaCxt;
 }
-declare type KeywordCxtParams = {
+type KeywordCxtParams = {
     [P in string]?: Code | string | number;
 };
-declare type FormatValidator<T extends string | number> = (data: T) => boolean;
-declare type FormatCompare<T extends string | number> = (data1: T, data2: T) => number | undefined;
-declare type AsyncFormatValidator<T extends string | number> = (data: T) => Promise<boolean>;
+type FormatValidator<T extends string | number> = (data: T) => boolean;
+type FormatCompare<T extends string | number> = (data1: T, data2: T) => number | undefined;
+type AsyncFormatValidator<T extends string | number> = (data: T) => Promise<boolean>;
 interface FormatDefinition<T extends string | number> {
     type?: T extends string ? "string" | undefined : "number";
     validate: FormatValidator<T> | (T extends string ? string | RegExp : never);
@@ -27338,8 +27352,8 @@ interface AsyncFormatDefinition<T extends string | number> {
     async: true;
     compare?: FormatCompare<T>;
 }
-declare type AddedFormat = true | RegExp | FormatValidator<string> | FormatDefinition<string> | FormatDefinition<number> | AsyncFormatDefinition<string> | AsyncFormatDefinition<number>;
-declare type Format = AddedFormat | string;
+type AddedFormat = true | RegExp | FormatValidator<string> | FormatDefinition<string> | FormatDefinition<number> | AsyncFormatDefinition<string> | AsyncFormatDefinition<number>;
+type Format = AddedFormat | string;
 interface RegExpEngine {
     (pattern: string, u: string): RegExpLike;
     code: string;
@@ -27360,8 +27374,8 @@ declare class Ajv extends Ajv$1 {
 }
 
 interface AjvValidatorOptions {
-    schema: JSONValue;
-    schemaDefinitions?: JSONValue;
+    schema: JSONSchema;
+    schemaDefinitions?: JSONSchemaDefinitions;
     ajvOptions?: Options;
     onCreateAjv?: (ajv: Ajv) => Ajv | void;
 }
@@ -27466,4 +27480,31 @@ declare function stringifyJSONPath(path: JSONPath): string;
  */
 declare function parseJSONPath(path: string): JSONPath;
 
-export { AbsolutePopupOptions, AfterPatchCallback, AfterSelection, AjvValidatorOptions, BooleanToggle, CaretPosition, CaretType, ClipboardValues, ColorPicker, Content, ContentErrors, ContentParseError, ContentValidationErrors, ContextMenuColumn, ContextMenuItem, ContextMenuRow, DocumentState, DragInsideAction, DragInsideProps, DraggingState, DropdownButtonItem, EditableValue, EnumValue, EscapeValue, ExtendedSearchResultItem, FindNextInside, FontAwesomeIcon, HistoryItem, InsertType, InsideSelection, JSONContent, JsonEditor as JSONEditor, JSONEditorContext, JSONEditorModalCallback, JSONEditorPropsOptional, JSONNodeItem, JSONNodeProp, JSONParser, JSONPatchDocument, JSONPatchResult, JSONPath, JSONPathParser, JSONPointer, JSONPointerMap, JSONSelection, JSONValue, KeySelection, MenuButton, MenuButtonItem, MenuDropDownButton, MenuItem, MenuLabel, MenuSeparator, MenuSeparatorItem, MenuSpace, MenuSpaceItem, MessageAction, Mode, MultiSelection, NestedValidationError, OnBlur, OnChange, OnChangeMode, OnChangeQueryLanguage, OnChangeStatus, OnChangeText, OnClassName, OnContextMenu, OnError, OnExpand, OnFind, OnFocus, OnJSONEditorModal, OnPaste, OnPasteJson, OnPatch, OnRenderMenu, OnRenderValue, OnSelect, OnSort, OnSortModal, OnTransformModal, ParseError, PastedJson, PopupEntry, QueryLanguage, QueryLanguageOptions, ReadonlyValue, RenderValueComponentDescription, RenderValueProps, RenderValuePropsOptional, RenderedItem, RichValidationError, SearchField, SearchResult, SearchResultItem, Section, SelectionType, SortDirection, SortModalCallback, SortedColumn, TableCellIndex, TextContent, TextLocation, TimestampTag, TransformModalCallback, TransformModalOptions, TreeModeContext, UnescapeValue, ValidationError$1 as ValidationError, ValidationSeverity, Validator, ValueNormalization, ValueSelection, VisibleSection, compileJSONPointer, compileJSONPointerProp, createAfterSelection, createAjvValidator, createInsideSelection, createKeySelection, createMultiSelection, createValueSelection, deleteIn, estimateSerializedSize, existsIn, getIn, immutableJSONPatch, insertAt, isAfterSelection, isContent, isEditingSelection, isEqualParser, isInsideSelection, isJSONContent, isKeySelection, isLargeContent, isMultiSelection, isTextContent, isValueSelection, javascriptQueryLanguage, jmespathQueryLanguage, lodashQueryLanguage, parseFrom, parseJSONPath, parseJSONPointer, parsePath, renderJSONSchemaEnum, renderValue, revertJSONPatch, setIn, stringifyJSONPath, toJSONContent, toTextContent, updateIn };
+/**
+ * Example usage:
+ *
+ *   <script lang="ts">
+ *      let clientWidth = 0
+ *   </script>
+ *
+ *   <div use:resizeObserver={element => clientWidth = element.clientWidth}>
+ *      My width is: {clientWidth}
+ *   </div>
+ */
+declare function resizeObserver(element: Element, onResize: (element: Element) => void): {
+    destroy: () => void;
+};
+
+type Callback = () => void;
+/**
+ * The provided callback is invoked when the user presses Escape,
+ * but only the callback of the last registered component is invoked.
+ *
+ * This is useful for example when opening a model on top of another modal:
+ * you only want the top modal to close on Escape, and not the second modal.
+ */
+declare function onEscape(element: Element, callback: Callback): {
+    destroy: () => void;
+};
+
+export { AbsolutePopupOptions, AfterPatchCallback, AfterSelection, AjvValidatorOptions, BooleanToggle, CaretPosition, CaretType, ClipboardValues, ColorPicker, Content, ContentErrors, ContentParseError, ContentValidationErrors, ContextMenuColumn, ContextMenuItem, ContextMenuRow, DocumentState, DragInsideAction, DragInsideProps, DraggingState, DropdownButtonItem, EditableValue, EnumValue, EscapeValue, ExtendedSearchResultItem, FindNextInside, FontAwesomeIcon, HistoryItem, InsertType, InsideSelection, JSONContent, JsonEditor as JSONEditor, JSONEditorContext, JSONEditorModalCallback, JSONEditorPropsOptional, JSONNodeItem, JSONNodeProp, JSONParser, JSONPatchDocument, JSONPatchResult, JSONPath, JSONPathParser, JSONPointer, JSONPointerMap, JSONSchema, JSONSchemaDefinitions, JSONSchemaEnum, JSONSelection, JSONValue, KeySelection, MenuButton, MenuButtonItem, MenuDropDownButton, MenuItem, MenuLabel, MenuSeparator, MenuSeparatorItem, MenuSpace, MenuSpaceItem, MessageAction, Mode, MultiSelection, NestedValidationError, OnBlur, OnChange, OnChangeMode, OnChangeQueryLanguage, OnChangeStatus, OnChangeText, OnClassName, OnContextMenu, OnError, OnExpand, OnFind, OnFocus, OnJSONEditorModal, OnPaste, OnPasteJson, OnPatch, OnRenderMenu, OnRenderMenuWithoutContext, OnRenderValue, OnSelect, OnSort, OnSortModal, OnTransformModal, ParseError, PastedJson, PopupEntry, QueryLanguage, QueryLanguageOptions, ReadonlyValue, RenderMenuContext, RenderValueComponentDescription, RenderValueProps, RenderValuePropsOptional, RenderedItem, RichValidationError, SearchField, SearchResult, SearchResultItem, Section, SelectionType, SortDirection, SortModalCallback, SortedColumn, TableCellIndex, TextContent, TextLocation, TimestampTag, TransformModalCallback, TransformModalOptions, TreeModeContext, UnescapeValue, ValidationError$1 as ValidationError, ValidationSeverity, Validator, ValueNormalization, ValueSelection, VisibleSection, compileJSONPointer, compileJSONPointerProp, createAfterSelection, createAjvValidator, createInsideSelection, createKeySelection, createMultiSelection, createValueSelection, deleteIn, estimateSerializedSize, existsIn, getIn, immutableJSONPatch, insertAt, isAfterSelection, isContent, isEditingSelection, isEqualParser, isInsideSelection, isJSONContent, isKeySelection, isLargeContent, isMultiSelection, isTextContent, isValueSelection, javascriptQueryLanguage, jmespathQueryLanguage, lodashQueryLanguage, onEscape, parseFrom, parseJSONPath, parseJSONPointer, parsePath, renderJSONSchemaEnum, renderValue, resizeObserver, revertJSONPatch, setIn, stringifyJSONPath, toJSONContent, toTextContent, updateIn };
