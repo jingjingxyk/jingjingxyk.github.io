@@ -67,6 +67,11 @@ git clone https://chromium.googlesource.com/chromium/src
 http://src.chromium.org/chrome/trunk/src/chrome/common/extensions/docs/
 
 https://src.chromium.org/viewvc/chrome/trunk/src/
+
+https://chromiumdash.appspot.com/schedule
+
+https://chromiumdash.appspot.com/schedule
+
 ```
 
 ## gitiles gerrit 清华镜像
