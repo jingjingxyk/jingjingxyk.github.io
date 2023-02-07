@@ -128,6 +128,8 @@ https://github.com/GoogleChrome/puppeteer
 
 PUPPETEER_DOWNLOAD_HOST=https://registry.npmmirror.com
 
+
+# https://pptr.dev/
 ```
 
 ## chromium headless
@@ -138,6 +140,8 @@ https://developers.google.cn/web/updates/2017/04/headless-chrome
 
 https://chromium.googlesource.com/chromium/src/+/master/headless/README.md
 https://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/
+
+https://registry.npmmirror.com/binary.html?path=chromium-browser-snapshots/
 
 ```
 
