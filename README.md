@@ -139,7 +139,7 @@ google-chrome --headless --remote-debugging-port=9222  --disable-gpu
 https://developers.google.cn/web/updates/2017/04/headless-chrome
 
 https://chromium.googlesource.com/chromium/src/+/master/headless/README.md
-https://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/
+https://chromium.googlesource.com/chromium/src/+/main/
 
 https://registry.npmmirror.com/binary.html?path=chromium-browser-snapshots/
 
@@ -147,8 +147,11 @@ https://registry.npmmirror.com/binary.html?path=chromium-browser-snapshots/
 
 ## chromium  chrome 特性
 ```
+https://www.chromestatus.com
 https://www.chromestatus.com/features/5685444318593024
-https://src.chromium.org/viewvc/chrome/trunk/src/
+https://chromium.googlesource.com/chromium/src/+/main/
+
+https://chromiumdash.appspot.com/schedule
 ```
 
 ## asterisk
