@@ -74,6 +74,10 @@ https://chromiumdash.appspot.com/schedule
 
 ```
 
+## linux
+```
+https://www.linuxfoundation.org/projects
+```
 ## gitiles gerrit 清华镜像
 ```
 
@@ -93,14 +97,7 @@ https://mirrors.tuna.tsinghua.edu.cn
 https://developers.google.cn/china/
 
 ```
-## tensorflow
-```
-https://github.com/tensorflow/tensorflow
 
-pip3 install  tensorflow
-
-
-```
 ## google web
 ```
 https://developers.google.cn/web/tools/
