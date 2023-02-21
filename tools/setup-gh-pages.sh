@@ -11,7 +11,7 @@ cd ${__DIR__}
 
 
 
-:<<\EOF
+:<<'EOF'
 git clone https://github.com/jingjingxyk/Thanks-Mirror.git --depth=1 --progress
 git clone https://github.com/jingjingxyk/ReplaceGoogleCDN.git --depth=1 --progress
 git clone https://github.com/jingjingxyk/extension-v3-test.git --depth=1 --progress
