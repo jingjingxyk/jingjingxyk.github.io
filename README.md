@@ -245,3 +245,17 @@ PWA 就是提供类似 App 体验的网站，包括一系列的具体技术，�
  WebAssembly   web浏览器 目标汇编语言
 
 
+## git commits 出现累积叠加 解决办法
+```bash
+git merge dev --squash
+
+git branch -D dev
+git checkout -b dev
+```
+
+## 创建新的空分支
+```bash
+git checkout -b --orphan  new_branch
+
+git rm -rf .
+```
