@@ -40,8 +40,6 @@ Host github.com
 
 ```
 
-# learn opencv
-===
 
 ## opencv
 ```
