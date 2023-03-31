@@ -68,7 +68,6 @@ https://src.chromium.org/viewvc/chrome/trunk/src/
 
 https://chromiumdash.appspot.com/schedule
 
-https://chromiumdash.appspot.com/schedule
 
 ```
 
