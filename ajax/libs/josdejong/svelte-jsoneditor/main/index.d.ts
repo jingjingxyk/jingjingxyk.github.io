@@ -30453,27 +30453,23 @@ declare const __propDef$6: {
         onFocus?: OnFocus | undefined;
         onBlur?: OnBlur | undefined;
         get?: (() => Content) | undefined;
-        set?: ((newContent: Content) => void) | undefined;
-        update?: ((updatedContent: Content) => void) | undefined;
-        patch?: ((operations: JSONPatchDocument) => JSONPatchResult) | undefined;
-        expand?: ((callback?: OnExpand) => void) | undefined;
+        set?: ((newContent: Content) => Promise<void>) | undefined;
+        update?: ((updatedContent: Content) => Promise<void>) | undefined;
+        patch?: ((operations: JSONPatchDocument) => Promise<JSONPatchResult>) | undefined;
+        expand?: ((callback?: OnExpand) => Promise<void>) | undefined;
         transform?: ((options: TransformModalOptions) => void) | undefined;
         validate?: (() => ContentErrors | null) | undefined;
-        acceptAutoRepair?: (() => Content) | undefined;
-        scrollTo?: ((path: JSONPath) => void) | undefined;
+        acceptAutoRepair?: (() => Promise<Content>) | undefined;
+        scrollTo?: ((path: JSONPath) => Promise<void>) | undefined;
         findElement?: ((path: JSONPath) => Element) | undefined;
-        focus?: (() => void) | undefined;
-        refresh?: (() => void) | undefined;
-        updateProps?: ((props: JSONEditorPropsOptional) => void) | undefined;
-        destroy?: (() => void) | undefined;
+        focus?: (() => Promise<void>) | undefined;
+        refresh?: (() => Promise<void>) | undefined;
+        updateProps?: ((props: JSONEditorPropsOptional) => Promise<void>) | undefined;
+        destroy?: (() => Promise<void>) | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;
     };
-    /**
-     * Validate the contents of the editor using the configured validator.
-     * Returns a parse error or a list with validation warnings
-     */
     slots: {};
 };
 type JsonEditorProps = typeof __propDef$6.props;
@@ -30481,19 +30477,19 @@ type JsonEditorEvents = typeof __propDef$6.events;
 type JsonEditorSlots = typeof __propDef$6.slots;
 declare class JsonEditor extends SvelteComponentTyped<JsonEditorProps, JsonEditorEvents, JsonEditorSlots> {
     get get(): () => Content;
-    get set(): (newContent: Content) => void;
-    get update(): (updatedContent: Content) => void;
-    get patch(): (operations: JSONPatchDocument) => JSONPatchResult;
-    get expand(): (callback?: OnExpand | undefined) => void;
+    get set(): (newContent: Content) => Promise<void>;
+    get update(): (updatedContent: Content) => Promise<void>;
+    get patch(): (operations: JSONPatchDocument) => Promise<JSONPatchResult>;
+    get expand(): (callback?: OnExpand | undefined) => Promise<void>;
     get transform(): (options: TransformModalOptions) => void;
     get validate(): () => ContentErrors | null;
-    get acceptAutoRepair(): () => Content;
-    get scrollTo(): (path: JSONPath) => void;
+    get acceptAutoRepair(): () => Promise<Content>;
+    get scrollTo(): (path: JSONPath) => Promise<void>;
     get findElement(): (path: JSONPath) => Element;
-    get focus(): () => void;
-    get refresh(): () => void;
-    get updateProps(): (props: JSONEditorPropsOptional) => void;
-    get destroy(): () => void;
+    get focus(): () => Promise<void>;
+    get refresh(): () => Promise<void>;
+    get updateProps(): (props: JSONEditorPropsOptional) => Promise<void>;
+    get destroy(): () => Promise<void>;
 }
 
 declare const __propDef$5: {
