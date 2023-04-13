@@ -256,3 +256,9 @@ git checkout -b --orphan  new_branch
 
 git rm -rf .
 ```
+
+## 获取提交时间
+```bash
+获得提交时间
+ TZ=UTC git show --date=format-local:%Y%m%d%k%M%S
+```
