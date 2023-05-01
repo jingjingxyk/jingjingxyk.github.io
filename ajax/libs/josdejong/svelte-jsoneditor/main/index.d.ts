@@ -34706,6 +34706,7 @@ interface JSONEditorPropsOptional {
     mainMenuBar?: boolean;
     navigationBar?: boolean;
     statusBar?: boolean;
+    askToFormat?: boolean;
     escapeControlCharacters?: boolean;
     escapeUnicodeCharacters?: boolean;
     flattenColumns?: true;
@@ -34881,6 +34882,7 @@ declare const __propDef$6: {
         mainMenuBar?: boolean | undefined;
         navigationBar?: boolean | undefined;
         statusBar?: boolean | undefined;
+        askToFormat?: boolean | undefined;
         escapeControlCharacters?: boolean | undefined;
         escapeUnicodeCharacters?: boolean | undefined;
         flattenColumns?: boolean | undefined;
