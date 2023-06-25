@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.17.8](https://github.com/josdejong/svelte-jsoneditor/compare/v0.17.7...v0.17.8) (2023-06-21)
+
+
+### Bug Fixes
+
+* method `scrollTo` not always expanding an invisible section of an array ([bda3922](https://github.com/josdejong/svelte-jsoneditor/commit/bda39222fdcd9ec58a4c077dea4245c6fa6fe133))
+* update dependencies (`codemirror`, `jsonrepair`, `sass`, and others) ([3054f96](https://github.com/josdejong/svelte-jsoneditor/commit/3054f964c52ddeb44b486dabb1a804c95c5395e7))
+
+### [0.17.7](https://github.com/josdejong/svelte-jsoneditor/compare/v0.17.6...v0.17.7) (2023-06-13)
+
+
+### Bug Fixes
+
+* [#278](https://github.com/josdejong/svelte-jsoneditor/issues/278) cannot filter debugging output ([b2317a5](https://github.com/josdejong/svelte-jsoneditor/commit/b2317a5db900b77644d992f2f14c97e1de31c3c5))
+
+### [0.17.6](https://github.com/josdejong/svelte-jsoneditor/compare/v0.17.5...v0.17.6) (2023-06-12)
+
+
+### Features
+
+* update dependencies and devDependencies ([fc8ef83](https://github.com/josdejong/svelte-jsoneditor/commit/fc8ef8340e1a6f825bf335000a7f4b70ce2c8182))
+
+
+### Bug Fixes
+
+* let `createAjvValidator` throw an error when the JSON schema contains an error ([7cfb233](https://github.com/josdejong/svelte-jsoneditor/commit/7cfb233d92862a34557537cef7840926976b40e1))
+* unused CSS selector `".jse-column-header span.jse-column-sort-icon"` ([51c1d54](https://github.com/josdejong/svelte-jsoneditor/commit/51c1d5441085581402cc916e9479c2c91d5c068e))
+
 ### [0.17.5](https://github.com/josdejong/svelte-jsoneditor/compare/v0.17.4...v0.17.5) (2023-06-08)
 
 
