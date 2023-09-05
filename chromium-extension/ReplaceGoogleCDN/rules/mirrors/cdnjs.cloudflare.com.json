@@ -9,7 +9,7 @@
       }
     },
     "condition": {
-      "urlFilter": "cdnjs.cloudflare.com/ajax/libs",
+      "urlFilter": "|http*://cdnjs.cloudflare.com/ajax/libs",
       "requestDomains": ["cdnjs.cloudflare.com"],
       "resourceTypes": [
         "main_frame",
@@ -24,8 +24,7 @@
         "csp_report",
         "media",
         "websocket",
-        "webtransport",
-        "webbundle",
+
         "other"
       ]
     }
@@ -41,7 +40,7 @@
       }
     },
     "condition": {
-      "urlFilter": "cdnjs.cloudflare.com/ajax/libs",
+      "urlFilter": "|http*://cdnjs.cloudflare.com/ajax/libs",
       "requestDomains": ["cdnjs.cloudflare.com"],
       "resourceTypes": [
         "main_frame",
@@ -56,8 +55,7 @@
         "csp_report",
         "media",
         "websocket",
-        "webtransport",
-        "webbundle",
+
         "other"
       ]
     }
@@ -69,11 +67,11 @@
     "action": {
       "type": "redirect",
       "redirect": {
-        "regexSubstitution": "mirrors.sustech.edu.cn/cdnjs/ajax/libs/\\1"
+        "regexSubstitution": "https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/\\1"
       }
     },
     "condition": {
-      "regexFilter": "cdnjs\\.cloudflare\\.com/ajax/libs/(.*?)",
+      "regexFilter": "^https?://cdnjs\\.cloudflare\\.com/ajax/libs/(.*?)",
       "requestDomains": ["cdnjs.cloudflare.com"],
       "resourceTypes": [
         "main_frame",
@@ -88,8 +86,7 @@
         "csp_report",
         "media",
         "websocket",
-        "webtransport",
-        "webbundle",
+
         "other"
       ]
     }
@@ -107,7 +104,7 @@
       }
     },
     "condition": {
-      "urlFilter": "cdnjs.cloudflare.com",
+      "urlFilter": "|http*://cdnjs.cloudflare.com",
       "requestDomains": ["cdnjs.cloudflare.com"],
       "resourceTypes": [
         "main_frame",
@@ -122,8 +119,7 @@
         "csp_report",
         "media",
         "websocket",
-        "webtransport",
-        "webbundle",
+
         "other"
       ]
     }
@@ -135,11 +131,11 @@
     "action": {
       "type": "redirect",
       "redirect": {
-        "regexSubstitution": "fastly.jsdelivr.net/npm/\\1@\\2/dist/\\3"
+        "regexSubstitution": "https://fastly.jsdelivr.net/npm/\\1@\\2/dist/\\3"
       }
     },
     "condition": {
-      "regexFilter": "cdnjs\\.cloudflare\\.com/ajax/libs/(.*?)/([\\.|\\d]*?)/(.*?)",
+      "regexFilter": "^https?://cdnjs\\.cloudflare\\.com/ajax/libs/(.*?)/([\\.|\\d]*?)/(.*?)",
       "requestDomains": ["cdnjs.cloudflare.com"],
       "resourceTypes": [
         "main_frame",
@@ -154,8 +150,7 @@
         "csp_report",
         "media",
         "websocket",
-        "webtransport",
-        "webbundle",
+
         "other"
       ]
     }

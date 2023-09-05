@@ -12,7 +12,7 @@
       }
     },
     "condition": {
-      "urlFilter": "cdn.jsdelivr.net",
+      "urlFilter": "|http*://cdn.jsdelivr.net",
       "requestDomains": ["cdn.jsdelivr.net"],
       "resourceTypes": [
         "main_frame",
@@ -27,8 +27,7 @@
         "csp_report",
         "media",
         "websocket",
-        "webtransport",
-        "webbundle",
+
         "other"
       ]
     }
@@ -46,7 +45,7 @@
       }
     },
     "condition": {
-      "urlFilter": "cdn.jsdelivr.net",
+      "urlFilter": "|http*://cdn.jsdelivr.net",
       "requestDomains": ["cdn.jsdelivr.net"],
       "resourceTypes": [
         "main_frame",
@@ -61,8 +60,7 @@
         "csp_report",
         "media",
         "websocket",
-        "webtransport",
-        "webbundle",
+
         "other"
       ]
     }
