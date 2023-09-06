@@ -14,8 +14,22 @@ mkdir -p ${__DIR__}/dist
 
 cd ${__DIR__}/dist
 
-export http_proxy=${1:+'http://127.0.0.1:8015'}
-export https_proxy=${1:+'http://127.0.0.1:8015'}
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+  --proxy)
+    export http_proxy="$2"
+    export https_proxy="$2"
+    export no_proxy="127.0.0.1,localhost,ssl.google-analytics.com,127.0.0.0/8,10.0.0.0/8,100.64.0.0/10,172.16.0.0/12,192.168.0.0/16,198.18.0.0/15,169.254.0.0/16"
+    export no_proxy="${no_proxy},.aliyuncs.com,.taobao.org,.aliyun.com,cdn.unrealengine.com"
+    export no_proxy="${no_proxy},.tsinghua.edu.cn,.ustc.edu.cn,.npmmirror.com"
+    shift
+    ;;
+  --*)
+    ;;
+  esac
+  shift $(($# > 0 ? 1 : 0))
+done
 
 test -d ReplaceGoogleCDN/.git || git clone https://github.com/justjavac/ReplaceGoogleCDN.git --depth=1 --progress
 zip -r ReplaceGoogleCDN.zip ReplaceGoogleCDN
