@@ -2,6 +2,55 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.18.7](https://github.com/josdejong/svelte-jsoneditor/compare/v0.18.6...v0.18.7) (2023-09-28)
+
+
+### Bug Fixes
+
+* [#315](https://github.com/josdejong/svelte-jsoneditor/issues/315) cannot paste text in the search box input field in tree mode ([a9a2dc3](https://github.com/josdejong/svelte-jsoneditor/commit/a9a2dc32e22707d636b25587426a70518dcf069c))
+
+### [0.18.6](https://github.com/josdejong/svelte-jsoneditor/compare/v0.18.5...v0.18.6) (2023-09-27)
+
+
+### Bug Fixes
+
+* broken import due to missing file extension ([0f734c5](https://github.com/josdejong/svelte-jsoneditor/commit/0f734c593e4784b3b39621c029ef614ac4350e50))
+
+### [0.18.5](https://github.com/josdejong/svelte-jsoneditor/compare/v0.18.4...v0.18.5) (2023-09-27)
+
+
+### Features
+
+* update dependencies, most notably `jsonrepair` and `codemirror` ([f6306b0](https://github.com/josdejong/svelte-jsoneditor/commit/f6306b00ef6144d75593a98e0867b5a7c185156a))
+
+
+### Bug Fixes
+
+* [#312](https://github.com/josdejong/svelte-jsoneditor/issues/312) "Show me" button throwing an error when no position was provided in the error message ([d839e95](https://github.com/josdejong/svelte-jsoneditor/commit/d839e95c59ce18ff59ac0ad338019da9dc542a18))
+* [#312](https://github.com/josdejong/svelte-jsoneditor/issues/312) the "Show me" button throwing an error when no position was provided in the error message ([36d7934](https://github.com/josdejong/svelte-jsoneditor/commit/36d79345b294e31bde53cb83b6586928c653601f))
+* minor styling issues with modals ([97d2d94](https://github.com/josdejong/svelte-jsoneditor/commit/97d2d9407d6f389962ae59a808eb3353308232f2))
+* update dependencies, most notably `codemirror` and `jsonrepair` ([439eb8a](https://github.com/josdejong/svelte-jsoneditor/commit/439eb8ae8a6a2dfe8fa8ec71f0d5c53e28b7c4a0))
+
+### [0.18.4](https://github.com/josdejong/svelte-jsoneditor/compare/v0.18.3...v0.18.4) (2023-09-19)
+
+
+### Features
+
+* add indentation on wrapped lines ([#295](https://github.com/josdejong/svelte-jsoneditor/issues/295)) ([367accf](https://github.com/josdejong/svelte-jsoneditor/commit/367accfa261dd3dad72243d2d4648f6c186048e7))
+* improve welcome screen with action buttons to create an array or object ([d4e301f](https://github.com/josdejong/svelte-jsoneditor/commit/d4e301fc9da408c700d2934719a30345522e05b9))
+
+
+### Bug Fixes
+
+* collapsed items section not removed when empty ([3d3ad45](https://github.com/josdejong/svelte-jsoneditor/commit/3d3ad456cfc436b0522de534846cb4b9da929ec3))
+* creating an array or object or pasting content in the welcome screen not working ([7def339](https://github.com/josdejong/svelte-jsoneditor/commit/7def339d916150bc12243feccd266cbb2303b178))
+* editor not getting focus in table mode when clicking inside an empty area ([609983d](https://github.com/josdejong/svelte-jsoneditor/commit/609983d3a6f9271fe26971c27424965fb9823405))
+* select active element on undo only when existing ([e5beebf](https://github.com/josdejong/svelte-jsoneditor/commit/e5beebfdc4f082888c447364b12091d2ee8ecfa5))
+* selection moving to value after renaming the last key of an object ([ac31282](https://github.com/josdejong/svelte-jsoneditor/commit/ac312821616329c5246ca50a17d607bb4d716f2e))
+* some issues with navigating in `tree` mode using arrow keys ([a3f9c92](https://github.com/josdejong/svelte-jsoneditor/commit/a3f9c9234686b9363ac9e4b66c7dbf21950bda85))
+* when inserting a new array or object in an empty editor, set selection inside the array/object ([821933e](https://github.com/josdejong/svelte-jsoneditor/commit/821933e3dfcbdde637ad78fb6d3c51e5ca6c66ee))
+* when inserting a new value by typing somewhere, it doesn't initially have the right color ([9f6ea35](https://github.com/josdejong/svelte-jsoneditor/commit/9f6ea354270d88c67e3696e7fe8497fbf6852be2))
+
 ### [0.18.3](https://github.com/josdejong/svelte-jsoneditor/compare/v0.18.2...v0.18.3) (2023-08-30)
 
 
