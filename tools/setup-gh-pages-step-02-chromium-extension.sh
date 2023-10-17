@@ -23,7 +23,6 @@ while [ $# -gt 0 ]; do
     export no_proxy="127.0.0.1,localhost,ssl.google-analytics.com,127.0.0.0/8,10.0.0.0/8,100.64.0.0/10,172.16.0.0/12,192.168.0.0/16,198.18.0.0/15,169.254.0.0/16"
     export no_proxy="${no_proxy},.aliyuncs.com,.taobao.org,.aliyun.com,cdn.unrealengine.com"
     export no_proxy="${no_proxy},.tsinghua.edu.cn,.ustc.edu.cn,.npmmirror.com"
-    shift
     ;;
   --*)
     ;;
@@ -76,7 +75,7 @@ cd jingjingxyk-ReplaceGoogleCDN
 
 test -d ReplaceGoogleCDN/.git || git clone https://github.com/jingjingxyk/ReplaceGoogleCDN.git --depth=1 --progress
 cd ReplaceGoogleCDN
-# bash  extension/tools/download-chromium-extension.sh --proxy 1  # 使用代理
+# bash  extension/tools/download-chromium-extension.sh --proxy http://127.0.0.1:1087  # 使用代理
 bash  extension/tools/download-chromium-extension.sh
 cd extension/tools/temp/
 zip -r google-translate.zip google-translate
