@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.18.9](https://github.com/josdejong/svelte-jsoneditor/compare/v0.18.8...v0.18.9) (2023-10-11)
+
+
+### Bug Fixes
+
+* unused CSS selector warnings in Svelte ([23b82cc](https://github.com/josdejong/svelte-jsoneditor/commit/23b82cc022e15ccbcad6ca4d51ece52ca41682b4))
+
+### [0.18.8](https://github.com/josdejong/svelte-jsoneditor/compare/v0.18.7...v0.18.8) (2023-10-02)
+
+
+### Bug Fixes
+
+* regression since v0.18.17 not allowing to put the cursor halfway the value when editing a value ([3e34e8d](https://github.com/josdejong/svelte-jsoneditor/commit/3e34e8daafe7fcd048e5bd3d75ce72ab877aaec2))
+
 ### [0.18.7](https://github.com/josdejong/svelte-jsoneditor/compare/v0.18.6...v0.18.7) (2023-09-28)
 
 
