@@ -11,7 +11,6 @@ __ROOT__=$(cd ${__DIR__}/../;pwd)
 
 cd ${__ROOT__}
 
-export PATH=${__DIR__}/dist/node-v16.16.0-linux-x64/bin/:${__DIR__}/dist/go/bin/:$PATH
 
 npm install
 
