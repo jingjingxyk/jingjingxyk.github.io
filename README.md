@@ -1,5 +1,7 @@
 # jingjingxyk.github.io
 
+## [Awesome C++](https://github.com/fffaraz/awesome-cpp.git)
+
 ## [cmake](https://cmake.org/cmake/help/latest/index.html)
 
 ## [cppreference](https://en.cppreference.com/w/cpp)
@@ -175,11 +177,6 @@ git clone https://github.com/signalwire/freeswitch.git
 
 ## XMPP  XMPP之openfire+spark+smack
 
-```
-
-
-```
-
 ## RTP/RTCP/RTSP/SIP/SDP   HLS   MPEG-DASH   (bento4、 mp4box、x264、FFmpeg  for mpeg-dash )  webrtc   vlc
 
 ```
@@ -200,12 +197,17 @@ sudo apt-get install r-base
 sudo apt-get install r-base-dev
 ```
 
+## npm 升级库
+
 ```
-https://github.com/fffaraz/awesome-cpp
+npx browserslist@latest --update-db
+
+npm install -g npm-check-updates
+
+npx npm-check-updates
 
 ```
 
-## Solidity 区块链智能合约
 
 ## 视觉相关
 
@@ -257,10 +259,12 @@ WebAssembly web浏览器 目标汇编语言
 ## git commits 出现累积叠加 解决办法
 
 ```bash
+
 git merge dev --squash
 
 git branch -D dev
 git checkout -b dev
+
 ```
 
 ## 创建新的空分支
