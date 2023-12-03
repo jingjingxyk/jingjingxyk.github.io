@@ -1,4 +1,4 @@
-name: Node.js CI
+name: generate-gh-page
 on:
     push:
         branches:
@@ -7,30 +7,34 @@ on:
             -  cron: "30 14 01 * *"
 jobs:
     build:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         timeout-minutes: 180
         steps:
             -   uses: actions/checkout@v3
-            -   name: "build dependencies 1"
-                run: pwd && bash tools/install-build-deps-01.sh
-            -   name: "build dependencies 2"
-                run: bash tools/install-build-deps-02.sh
-            -   name: 'get_latest_docker_containerd_k8s_version'
-                run: bash tools/get_latest_docker_containerd_k8s.sh
-            -   name: 'create index.html'
+            -   name: 'get latest k8s version'
+                run: bash tools/get-latest-k8s-version.sh
+
+            -   name: 'generate gh page folder'
                 run: bash tools/setup-gh-pages-step-01-index.sh
+
             -   name: 'create chromium extension release archive '
                 run: bash tools/setup-gh-pages-step-02-chromium-extension.sh
+
             -   name: 'download cloud soft'
                 run: bash tools/setup-gh-pages-step-03-download-soft.sh
-            -   name: 'run chromium in docker'
-                run: bash tools/run-chromium-in-docker-step-03.sh
-            -   name: 'get chromium credit data with puppeteer'
-                run: bash tools/get-chromium-credits-data-step-04.sh
+#
+#            -   name: 'run chromium in docker'
+#                run: bash tools/run-chromium-in-docker-step-03.sh
+#
+#            -   name: 'get chromium credit data with puppeteer'
+#                run: bash tools/get-chromium-credits-data-step-04.sh
+#
             -   name: 'prepare frontend deps'
                 run: bash tools/build-frontend-libs.sh
+
             -   name: 'last setup gh-page'
                 run: bash tools/setup-gh-pages-step-last.sh
+
             -   name: 'Deploy GitHub Pages'
                 uses: peaceiris/actions-gh-pages@v3
                 with:

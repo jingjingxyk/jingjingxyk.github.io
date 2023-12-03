@@ -66,22 +66,6 @@ cd chinese-programmer-wrong-pronunciation-chromium-extension
 bash release-archive.sh
 cp -f dist/chinese-programmer-wrong-pronunciation-chromium-extension.zip ${__ROOT__}/gh-pages/chromium-extension/chinese-programmer-wrong-pronunciation-chromium-extension.zip
 
-cd ${__DIR__}/dist/
-
-:<<'EOF'
-# 下载谷歌翻译扩展源码
-mkdir -p jingjingxyk-ReplaceGoogleCDN
-cd jingjingxyk-ReplaceGoogleCDN
-
-test -d ReplaceGoogleCDN/.git || git clone https://github.com/jingjingxyk/ReplaceGoogleCDN.git --depth=1 --progress
-cd ReplaceGoogleCDN
-# bash  extension/tools/download-chromium-extension.sh --proxy http://127.0.0.1:1087  # 使用代理
-bash  extension/tools/download-chromium-extension.sh
-cd extension/tools/temp/
-zip -r google-translate.zip google-translate
-cp google-translate.zip ${__ROOT__}/gh-pages/chromium-extension/
-cp google-translate.crx ${__ROOT__}/gh-pages/chromium-extension/
-EOF
 
 cd ${__DIR__}
 
