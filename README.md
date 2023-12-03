@@ -208,7 +208,6 @@ npx npm-check-updates
 
 ```
 
-
 ## 视觉相关
 
 - Open CV 实时的图像处理、计算机视觉以及模式识别程序
@@ -219,19 +218,21 @@ npx npm-check-updates
 
 ## HMR比livereload
 
-## 阿尔米汉电影
+## 收藏记录
+
+### 阿尔米汉电影
 
     《三傻大闹宝莱坞》《摔跤吧！爸爸》《我的个神啊》 《神秘巨星》
 
-## 【有钱人的思维方式】
+### 【有钱人的思维方式】
 
     财富的积累与钱关系不大，关键是要具备“有钱人”的思维方式：大量阅读、不择手段、有钱是靠投资而不是靠省钱/存钱、坚信物以类聚人以群分的道理、设定可实现的小目标----湾区日报
 
-## 【产品经理的三种思维】
+### 【产品经理的三种思维】
 
     Explorer：产品生命周期的最初阶段，探索发现值得解决的问题；Scientist：提出猜想、做实验验证猜想；Driver：决定要做什么了后驱动整个团队直达终点----湾区日报
 
-## 【扭曲现实的 Filter Bubbles】
+### 【扭曲现实的 Filter Bubbles】
 
     我们在网上接触到的信息越来越多是经过“个性化定制”的、经过过滤的，算法很有偏见，尽量推荐你喜欢看的、这样点击率比较高。会有种错觉，好像全世界所有人的想法、品味都跟你一样初阶段，探索发现值得解决的问题；Scientist：提出猜想、做实验验证猜想；Driver：决定要做什么了后驱动整个团队直达终点----湾区日报
 
@@ -239,22 +240,22 @@ npx npm-check-updates
 
     给烦恼很多的管理者们的建议。你只能控制你所能控制的，别太纠结你不能控制的事；没必要操心很远的未来，专注于现在；想想你多幸运，世界上过得比你惨的大有人在，没必要太多抱怨 ----湾区日报
 
-## 【What Startups Really Sell】
+### 【What Startups Really Sell】
 
     如果你做的东西能为人带来便利、能帮人节省时间，那这个东西就能卖得出去。在判断一个创业 idea 好不好时，先问一下：这个 idea 能帮人“节省时间”吗？----湾区日报
 
-##为什么要做、有没有必要做、能不能砍掉80%的需求又能达到同样的效果？
+### 为什么要做、有没有必要做、能不能砍掉80%的需求又能达到同样的效果？
 
-## 《让子弹飞》捞钱手段  现实中无处不在
+### 《让子弹飞》捞钱手段  现实中无处不在
 
 ## PWA
 
-PWA 就是提供类似 App 体验的网站，包括一系列的具体技术，比如 Service worker、 Web App Manifest、 Cache API、 Fetch API、 Push
-API、 Web Push Protocol、 Notification
+    PWA 就是提供类似 App 体验的网站，包括一系列的具体技术，比如 Service worker、 Web App Manifest、 Cache API、 Fetch API、 Push
+    API、 Web Push Protocol、 Notification
 
-「离线访问」，「消息推送」和「桌面通知」三大神器
+    「离线访问」，「消息推送」和「桌面通知」三大神器
 
-WebAssembly web浏览器 目标汇编语言
+    WebAssembly web浏览器 目标汇编语言
 
 ## git commits 出现累积叠加 解决办法
 
@@ -270,14 +271,18 @@ git checkout -b dev
 ## 创建新的空分支
 
 ```bash
+
 git checkout -b --orphan  new_branch
 
 git rm -rf .
+
 ```
 
 ## 获取提交时间
 
 ```bash
-获得提交时间
+
+ # 获得提交时间
  TZ=UTC git show --date=format-local:%Y%m%d%k%M%S
+
 ```
