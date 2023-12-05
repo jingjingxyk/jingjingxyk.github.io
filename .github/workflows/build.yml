@@ -22,13 +22,7 @@ jobs:
 
             -   name: 'download cloud soft'
                 run: bash tools/setup-gh-pages-step-03-download-soft.sh
-#
-#            -   name: 'run chromium in docker'
-#                run: bash tools/run-chromium-in-docker-step-03.sh
-#
-#            -   name: 'get chromium credit data with puppeteer'
-#                run: bash tools/get-chromium-credits-data-step-04.sh
-#
+
             -   name: 'prepare frontend deps'
                 run: bash tools/build-frontend-libs.sh
 
