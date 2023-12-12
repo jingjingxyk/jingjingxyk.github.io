@@ -13,7 +13,8 @@
     <!--
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
     <meta content="always" name="referrer"/>
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="cleartype" content="on">
@@ -27,27 +28,33 @@
     <link rel="stylesheet" type="text/css" href="/public/dist/app.css"/>
     -->
     <style>
-        .backgrounds{
-            background-color:#000;
+        .backgrounds {
+            background-color: #000;
         }
-        section h1{
-            color:#fffb00 !important;
-            font-weight:700;
+
+        section h1 {
+            color: #fffb00 !important;
+            font-weight: 700;
         }
-        .reveal .progress{
-            background-color:#6a01f0 !important;
+
+        .reveal .progress {
+            background-color: #6a01f0 !important;
         }
-        .controls{
-            background-color:#a9a9a9;
+
+        .controls {
+            background-color: #a9a9a9;
         }
-        h2{
-            border-bottom: 1px solid hsla(210,18%,87%,1);;
+
+        h2 {
+            border-bottom: 1px solid hsla(210, 18%, 87%, 1);;
         }
-        a{
+
+        a {
             text-decoration: none;
-            color:#0969da;
+            color: #0969da;
         }
-         blockquote {
+
+        blockquote {
             padding: 0 1em;
             color: #57606a;;
             border-left: 0.25em solid #d0d7de;
@@ -59,6 +66,7 @@
     <div class="main">
         <div class="container">
             <div id="content"></div>
+            <div id="vlogs"></div>
         </div>
     </div>
 </div>
@@ -70,6 +78,14 @@
         .then((x) => {
             console.log(x);
             document.getElementById('content').innerHTML =
+                marked.parse(x);
+        });
+
+    fetch('./vlogs.md.md')
+        .then((x) => x.text())
+        .then((x) => {
+            console.log(x);
+            document.getElementById('vlogs').innerHTML =
                 marked.parse(x);
         });
 
