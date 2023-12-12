@@ -137,14 +137,14 @@ interface MenuSpace {
     type: 'space';
 }
 type MenuItem = MenuButton | MenuSeparator | MenuSpace;
-type ContextMenuColumn = {
+interface ContextMenuColumn {
     type: 'column';
     items: Array<MenuButton | MenuDropDownButton | MenuLabel | MenuSeparator>;
-};
-type ContextMenuRow = {
+}
+interface ContextMenuRow {
     type: 'row';
     items: Array<MenuButton | MenuDropDownButton | ContextMenuColumn>;
-};
+}
 type ContextMenuItem = MenuButton | MenuDropDownButton | MenuSeparator | ContextMenuRow;
 interface MessageAction {
     text: string;
@@ -256,7 +256,9 @@ type RenderMenuContext = {
     modal: boolean;
 };
 type OnRenderMenu = (items: MenuItem[], context: RenderMenuContext) => MenuItem[] | undefined;
-type OnRenderMenuWithoutContext = (items: MenuItem[]) => MenuItem[] | undefined;
+type OnRenderMenuInternal = (items: MenuItem[]) => MenuItem[];
+type OnRenderContextMenu = (items: ContextMenuItem[], context: RenderMenuContext) => ContextMenuItem[] | undefined;
+type OnRenderContextMenuInternal = (items: ContextMenuItem[]) => ContextMenuItem[];
 type OnError = (error: Error) => void;
 type OnFocus = () => void;
 type OnBlur = () => void;
@@ -559,6 +561,7 @@ declare const __propDef$6: {
         onRenderValue?: OnRenderValue | undefined;
         onClassName?: OnClassName | undefined;
         onRenderMenu?: OnRenderMenu | undefined;
+        onRenderContextMenu?: OnRenderContextMenu | undefined;
         onChangeMode?: OnChangeMode | undefined;
         onError?: OnError | undefined;
         onFocus?: OnFocus | undefined;
@@ -871,4 +874,4 @@ declare function isContextMenuColumn(item: unknown): item is ContextMenuColumn;
 declare function isContentParseError(contentErrors: unknown): contentErrors is ContentParseError;
 declare function isContentValidationErrors(contentErrors: unknown): contentErrors is ContentValidationErrors;
 
-export { type AbsolutePopupContext, type AbsolutePopupOptions, type AfterPatchCallback, type AfterSelection, type AjvValidatorOptions, BooleanToggle, type CaretPosition, CaretType, type ClipboardValues, ColorPicker, type Content, type ContentErrors, type ContentParseError, type ContentValidationErrors, type ContextMenuColumn, type ContextMenuItem, type ContextMenuRow, type DocumentState, type DragInsideAction, type DragInsideProps, type DraggingState, EditableValue, EnumValue, type EscapeValue, type ExtendedSearchResultItem, type FindNextInside, type HistoryItem, type InsertType, type InsideSelection, type JSONContent, JsonEditor as JSONEditor, type JSONEditorContext, type JSONEditorModalCallback, type JSONEditorPropsOptional, type JSONEditorSelection, type JSONNodeItem, type JSONNodeProp, type JSONParser, type JSONPatchResult, type JSONPathParser, type JSONPointerMap, type JSONSchema, type JSONSchemaDefinitions, type JSONSchemaEnum, type JSONSelection, type KeySelection, type MenuButton, type MenuDropDownButton, type MenuItem, type MenuLabel, type MenuSeparator, type MenuSpace, type MessageAction, Mode, type MultiSelection, type NestedValidationError, type NumberOption, type OnBlur, type OnChange, type OnChangeMode, type OnChangeQueryLanguage, type OnChangeStatus, type OnChangeText, type OnClassName, type OnContextMenu, type OnError, type OnExpand, type OnFind, type OnFocus, type OnJSONEditorModal, type OnJSONSelect, type OnPaste, type OnPasteJson, type OnPatch, type OnRenderMenu, type OnRenderMenuWithoutContext, type OnRenderValue, type OnSelect, type OnSort, type OnSortModal, type OnTransformModal, type ParseError, type PastedJson, type PathOption, type PopupEntry, type QueryLanguage, type QueryLanguageOptions, ReadonlyValue, type RenderMenuContext, type RenderValueComponentDescription, type RenderValueProps, type RenderValuePropsOptional, type RenderedItem, type RichValidationError, SearchField, type SearchResult, type SearchResultItem, type Section, SelectionType, SortDirection, type SortModalCallback, type SortedColumn, type TableCellIndex, type TextContent, type TextLocation, type TextSelection, TimestampTag, type TransformModalCallback, type TransformModalOptions, type TreeModeContext, type UnescapeValue, UpdateSelectionAfterChange, type ValidationError, ValidationSeverity, type Validator, type ValueNormalization, type ValueSelection, type VisibleSection, createAfterSelection, createAjvValidator, createInsideSelection, createKeySelection, createMultiSelection, createValueSelection, estimateSerializedSize, isAfterSelection, isContent, isContentParseError, isContentValidationErrors, isContextMenuColumn, isContextMenuRow, isEditingSelection, isEqualParser, isInsideSelection, isJSONContent, isKeySelection, isLargeContent, isMenuButton, isMenuDropDownButton, isMenuLabel, isMenuSeparator, isMenuSpace, isMultiSelection, isTextContent, isValueSelection, javascriptQueryLanguage, jmespathQueryLanguage, lodashQueryLanguage, onEscape, parseJSONPath, renderJSONSchemaEnum, renderValue, resizeObserver, stringifyJSONPath, toJSONContent, toTextContent };
+export { type AbsolutePopupContext, type AbsolutePopupOptions, type AfterPatchCallback, type AfterSelection, type AjvValidatorOptions, BooleanToggle, type CaretPosition, CaretType, type ClipboardValues, ColorPicker, type Content, type ContentErrors, type ContentParseError, type ContentValidationErrors, type ContextMenuColumn, type ContextMenuItem, type ContextMenuRow, type DocumentState, type DragInsideAction, type DragInsideProps, type DraggingState, EditableValue, EnumValue, type EscapeValue, type ExtendedSearchResultItem, type FindNextInside, type HistoryItem, type InsertType, type InsideSelection, type JSONContent, JsonEditor as JSONEditor, type JSONEditorContext, type JSONEditorModalCallback, type JSONEditorPropsOptional, type JSONEditorSelection, type JSONNodeItem, type JSONNodeProp, type JSONParser, type JSONPatchResult, type JSONPathParser, type JSONPointerMap, type JSONSchema, type JSONSchemaDefinitions, type JSONSchemaEnum, type JSONSelection, type KeySelection, type MenuButton, type MenuDropDownButton, type MenuItem, type MenuLabel, type MenuSeparator, type MenuSpace, type MessageAction, Mode, type MultiSelection, type NestedValidationError, type NumberOption, type OnBlur, type OnChange, type OnChangeMode, type OnChangeQueryLanguage, type OnChangeStatus, type OnChangeText, type OnClassName, type OnContextMenu, type OnError, type OnExpand, type OnFind, type OnFocus, type OnJSONEditorModal, type OnJSONSelect, type OnPaste, type OnPasteJson, type OnPatch, type OnRenderContextMenu, type OnRenderContextMenuInternal, type OnRenderMenu, type OnRenderMenuInternal, type OnRenderValue, type OnSelect, type OnSort, type OnSortModal, type OnTransformModal, type ParseError, type PastedJson, type PathOption, type PopupEntry, type QueryLanguage, type QueryLanguageOptions, ReadonlyValue, type RenderMenuContext, type RenderValueComponentDescription, type RenderValueProps, type RenderValuePropsOptional, type RenderedItem, type RichValidationError, SearchField, type SearchResult, type SearchResultItem, type Section, SelectionType, SortDirection, type SortModalCallback, type SortedColumn, type TableCellIndex, type TextContent, type TextLocation, type TextSelection, TimestampTag, type TransformModalCallback, type TransformModalOptions, type TreeModeContext, type UnescapeValue, UpdateSelectionAfterChange, type ValidationError, ValidationSeverity, type Validator, type ValueNormalization, type ValueSelection, type VisibleSection, createAfterSelection, createAjvValidator, createInsideSelection, createKeySelection, createMultiSelection, createValueSelection, estimateSerializedSize, isAfterSelection, isContent, isContentParseError, isContentValidationErrors, isContextMenuColumn, isContextMenuRow, isEditingSelection, isEqualParser, isInsideSelection, isJSONContent, isKeySelection, isLargeContent, isMenuButton, isMenuDropDownButton, isMenuLabel, isMenuSeparator, isMenuSpace, isMultiSelection, isTextContent, isValueSelection, javascriptQueryLanguage, jmespathQueryLanguage, lodashQueryLanguage, onEscape, parseJSONPath, renderJSONSchemaEnum, renderValue, resizeObserver, stringifyJSONPath, toJSONContent, toTextContent };
