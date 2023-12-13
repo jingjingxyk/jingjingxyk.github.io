@@ -119,3 +119,6 @@ cp -rf lib ${__ROOT__}/ajax/libs/sip.js/0.21.2
 cp -rf dist/* ${__ROOT__}/ajax/libs/sip.js/0.21.2
 cd ${__ROOT__}
 
+
+
+cp -rf ajax gh-pages/
