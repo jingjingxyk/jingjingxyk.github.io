@@ -12,22 +12,32 @@ jobs:
         steps:
             -   uses: actions/checkout@v3
             -   name: 'get latest k8s version'
-                run: bash tools/get-latest-k8s-version.sh
+                run: |
+                    set -x
+                    bash tools/get-latest-k8s-version.sh
 
             -   name: 'generate gh page folder'
-                run: bash tools/setup-gh-pages-step-01-index.sh
+                run: |
+                    set -x
+                    bash tools/setup-gh-pages-step-01-index.sh
 
             -   name: 'create chromium extension release archive '
                 run: bash tools/setup-gh-pages-step-02-chromium-extension.sh
 
             -   name: 'download cloud soft'
-                run: bash tools/setup-gh-pages-step-03-download-soft.sh
+                run: |
+                    set -x
+                    # bash tools/setup-gh-pages-step-03-download-soft.sh
 
             -   name: 'prepare frontend deps'
-                run: bash tools/build-frontend-libs.sh
+                run: |
+                    set -x
+                    # bash tools/build-frontend-libs.sh
 
             -   name: 'last setup gh-page'
-                run: bash tools/setup-gh-pages-step-last.sh
+                run: |
+                    set -x
+                    bash tools/setup-gh-pages-step-last.sh
 
             -   name: 'Deploy GitHub Pages'
                 uses: peaceiris/actions-gh-pages@v3
