@@ -443,3 +443,13 @@ https://www.toutiao.com/article/7147952405546533408
 
 
 ```
+
+## 学习记录 2023-12-23
+
+```text
+    条块分割、尾大不掉是中国政治体制的核心弊端 （农民无产化 ，不能实现长治久安）
+        https://www.aisixiang.com/data/60251.html
+    没有土改，中国难以度过这几次重大危机
+        https://www.aisixiang.com/data/104612.html
+
+```
