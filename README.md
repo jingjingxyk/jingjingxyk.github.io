@@ -272,7 +272,7 @@ git checkout -b dev
 
 ```bash
 
-git checkout -b --orphan  new_branch
+git checkout  --orphan  new_branch
 
 git rm -rf .
 
