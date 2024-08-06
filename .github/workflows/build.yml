@@ -1,50 +1,50 @@
 name: generate-gh-page
 on:
-    push:
-        branches:
-            - main
-    schedule:
-            -  cron: "30 14 01 * *"
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "30 14 01 * *"
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        timeout-minutes: 180
-        steps:
-            -   uses: actions/checkout@v3
-            -   name: 'get latest k8s version'
-                run: |
-                    set -x
-                    bash tools/get-latest-k8s-version.sh
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - name: 'get latest k8s version'
+        run: |
+          set -x
+          bash tools/get-latest-k8s-version.sh
 
-            -   name: 'generate gh page folder'
-                run: |
-                    set -x
-                    bash tools/setup-gh-pages-step-01-index.sh
+      - name: 'generate gh page folder'
+        run: |
+          set -x
+          bash tools/setup-gh-pages-step-01-index.sh
 
-            -   name: 'create chromium extension release archive '
-                run: bash tools/setup-gh-pages-step-02-chromium-extension.sh
+      - name: 'create chromium extension release archive '
+        run: bash tools/setup-gh-pages-step-02-chromium-extension.sh
 
-            -   name: 'download cloud soft'
-                run: |
-                    set -x
-                    # bash tools/setup-gh-pages-step-03-download-soft.sh
+      - name: 'download cloud soft'
+        run: |
+          set -x
+          # bash tools/setup-gh-pages-step-03-download-soft.sh
 
-            -   name: 'prepare frontend deps'
-                run: |
-                    set -x
-                    # bash tools/build-frontend-libs.sh
+      - name: 'prepare frontend deps'
+        run: |
+          set -x
+          # bash tools/build-frontend-libs.sh
 
-            -   name: 'last setup gh-page'
-                run: |
-                    set -x
-                    bash tools/setup-gh-pages-step-last.sh
+      - name: 'last setup gh-page'
+        run: |
+          set -x
+          bash tools/setup-gh-pages-step-last.sh
 
-            -   name: 'Deploy GitHub Pages'
-                uses: peaceiris/actions-gh-pages@v3
-                with:
-                    deploy_key: ${{ secrets.ACTION_DEPLOY_KEY }}
-                    publish_dir: gh-pages
-                    publish_branch: gh-pages
-                    allow_empty_commit: true
-                    enable_jekyll: false
-                    keep_files: true
+      - name: 'Deploy GitHub Pages'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTION_DEPLOY_KEY }}
+          publish_dir: gh-pages
+          publish_branch: gh-pages
+          allow_empty_commit: true
+          enable_jekyll: false
+          keep_files: true
